@@ -1,0 +1,9 @@
+.event-container {
+    display: flex;
+    flex-direction: column;
+
+    .event-inputs {
+        display: flex;
+        flex-direction: column;
+    }
+}

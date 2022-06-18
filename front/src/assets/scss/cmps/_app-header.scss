@@ -1,0 +1,146 @@
+.header-container {
+  display: flex;
+  background-color: $gray;
+
+  .header-logo-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .header-options {
+      display: flex;
+      gap: 1em;
+    }
+
+    .header-nav-bar {
+      display: flex;
+      gap: 0.5em;
+    }
+  }
+
+  .header-logo {
+    margin: 1em;
+    align-self: flex-end;
+    width: 150px;
+    // height: 80px;
+  }
+
+  .header-user-msg {
+    color: $blue;
+    font-size: 1em;
+    margin: 0;
+  }
+}
+
+
+.user-msg {
+  color: white;
+  padding: 10px;
+  font-size: 1.4em;
+  position: fixed;
+  top: 72px;
+  right: 0;
+  background-color: grey;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  z-index: 2000;
+}
+
+.user-msg button {
+  float: right;
+  border: 0;
+  border-radius: 50%;
+  margin: 5px;
+
+}
+
+.success {
+  background-color: $green;
+}
+
+.danger {
+  background-color: $red;
+}
+
+.avatar-img {
+  width: 30px;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.profile-container {
+  position: relative;
+  z-index: 9999;
+}
+
+.profile-menu-wrapper {
+  position: absolute;
+  right: 0;
+
+  .profile-menu {
+    position: relative;
+    z-index: 9999;
+    background-color: $white;
+    border: 1px solid #dbdbdb;
+    border-radius: 3px;
+    // font-weight: 400;
+    margin-top: 40px;
+    min-width: 140px;
+    padding: 5px 15px;
+
+    .Menu-subcategory {
+      position: absolute;
+      left: calc(100% - 20px);
+      top: -11px;
+      width: 0;
+      height: 0;
+      border: 10px solid transparent;
+      border-top-width: 0;
+      border-bottom-color: $blue;
+      background: 0 0;
+      transform: translateX(-50%);
+      z-index: 9999;
+
+      &::after {
+        content: "";
+        width: 0;
+        height: 0;
+        top: 1px;
+        transform: translateX(-50%);
+        border-bottom-color: $white;
+        position: absolute;
+        border-color: transparent;
+        border-top-width: 10px;
+        border: transparent solid 10px;
+        outline: 0;
+      }
+    }
+  }
+}
+
+.menu-item {
+  color: #95979d;
+  padding: 10px 8px;
+  // font-family: Arial, Helvetica, sans-serif;***
+  // font-weight: 400;
+  // line-height: 24px;
+  color: $blue;
+  font-size: 1em;
+  text-align: right;
+
+  &.sign {
+    cursor: pointer;
+  }
+
+  &:hover {
+    color: $blue;
+  }
+}
+
+.logout {
+  width: 100%;
+  border-top: 1px solid rgb(187, 184, 184);
+  cursor: pointer;
+  padding: 10px 0;
+}

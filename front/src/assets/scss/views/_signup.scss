@@ -1,0 +1,58 @@
+.signup-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: adineue-light;
+    color: $gray-light;
+
+    .signup-title {
+        display: flex;
+        justify-content: center;
+        margin: 1.5em 0;
+        color: $gray;
+        font-size: 2em;    
+
+    }
+
+    .signup-input {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2em;                
+        width: 20em;
+        font-size: 1em;
+        // font-weight: 800;
+        .signup-label {
+            text-align: right;
+            color: $gray-light;
+        }
+        .signup-input {
+            text-align: left;
+            color: $gray-light;
+        }
+        .signup-btn {
+            text-align: center;
+            background-color: $gray-light;
+            color:$white;
+            border-radius: 1px solid $gray-light;
+            font-size: 1em;
+            padding: 0.5em 1em;
+            margin-bottom: 1em;
+
+        }
+        .signup-small-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1em;
+        }
+        .signup-checkbox-input {
+            width: 1em;
+        }
+        .signup-checkbox-label {
+            width: 220px;
+        }
+    }
+}

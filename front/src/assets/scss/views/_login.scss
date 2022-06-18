@@ -1,0 +1,46 @@
+.login-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: adineue-light;
+    color: $gray-light;
+    
+
+    .login-title {
+        display: flex;
+        justify-content: center;
+        margin: 1.5em 0;
+        color: $gray;
+        font-size: 2em;    
+
+    }
+
+    .login-input {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2em;                
+        width: 20em;
+        font-size: 1em;
+        // font-weight: 800;
+        .login-label {
+            text-align: right;
+            color: $gray-light;
+        }
+        .login-input {
+            text-align: left;
+            color: $gray-light;
+        }
+        .login-btn {
+            text-align: center;
+            background-color: $gray-light;
+            color:$white;
+            border-radius: 1px solid $gray-light;
+            font-size: 1em;
+            padding: 0.5em 1em;
+
+        }
+    }
+}
