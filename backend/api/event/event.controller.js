@@ -21,9 +21,9 @@ async function getEvents(req, res) {
             txt: req.query?.txt || ''
             // minBalance: +req.query?.minBalance || 0
         }
-        console.log('filterBy', filterBy)
+        // console.log('filterBy', filterBy)
         const events = await eventService.query(filterBy)
-        console.log('events in controller',events )
+        // console.log('events in controller',events )
         res.send(events)
     } catch (err) {
         logger.error('Failed to get events', err)
