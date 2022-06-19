@@ -1,5 +1,5 @@
 const initialState = {   
-    event: null,
+    currEvent: null,
     filterBy: {
         txt: '',
         date: '',
@@ -15,6 +15,7 @@ const initialState = {
 
 export function eventReducer(state = initialState, action) {
     let events
+    let currEvent
 
     switch (action.type) {
 
@@ -34,7 +35,8 @@ export function eventReducer(state = initialState, action) {
         case 'SET_FILTERBY':
             return { ...state, filterBy: action.filterBy }
         case 'GET_BY_ID':
-            return { ...state, event: action.event }
+            console.log('currEvent', currEvent)
+            return { ...state, currEvent: action.currEvent }
         case 'GET_SELECTED':
             return { ...state, selectedOption: action.selectedOption }
         default:

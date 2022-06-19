@@ -98,8 +98,40 @@ const gTrans = {
     },
     eventCity: {
         en: 'Event city name',
-        he: 'שם עיר הארוע'
-    }   
+        he: 'עיר הארוע'
+    },
+    eventPricePerCard: {
+        en: 'Price per ticket',
+        he: 'מחיר לכרטיס'
+    },
+    ticketCount: {
+        en: 'Ticket count',
+        he: 'כמות כרטיסים'
+    },
+    userRemark: {
+        en: 'Remarks / Extra details',
+        he: 'הערות/פרטים נוספים'
+    },
+    eventArea: {
+        en: 'Event erea',
+        he: 'אזור הארוע'
+    },
+    eventTime: {
+        en: 'Event time',
+        he: 'שעת הארוע'
+    },
+    return: {
+        en: 'Go Back',
+        he: 'חזור'
+    },
+    update: {
+        en: 'Update',
+        he: 'עדכן'
+    },
+    eventDetails: {
+        en: 'Event',
+        he: 'ארוע'
+    }
 }
 
 

@@ -1,10 +1,10 @@
 import * as React from 'react'
 import { useState , useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { signup,  getLoggedinUser } from '../store/action/user.actions'
 import { addEvent } from '../store/action/event.actions'
 import { useNavigate } from 'react-router-dom'
-import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
+import { socketService } from '../services/socket.service'
+// import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
 // import {eventService} from '../services/event.service.js'
 
 const Event = () => {
@@ -30,21 +30,15 @@ const Event = () => {
         systemRemark:''
     })
     
-    let eventTypes = 
-    useEffect(() => {
+    // let eventTypes = 
+    // useEffect(() => {
         // eventTypes = eventService.loadEventTypes()
-    }, [])
+    // }, [])
 
 
     const handleChange = (event) => {
         let value = event.target.value;
-        const name = event.target.name;      
-        
-        // if(name === 'approvedMobile' || name === 'approvedEmail') {
-        //  value = event.target.checked
-        //  console.log('value', value)
-        // }
-        
+        const name = event.target.name;              
         setCurrEvent({ currEvent: { ...currEvent, name: value } });
     }
 
@@ -72,7 +66,8 @@ const Event = () => {
         }
 
             console.log('currEventInfo',currEventInfo )
-            dispatch(addEvent(currEventInfo))            
+            dispatch(addEvent(currEventInfo))       
+            socketService.emit('addedEvent',currEventInfo)     
             navigate('/')
     }
 
@@ -85,15 +80,13 @@ const Event = () => {
             <form onSubmit={handleSubmit} >
                 <div className="event-inputs">
                     {/* <div className="event-small-container"> */}
-                        <label className="event-label " data-trans="eventDate">
-                            תאריך הארוע
-                            <input className="event-input" type="date" name="date"  value={currEvent.date} onChange={(ev) => handleChange(ev)} required/>
-                        </label>        
+                        <label className="event-label " data-trans="eventDate">תאריך הארוע</label>
+                        <input className="event-input" type="date" name="date"  value={currEvent.date} onChange={(ev) => handleChange(ev)} required/>
+                        
 
-                        <label className="event-label" data-trans="eventTime">
-                            שעת הארוע
-                            <input className="event-input" type="time" name="time"  value={currEvent.time} onChange={(ev) => handleChange(ev)} required/>
-                        </label>        
+                        <label className="event-label" data-trans="eventTime">שעת הארוע</label>        
+                        <input className="event-input" type="time" name="time"  value={currEvent.time} onChange={(ev) => handleChange(ev)} required/>
+                        
                     {/* </div> */}
                                             
         

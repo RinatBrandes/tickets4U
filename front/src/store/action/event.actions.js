@@ -27,12 +27,9 @@ export function getActionUpdateEvent(event) {
 export function loadEvents() {
     return async (dispatch) => {
         try {
-            const events = eventService.query()
-            console.log('Events from DB:', events)
-            dispatch({
-                type: 'SET_EVENTS',
-                events
-            })
+            const events = await eventService.query()
+            const action = { type: 'SET_EVENTS', events }
+            dispatch(action)
         } catch(err) {
                 showErrorMsg('Cannot load events')
                 console.log('Cannot load events', err)
@@ -55,18 +52,31 @@ export function loadEvents() {
 // }
 
 export function addEvent(currEvent) {
-    return (dispatch) => {
+    return async (dispatch) => {
+        try {
+            const savedEvent = await eventService.save(currEvent)
+            console.log('Added savedEvent', savedEvent);
+            // getActionAddEvent(savedEvent)
+            showSuccessMsg('Event added')
+        }catch(err) {
+            showErrorMsg('Cannot add event')
+            console.log('Cannot add event', err)
+        }
+    }
+}
 
-        eventService.save(currEvent)
-            .then(savedEvent => {
-                console.log('Added savedEvent', savedEvent);
-                // getActionAddEvent(savedEvent)
-                showSuccessMsg('Event added')
+export function getById(eventId) {
+    return async dispatch => {
+        try {
+            const currEvent = await eventService.getById(eventId)
+            console.log('currEvent', currEvent)
+            dispatch({
+                type: 'GET_BY_ID',
+                currEvent
             })
-            .catch(err => {
-                showErrorMsg('Cannot add event')
-                console.log('Cannot add event', err)
-            })
+        } catch (err) {
+            console.error('Error:', err)
+        }
     }
 }
 

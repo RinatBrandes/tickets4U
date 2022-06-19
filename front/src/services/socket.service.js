@@ -1,5 +1,5 @@
 import io from 'socket.io-client'
-import { userService } from './user.service'
+
 
 export const SOCKET_EMIT_SEND_MSG = 'chat addMsg';
 export const SOCKET_EMIT_USER_WATCH = 'user-watch';
@@ -26,10 +26,10 @@ function createSocketService() {
   const socketService = {
     setup() {
       socket = io(baseUrl)
-      setTimeout(()=>{
-        const user = userService.getLoggedinUser()
-        if (user) this.login(user._id)
-      }, 500)
+      // setTimeout(()=>{
+      //   const user = userService.getLoggedinUser()
+      //   if (user) this.login(user._id)
+      // }, 500)
     },
     on(eventName, cb) {
       socket.on(eventName, cb)

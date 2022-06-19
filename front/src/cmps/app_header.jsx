@@ -57,6 +57,10 @@ const AppHeader = () => {
         setMenu(flag);
     }
 
+    const onGoBack = () => {
+        navigate('/')
+    }
+
      console.log('loggedInUser', loggedInUser)
     return (
         // <header className="">
@@ -83,7 +87,7 @@ const AppHeader = () => {
                         </div>
                     </div>
                 </div>
-                <img className="header-logo" src={logo_big_bg} alt="logo"></img>
+                <img className="header-logo" src={logo_big_bg} alt="logo" onClick={onGoBack}></img>
             </div>
           
             </div>

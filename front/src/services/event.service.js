@@ -6,7 +6,8 @@ import { httpService } from './http.service'
 export const eventService = {
     // loadEventTypes,
     save,
-    query
+    query,
+    getById
 
 }
 
@@ -16,13 +17,19 @@ async function query(filterBy = {}) {
     const url = `?txt=${txt}&date=${date}&eventName=${eventName}&eventType=${eventType}&eventCity=${eventCity}&eventArea=${eventArea}&evenPricePerCard=${evenPricePerCard}&eventTicketQty=${eventTicketQty}&sortBy=${sortBy}`
     const urlToRequest = 'event/' + url
     // let gigs = await storageService.query(STORAGE_KEY)
-    let events = httpService.get(urlToRequest)
-console.log('events', events)
+    let events = await httpService.get(urlToRequest)
+
     return events
 }
 
 
 
+async function getById(eventId) {
+    // return storageService.get(STORAGE_KEY, gigId)
+    let event = await httpService.get(`event/${eventId}`)
+    console.log('event', event)
+    return event
+}
 
 async function save(currEvent) {
 
