@@ -3,10 +3,9 @@ const socketService = require('../../services/socket.service')
 const logger = require('../../services/logger.service')
 
 async function getEvent(req, res) {
-    console.log('req.params.id',req.params.id )
+    
     try {
-        const event = await eventService.getById(req.params.id)
-        
+        const event = await eventService.getById(req.params.id)        
         res.send(event)
     } catch (err) {
         logger.error('Failed to get event', err)
@@ -17,13 +16,19 @@ async function getEvent(req, res) {
 async function getEvents(req, res) {
 
     try {
+
         const filterBy = {
-            txt: req.query?.txt || ''
-            // minBalance: +req.query?.minBalance || 0
-        }
-        // console.log('filterBy', filterBy)
+            txt: req.query?.txt || '',
+            date: req.query?.date || '',
+            eventName: req.query?.eventName || '',
+            eventType: req.query?.eventType || '',
+            eventCity: req.query?.eventCity || '',
+            eventArea: req.query?.eventArea || '',
+            evenPricePerCard: req.query?.evenPricePerCard || '',
+            eventTicketQty: req.query?.eventTicketQty || '',
+            userId: req.query?.userId || ''
+        }        
         const events = await eventService.query(filterBy)
-        // console.log('events in controller',events )
         res.send(events)
     } catch (err) {
         logger.error('Failed to get events', err)
@@ -32,21 +37,6 @@ async function getEvents(req, res) {
 }
 
 
-async function getEventTypes(req, res) {
-
-    try {
-        // const filterBy = {
-        //     txt: req.query?.txt || ''
-        //     // minBalance: +req.query?.minBalance || 0
-        // }
-        // console.log('filterBy', filterBy)
-        const events = await eventService.query()
-        res.send(events)
-    } catch (err) {
-        logger.error('Failed to get events', err)
-        res.status(500).send({ err: 'Failed to get events' })
-    }
-}
 
 async function deleteEvent(req, res) {
     try {
@@ -60,8 +50,8 @@ async function deleteEvent(req, res) {
 
 async function updateEvent(req, res) {
     try {
-        const event = req.body
-        const savedEvent = await eventService.update(event)
+        const event = req.body        
+        const savedEvent = await eventService.update(event)        
         res.send(savedEvent)
     } catch (err) {
         logger.error('Failed to update event', err)
@@ -85,6 +75,5 @@ module.exports = {
     getEvents,
     deleteEvent,
     updateEvent,
-    getEventTypes,
     addEvent
 }

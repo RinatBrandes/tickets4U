@@ -97,6 +97,19 @@ function timeAgo(ms = new Date()) {
   }
 }
 
+
+
+function toDate(timestamp){
+    
+  let date = new Date(timestamp * 1000)
+  let day = date.getDate()
+  day = (day < 10 ? '0'+day : day)   
+  let month = (date.getMonth()+1)
+  // month = month.padStart(2,'0')
+  month = (month < 10 ? '0'+month : month)   
+  let newDate = (date.getFullYear() + "-" + month + "-" + day)
+  return newDate
+}
 module.exports = {
   makeId,
   getRandomInt,
@@ -104,4 +117,5 @@ module.exports = {
   generateRandomName,
   timeAgo,
   generateRandomImg,
+  toDate
 }

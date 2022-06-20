@@ -1,6 +1,7 @@
 
 const dbService = require('../../services/db.service')
 const logger = require('../../services/logger.service')
+const utilService = require('../../services/util.service')
 const ObjectId = require('mongodb').ObjectId
 
 
@@ -16,24 +17,27 @@ module.exports = {
 
 async function query(filterBy = {}) {
     const criteria = _buildCriteria(filterBy)
-    console.log('criteria',criteria )
-    console.log('filterBy', filterBy)
+      
     try {
-        const collection = await dbService.getCollection('event')
-        var events = await collection.find(criteria).toArray()
-        console.log('events in service ',events )
+        const collection = await dbService.getCollection('event')        
+        filterBy.sortBy = 'date' 
+        // console.log('filterBy in event service row 24',filterBy )
+        // console.log('criteria', criteria)
+        var events = await collection.find(criteria).sort(filterBy.sortBy, 1).toArray()        
+        events.map(event => {
+            // console.log('utilService.toDate(event.date)', (event.date))
+            return event.date = utilService.toDate(event.date)
+        })        
         return events
     } catch (err) {
         logger.error('cannot find events', err)
         throw err
     }
-}
-
+}                
+//{ "date": {$gt: 1655719631052} }
 
 async function getTypes() {
-    // const criteria = _buildCriteria(filterBy)
-    // console.log('criteria',criteria )
-    // console.log('filterBy', filterBy)
+
     const criteria = null
     try {
         const collection = await dbService.getCollection('eventTypes')
@@ -47,11 +51,11 @@ async function getTypes() {
 
 
 async function getById(eventId) {
-    console.log('eventId', eventId)
+
     try {
         const collection = await dbService.getCollection('event')
         const event = await collection.findOne({ _id: ObjectId(eventId) })
-        
+        event.date = utilService.toDate(event.date)
         delete event.password
 
         return event
@@ -63,10 +67,10 @@ async function getById(eventId) {
 // async function getByEventname(eventName) {
     
 //     try {
-//         console.log('eventName', eventName)
+
 //         const collection = await dbService.getCollection('event')
 //         const event = await collection.findOne({ eventName })
-//         console.log('event', event)
+
 //         return event
 //     } catch (err) {
 //         logger.error(`while finding event ${eventName}`, err)
@@ -86,18 +90,14 @@ async function remove(eventId) {
 
 async function update(event) {
     try {
-        // peek only updatable properties
-        const eventToSave = {
-            _id: ObjectId(event._id), // needed for the returnd obj
-            fullName: event.fullname,
-            isSeller: event.isSeller,
-            avgOrdersRate: event.avgOrdersRate,
-            // score: event.score,
-        }
+       
+
+        const id = event._id
+        delete event._id
         const collection = await dbService.getCollection('event')
-        await collection.updateOne({ _id: eventToSave._id }, { $set: eventToSave })
-        addLog('event', 'info', 'update event', eventToSave)
-        return eventToSave
+        await collection.updateOne({'_id':ObjectId(id)},{$set:event})
+        addLog('event', 'info', 'update event', event)
+        return event
     } catch (err) {
         logger.error(`cannot update event ${event._id}`, err)
         throw err
@@ -110,7 +110,6 @@ async function add(currEvent) {
 
         const collection = await dbService.getCollection('event')
         await collection.insertOne(currEvent)
-        // console.log('currEvent', currEvent)
         addLog('event', 'info', 'add event', currEvent)
         
         return currEvent
@@ -123,7 +122,6 @@ async function add(currEvent) {
 
 
 async function addLog(collectionName, logType, details, eventData={}){
-// console.log('add log' , eventData)
     const logDetails = {
         subject: collectionName,
         userId: ObjectId(eventData.userId),
@@ -132,7 +130,7 @@ async function addLog(collectionName, logType, details, eventData={}){
         details: details,
         createdAt: Date.now()
     }
-    console.log('logDetails', logDetails)
+    
     const collection = await dbService.getCollection('log')
     await collection.insertOne(logDetails)
 }
@@ -143,17 +141,58 @@ async function addLog(collectionName, logType, details, eventData={}){
 function _buildCriteria(filterBy) {
     const criteria = {}
     if (filterBy.txt) {
-        const txtCriteria = { $regex: filterBy.txt, $options: 'i' }
+        const txtCriteria = { $regex: filterBy.txt, $options: 'i' } //'i' for Capitals       
         criteria.$or = [
             {
                 eventName: txtCriteria
+            },
+            {
+                eventType: txtCriteria
+            },
+            {
+                eventArea: txtCriteria
             }
-      
         ]
     }
-    // if (filterBy.minBalance) {
-    //     criteria.score = { $gte: filterBy.minBalance }
+    if (filterBy.date) {
+        criteria.date = { $regex: filterBy.date }
+    } 
+    else {
+        const today = Date.now()
+        //from some resean the today date is longer
+        criteria.date = {$gte: (Math.trunc(today/1000)) }
+        
+    }
+    
+    // if (filterBy.eventName) {
+    //     criteria.eventName = { $regex: filterBy.eventName, $options: 'i' }
     // }
+    
+    // if (filterBy.eventType) {
+    //     criteria.eventType = { $regex: filterBy.eventType, $options: 'i' }
+    // }
+    
+    // if (filterBy.eventCity) {
+    //     criteria.eventCity = { $regex: filterBy.eventCity, $options: 'i' }
+    // }
+    
+    // if (filterBy.eventArea) {
+    //     criteria.eventArea = { $regex: filterBy.eventArea, $options: 'i' }
+    // }
+    
+    if (filterBy.evenPricePerCard) {
+        criteria.evenPricePerCard = { $regex: filterBy.evenPricePerCard, $options: 'i' }
+    }
+    
+    if (filterBy.eventTicketQty) {
+        criteria.eventTicketQty = { $regex: filterBy.eventTicketQty, $options: 'i' }
+    }
+    
+    if (filterBy.userId) {
+        criteria.userId = { $regex: filterBy.userId }
+    }
+    
+
     return criteria
 }
 

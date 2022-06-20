@@ -17,8 +17,7 @@ module.exports = {
 
 async function query(filterBy = {}) {
     const criteria = _buildCriteria(filterBy)
-    console.log('criteria',criteria )
-    console.log('filterBy', filterBy)
+
     try {
         const collection = await dbService.getCollection('user')
         var users = await collection.find(criteria).toArray()
@@ -37,7 +36,7 @@ async function query(filterBy = {}) {
 }
 
 async function getById(userId) {
-    console.log('userId', userId)
+    
     try {
         const collection = await dbService.getCollection('user')
         const user = await collection.findOne({ _id: ObjectId(userId) })
@@ -53,10 +52,9 @@ async function getById(userId) {
 async function getByUsername(userName) {
     
     try {
-        console.log('userName', userName)
+        
         const collection = await dbService.getCollection('user')
         const user = await collection.findOne({ userName })
-        console.log('user', user)
         return user
     } catch (err) {
         logger.error(`while finding user ${userName}`, err)
@@ -77,17 +75,17 @@ async function remove(userId) {
 async function update(user) {
     try {
         // peek only updatable properties
-        const userToSave = {
-            _id: ObjectId(user._id), // needed for the returnd obj
-            fullName: user.fullname,
-            isSeller: user.isSeller,
-            avgOrdersRate: user.avgOrdersRate,
-            // score: user.score,
-        }
+        // const userToSave = {
+        //     _id: ObjectId(user._id), // needed for the returnd obj
+        //     fullName: user.fullname,
+        //     isSeller: user.isSeller,
+        //     avgOrdersRate: user.avgOrdersRate,
+        //     // score: user.score,
+        // }
         const collection = await dbService.getCollection('user')
-        await collection.updateOne({ _id: userToSave._id }, { $set: userToSave })
-        addLog('user', 'info', 'update user', userToSave)
-        return userToSave
+        await collection.updateOne({ _id: userToSave._id }, { $set: user })
+        addLog('user', 'info', 'update user', user)
+        return user
     } catch (err) {
         logger.error(`cannot update user ${user._id}`, err)
         throw err
@@ -100,7 +98,6 @@ async function add(signupUser) {
 
         const collection = await dbService.getCollection('user')
         await collection.insertOne(signupUser)
-        console.log('signupUser', signupUser)
         addLog('user', 'info', 'signup', signupUser)
         
         return signupUser
@@ -113,7 +110,6 @@ async function add(signupUser) {
 
 
 async function addLog(collectionName, logType, details, userData,eventData={}){
-// console.log('add log' , userData)
     const logDetails = {
         subject: collectionName,
         userId: ObjectId(userData._id),
@@ -122,7 +118,6 @@ async function addLog(collectionName, logType, details, userData,eventData={}){
         details: details,
         createAt: Date.now()
     }
-    console.log('logDetails', logDetails)
     const collection = await dbService.getCollection('log')
     await collection.insertOne(logDetails)
 }

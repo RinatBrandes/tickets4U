@@ -25,14 +25,13 @@ try {
 }
 
 async function signup(signupUser) {
-    console.log('signupUser in auth service', signupUser)
+    
     try {
         const saltRounds = 10
         logger.debug(`auth.service - signup with username: ${signupUser.userName}, password: ${signupUser.password}`)
         if (!signupUser.userName || !signupUser.password) return Promise.reject('Missing required signup information')
 
         const userExist = await userService.getByUsername(signupUser.userName)
-        console.log('userExist', userExist)
         if (userExist) return Promise.reject('Username already taken')
 
         // const hash = await bcrypt.hash(password, saltRounds)

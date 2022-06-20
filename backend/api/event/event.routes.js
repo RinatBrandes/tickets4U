@@ -8,7 +8,6 @@ const router = express.Router()
 
 
 router.get('/', getEvents)
-
 // router.get('/types', getEventTypes)
 router.get('/:id', getEvent)
 router.put('/:id',   updateEvent)

@@ -15,6 +15,7 @@ function connectSockets(http) {
             logger.info(`Socket disconnected [id: ${socket.id}]`)
         })
         socket.on('chat topic', topic => {
+            
             if (socket.myTopic === topic) return;
             if (socket.myTopic) {
                 socket.leave(socket.myTopic)
@@ -24,7 +25,8 @@ function connectSockets(http) {
             socket.myTopic = topic
             
         })
-        socket.on('addedEvent', (event) => {                     
+        socket.on('addedEvent', (event) => {  
+            
             socket.to(socket.myTopic).emit('eventSaved', event)
         })
         // socket.on('deletedTicket',(ticketId) =>{
