@@ -2,7 +2,6 @@ import * as React from 'react'
 import { useParams } from 'react-router-dom';
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { addEvent } from '../store/action/event.actions'
 import { useNavigate } from 'react-router-dom'
 import { getById } from '../store/action/event.actions';
 

@@ -41,23 +41,6 @@ function delay(ms = 1500) {
 }
 
 
-
-// ✅ Format a date to YYYY-MM-DD (or any other format)
-function padTo2Digits(num) {
-    return num.toString().padStart(2, '0');
-}
-
-// function formatDate(date) {
-//     return [
-//     // ✅ Reset a Date's time to midnight
-//     date.setHours(0, 0, 0, 0);
-//     date.getFullYear(),
-//     padTo2Digits(date.getMonth() + 1),
-//     padTo2Digits(date.getDate()),
-//   ].join('-');
-// }
-
-
 function toTimestamp(date){
     date += ' 00:00:01'
     console.log('date', date)

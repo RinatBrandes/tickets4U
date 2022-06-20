@@ -41,7 +41,7 @@ export function loadEvents(filterBy) {
 export function addEvent(currEvent, isNewEvent) {
     return async (dispatch) => {
         try {
-            const savedEvent = await eventService.save(currEvent)
+            await eventService.save(currEvent)
             if (isNewEvent) showSuccessMsg('Event added')
         } catch (err) {
             showErrorMsg('Cannot add event')

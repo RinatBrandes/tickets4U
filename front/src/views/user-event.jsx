@@ -1,6 +1,5 @@
 import * as React from 'react'
-import { useParams } from 'react-router-dom';
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { loadEvents } from '../store/action/event.actions'
 import { useNavigate } from 'react-router-dom'
@@ -10,7 +9,7 @@ const UserEvent = () => {
     const { events } = useSelector((storeState) => storeState.eventModule)
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const params = useParams()
+    
 
     useEffect(() => {
         const filterBy = {
@@ -22,10 +21,8 @@ const UserEvent = () => {
 
 
     const GoToEdit = (ev, eventId) => {
-
         navigate(`/event/edit/${eventId}`)
     }
-
 
     if (!events) return <h1>Loading</h1>
     return (
