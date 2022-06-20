@@ -1,7 +1,7 @@
 import { userService } from '../../services/user.service.js'
 
 
-const initialState = {    
+const initialState = {
     loggedInUser: userService.getLoggedinUser() || null,
     users: [],
     watchedUser: null,

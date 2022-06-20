@@ -30,10 +30,6 @@ const routes = [
         path: '/event/:eventId',
         component: <EventDetails />,
     },
-    // {
-    //     path: '/event',
-    //     component: <EventEdit />,
-    // },
     {
         path: '/event/user/:userId',
         component: <UserEvent />,

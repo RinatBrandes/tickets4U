@@ -1,7 +1,4 @@
-
 import { httpService } from './http.service'
-
-
 
 export const eventService = {
     save,
@@ -11,13 +8,12 @@ export const eventService = {
 }
 
 async function query(filterBy = {}) {
-console.log('filterBy', filterBy)
-    const { txt = '', date = '', eventName  = '', eventType  = '', eventCity  = '',eventArea = '',evenPricePerCard = '',eventTicketQty = '', userId= '',sortBy = 'date' } = filterBy
+
+    const { txt = '', date = '', eventName = '', eventType = '', eventCity = '', eventArea = '', evenPricePerCard = '', eventTicketQty = '', userId = '', sortBy = 'date' } = filterBy
     const url = `?txt=${txt}&date=${date}&eventName=${eventName}&eventType=${eventType}&eventCity=${eventCity}&eventArea=${eventArea}&evenPricePerCard=${evenPricePerCard}&eventTicketQty=${eventTicketQty}&userId=${userId}&sortBy=${sortBy}`
     let urlToRequest
-    if(filterBy.userId !== null) urlToRequest = 'event/user' + url
+    if (filterBy.userId !== null) urlToRequest = 'event/user' + url
     urlToRequest = 'event/' + url
-    console.log('urlToRequest',urlToRequest )
     let events = await httpService.get(urlToRequest)
 
     return events
@@ -32,13 +28,13 @@ async function getById(eventId) {
 }
 
 async function save(currEvent) {
-console.log('currEvent',currEvent )
+
     if (currEvent._id) {
-        
-        await httpService.put(`event/${currEvent._id}`,currEvent)
+
+        await httpService.put(`event/${currEvent._id}`, currEvent)
         return currEvent
     } else {
-        const newEvent = await httpService.post('event', currEvent)        
+        const newEvent = await httpService.post('event', currEvent)
         // eventChannel.postMessage(getActionAddEvent(newEvent))
         return newEvent
     }

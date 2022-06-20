@@ -174,7 +174,7 @@ const gTrans = {
         he: 'ספורט'
     },
     theater: {
-        en:'Theater',
+        en: 'Theater',
         he: 'תאטרון'
     },
     standup: {
@@ -194,11 +194,11 @@ const gTrans = {
         he: 'קולנוע'
     },
     children: {
-        en:'Children',
+        en: 'Children',
         he: 'ילדים'
     },
     seniors: {
-        en:'Seniors',
+        en: 'Seniors',
         he: 'גיל הזהב'
     },
     circus: {

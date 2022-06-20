@@ -1,14 +1,14 @@
-const initialState = {   
+const initialState = {
     currEvent: null,
     filterBy: {
         txt: '',
         date: '',
         eventName: '',
-        eventType :'',
-        eventCity : '',
-        eventArea : '',
-        eventTicketQty : '',
-        evenPricePerCard : '',
+        eventType: '',
+        eventCity: '',
+        eventArea: '',
+        eventTicketQty: '',
+        evenPricePerCard: '',
         userId: ''
     },
     events: []
@@ -16,7 +16,7 @@ const initialState = {
 
 export function eventReducer(state = initialState, action) {
     let events
-    let currEvent
+
 
     switch (action.type) {
 
@@ -36,8 +36,6 @@ export function eventReducer(state = initialState, action) {
             return { ...state, filterBy: action.filterBy }
         case 'SET_EVENT_ID':
             return { ...state, currEvent: action.currEvent }
-        // case 'GET_SELECTED':
-        //     return { ...state, selectedOption: action.selectedOption }
         default:
             return state
     }

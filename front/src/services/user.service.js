@@ -1,8 +1,6 @@
-// import { storageService } from './async-storage.service'
 import { httpService } from './http.service'
-// import { store } from '../store/root.reducer'
-import { socketService, SOCKET_EVENT_USER_UPDATED, SOCKET_EMIT_USER_WATCH } from './socket.service'
-import { showSuccessMsg,showErrorMsg } from './event-bus.service'
+// import { socketService, SOCKET_EVENT_USER_UPDATED, SOCKET_EMIT_USER_WATCH } from './socket.service'
+import { showSuccessMsg, showErrorMsg } from './event-bus.service'
 
 const STORAGE_KEY_LOGGEDIN = 'loggedinUser'
 
@@ -15,7 +13,7 @@ export const userService = {
 }
 
 async function login(userCred) {
-    try{
+    try {
         let user = await httpService.post('auth/login', userCred)
 
         if (user) {
@@ -30,11 +28,11 @@ async function login(userCred) {
 }
 
 
-async function getById(userId) {
+// async function getById(userId) {
 
-    const user = await httpService.get(`user/${userId}`)
-    return user
-}
+//     const user = await httpService.get(`user/${userId}`)
+//     return user
+// }
 
 
 async function signup(signupUser) {
@@ -69,11 +67,8 @@ function getLoggedinUser() {
     return JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN))
 }
 
-
-
-
 function _handleLogin(user) {
 
-    const miniUser = { _id: user._id, userName: user.userName }    
+    const miniUser = { _id: user._id, userName: user.userName }
     sessionStorage.setItem(STORAGE_KEY_LOGGEDIN, JSON.stringify(miniUser))
 }

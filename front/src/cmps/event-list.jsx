@@ -8,7 +8,7 @@ export const EventList = ({ events }) => {
 
         <div className="list-of-events-container">
             <ul className="event-list clean-list">
-                {events.map(event => <EventPreview key={event._id} event={event}/>)}
+                {events.map(event => <EventPreview key={event._id} event={event} />)}
             </ul>
         </div>
 

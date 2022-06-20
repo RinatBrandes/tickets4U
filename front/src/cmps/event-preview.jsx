@@ -1,8 +1,6 @@
 import { useNavigate } from "react-router-dom";
-import { utilService } from "../services/util.service";
 
-
-export const EventPreview = ({event}) => {
+export const EventPreview = ({ event }) => {
     const navigate = useNavigate()
 
     const onGoToDetails = (ev) => {
@@ -12,7 +10,7 @@ export const EventPreview = ({event}) => {
 
     const pricePerCard = event.eventPricePerCard.toLocaleString('he-US', { style: 'currency', currency: 'ILS' })
     // const pricePerCard = currEvent.event.eventPricePerCard.toLocaleString('en-US', { style: 'currency', currency: 'USD' })
-    
+
     return (
 
         <li className="event-preview-container  note-modal">
