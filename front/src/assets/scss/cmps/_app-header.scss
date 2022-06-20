@@ -19,8 +19,8 @@
   }
 
   .header-logo {
-    margin: 1em;
-    align-self: flex-end;
+    // margin: 1em;
+    // align-self: flex-end;
     width: 150px;
     // height: 80px;
   }
@@ -143,4 +143,9 @@
   border-top: 1px solid rgb(187, 184, 184);
   cursor: pointer;
   padding: 10px 0;
+}
+.lang-option {
+
+  width: 80px;
+  height: 25px;
 }

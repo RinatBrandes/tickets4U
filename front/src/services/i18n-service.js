@@ -1,7 +1,8 @@
 export const i18nService = {
     doTrans,
     getLang,
-    setLang
+    setLang,
+    getTrans
 }
 
 
@@ -131,6 +132,110 @@ const gTrans = {
     eventDetails: {
         en: 'Event',
         he: 'ארוע'
+    },
+    eventStatus: {
+        en: 'Event status',
+        he: 'סטטוס'
+    },
+    new: {
+        en: 'New',
+        he: 'חדש'
+    },
+    close: {
+        en: 'Close',
+        he: 'סגור'
+    },
+    south: {
+        en: 'South',
+        he: 'דרום'
+    },
+    haifa: {
+        en: 'Haifa',
+        he: 'חיפה'
+    },
+    jerusalem: {
+        en: 'jerusalem',
+        he: 'ירושלים'
+    },
+    center_humiliation: {
+        en: 'Center and Humiliation',
+        he: 'מרכז ושפלה'
+    },
+    north: {
+        en: 'North',
+        he: 'צפון'
+    },
+    sharon: {
+        en: 'Sharon',
+        he: 'שרון'
+    },
+    sport: {
+        en: 'Sport',
+        he: 'ספורט'
+    },
+    theater: {
+        en:'Theater',
+        he: 'תאטרון'
+    },
+    standup: {
+        en: 'Standup',
+        he: 'סטנדאפ'
+    },
+    music: {
+        en: 'Music',
+        he: 'מוזיקה'
+    },
+    lecture: {
+        en: 'Lecture',
+        he: 'הרצאה'
+    },
+    cinema: {
+        en: 'Cinema',
+        he: 'קולנוע'
+    },
+    children: {
+        en:'Children',
+        he: 'ילדים'
+    },
+    seniors: {
+        en:'Seniors',
+        he: 'גיל הזהב'
+    },
+    circus: {
+        en: 'Circus',
+        he: 'קרקס'
+    },
+    fashion: {
+        en: 'Fashion',
+        he: 'אופנה'
+    },
+    gym: {
+        en: 'Gym',
+        he: 'מכון כושר'
+    },
+    festival: {
+        en: 'Festival',
+        he: 'פסטיבל'
+    },
+    other: {
+        en: 'Other',
+        he: 'אחר'
+    },
+    Food_tours: {
+        en: 'Food tours',
+        he: 'סיורי אוכל'
+    },
+    Workshop: {
+        en: 'Workshop',
+        he: 'סדנה'
+    },
+    update_event: {
+        en: 'Update event',
+        he: 'עדכון ארוע'
+    },
+    new_event: {
+        en: 'New event',
+        he: 'ארוע חדש'
     }
 }
 

@@ -15,7 +15,6 @@ export function userReducer(state = initialState, action) {
             break;
         case 'SET_USER':
             newState = { ...state, loggedInUser: action.user }
-            console.log('newState',newState )
             break;
         case 'REMOVE_USER':
             newState = {

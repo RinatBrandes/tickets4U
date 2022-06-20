@@ -24,10 +24,11 @@ export function getActionUpdateEvent(event) {
 }
 
 
-export function loadEvents() {
+export function loadEvents(filterBy) {
+    
     return async (dispatch) => {
         try {
-            const events = await eventService.query()
+            const events = await eventService.query(filterBy)
             const action = { type: 'SET_EVENTS', events }
             dispatch(action)
         } catch(err) {
@@ -51,13 +52,11 @@ export function loadEvents() {
 //     }
 // }
 
-export function addEvent(currEvent) {
+export function addEvent(currEvent, isNewEvent) {
     return async (dispatch) => {
         try {
-            const savedEvent = await eventService.save(currEvent)
-            console.log('Added savedEvent', savedEvent);
-            // getActionAddEvent(savedEvent)
-            showSuccessMsg('Event added')
+            const savedEvent = await eventService.save(currEvent)                        
+            if(isNewEvent) showSuccessMsg('Event added')            
         }catch(err) {
             showErrorMsg('Cannot add event')
             console.log('Cannot add event', err)
@@ -69,9 +68,8 @@ export function getById(eventId) {
     return async dispatch => {
         try {
             const currEvent = await eventService.getById(eventId)
-            console.log('currEvent', currEvent)
             dispatch({
-                type: 'GET_BY_ID',
+                type: 'SET_EVENT_ID',
                 currEvent
             })
         } catch (err) {

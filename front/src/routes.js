@@ -1,8 +1,9 @@
 import TicketApp from './views/ticket-app.jsx'
 import Login from './views/login.jsx'
 import Signup from './views/signup.jsx'
-import Event from './views/event.jsx'
+import EventEdit from './views/event-edit.jsx'
 import EventDetails from './views/event-details.jsx'
+import UserEvent from './views/user-event.jsx'
 
 const routes = [
     {
@@ -18,12 +19,24 @@ const routes = [
         component: <Signup />,
     },
     {
+        path: '/event/edit/:eventId',
+        component: <EventEdit />,
+    },
+    {
+        path: '/event/edit',
+        component: <EventEdit />,
+    },
+    {
         path: '/event/:eventId',
         component: <EventDetails />,
     },
+    // {
+    //     path: '/event',
+    //     component: <EventEdit />,
+    // },
     {
-        path: '/event',
-        component: <Event />,
+        path: '/event/user/:userId',
+        component: <UserEvent />,
     }
 ]
 

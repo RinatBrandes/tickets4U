@@ -41,8 +41,7 @@ const AppHeader = () => {
         navigate('/login')
     }
 
-    const onOpenSignupPage = () => {
-        
+    const onOpenSignupPage = () => {        
         navigate('/signup')
     }
 
@@ -61,7 +60,8 @@ const AppHeader = () => {
         navigate('/')
     }
 
-     console.log('loggedInUser', loggedInUser)
+
+     
     return (
         // <header className="">
         <section className="header-container full">

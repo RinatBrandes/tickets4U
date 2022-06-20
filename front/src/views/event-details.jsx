@@ -6,6 +6,7 @@ import { addEvent } from '../store/action/event.actions'
 import { useNavigate } from 'react-router-dom'
 import { getById } from '../store/action/event.actions'; 
 import { socketService } from '../services/socket.service'
+import { utilService } from '../services/util.service';
 // import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
 // import {eventService} from '../services/event.service.js'
 
@@ -15,77 +16,22 @@ const EventDetails = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const params = useParams()
-    // const [currEvent, setCurrEvent] = useState({
-    //     date: '',
-    //     time: '',
-    //     eventName: '',
-    //     eventType: '',
-    //     placeName: '',
-    //     eventCity: '',
-    //     eventArea: '',
-    //     user_id: loggedInUser._id,
-    //     eventPricePerCard: 0,
-    //     ticketCount: 0,
-    //     eventStatus: 'new',
-    //     createdAt: Date.now(),
-    //     closeDate: null,
-    //     userRemark: '',
-    //     systemRemark:''
-    // })
-    console.log('in event details' )
-    console.log('params.eventId',params.eventId )
     
     useEffect(() => {
-        // dispatch(loadEvents())
         dispatch(getById(params.eventId))
         
     }, [])
 
 
-    // const handleChange = (event) => {
-    //     let value = event.target.value;
-    //     const name = event.target.name;              
-    //     setCurrEvent({ currEvent: { ...currEvent, name: value } });
-    // }
-
-    // const handleSubmit = (event) => {
-    //     event.preventDefault();        
-    //     const data = new FormData(event.currentTarget);  
-         
-    //     const currEventInfo = {
-          
-    //         date:  data.get('date'),
-    //         time:  data.get('time'),
-    //         eventName:  data.get('eventName'),
-    //         eventType:  data.get('eventType'),
-    //         placeName:  data.get('placeName'),
-    //         eventCity:  data.get('eventCity'),
-    //         eventArea:  data.get('eventArea'),
-    //         userId: loggedInUser._id,
-    //         eventPricePerCard:  data.get('eventPricePerCard'),
-    //         ticketCount:  data.get('ticketCount'),
-    //         eventStatus: 'new',
-    //         createdAt: Date.now(),
-    //         closeDate: null,
-    //         userRemark:  data.get('userRemark'),
-    //         systemRemark:''   
-    //     }
-
-    //         console.log('currEventInfo',currEventInfo )
-    //         dispatch(addEvent(currEventInfo))       
-    //         socketService.emit('addedEvent',currEventInfo)     
-    //         navigate('/')
-    // }
-
     const GoToEdit = () => {
-        navigate(`/event/${currEvent._id}`)
+        navigate(`/event/edit/${currEvent._id}`)
     }
 
     const onGoBack = () => {
         navigate('/')
     }
 
- console.log('currEvent',currEvent)
+ 
  if (!currEvent) return <h1>Loading</h1>
     return (
         <section className="event-container">
@@ -118,7 +64,7 @@ const EventDetails = () => {
                         
         
                         <button className="event-btn" data-trans="return" onClick={() => onGoBack()}>חזור</button>
-                    <button className="event-btn" data-trans="update" onClick={() => GoToEdit()}> עדכון ארוע</button>
+                        {loggedInUser && <button className="event-btn" data-trans="update" onClick={() => GoToEdit()}> עדכון ארוע</button>}
                 </div>
             </form>
         </section>

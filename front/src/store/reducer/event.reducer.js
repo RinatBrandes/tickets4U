@@ -7,8 +7,9 @@ const initialState = {
         eventType :'',
         eventCity : '',
         eventArea : '',
-        eventTicketQty : 0,
-        evenPricePerCard : 0
+        eventTicketQty : '',
+        evenPricePerCard : '',
+        userId: ''
     },
     events: []
 }
@@ -20,7 +21,6 @@ export function eventReducer(state = initialState, action) {
     switch (action.type) {
 
         case 'SET_EVENTS':
-            console.log('events', events)
             return { ...state, events: action.events }
         case 'ADD_EVENT':
             events = [action.event, ...state.events]
@@ -34,11 +34,10 @@ export function eventReducer(state = initialState, action) {
             return { ...state, events }
         case 'SET_FILTERBY':
             return { ...state, filterBy: action.filterBy }
-        case 'GET_BY_ID':
-            console.log('currEvent', currEvent)
+        case 'SET_EVENT_ID':
             return { ...state, currEvent: action.currEvent }
-        case 'GET_SELECTED':
-            return { ...state, selectedOption: action.selectedOption }
+        // case 'GET_SELECTED':
+        //     return { ...state, selectedOption: action.selectedOption }
         default:
             return state
     }

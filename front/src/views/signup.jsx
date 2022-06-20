@@ -32,10 +32,10 @@ const Signup = () => {
         
         if(name === 'approvedMobile' || name === 'approvedEmail') {
          value = event.target.checked
-         console.log('value', value)
+         
         }
-        
-        setUser({ user: { ...user, name: value } });
+        setUser({  ...user, [name]: value })
+        // setUser({ user: { ...user, name: value } })
     }
 
     const handleSubmit = (event) => {
@@ -56,9 +56,7 @@ const Signup = () => {
         //to change the string to boolean
         signupInfo.approvedEmail = (signupInfo.approvedEmail === 'true')
         signupInfo.approvedMobile = (signupInfo.approvedMobile === 'false')
-        console.log('signupInfo',signupInfo )
-        // if(signupInfo.approvedEmail === null) signupInfo.approvedEmail = false
-        // if(signupInfo.approvedMobile === null) signupInfo.approvedMobile = false
+        
 
         if(signupInfo.approvedMobile === false && signupInfo.approvedEmail === false)
         {
@@ -67,7 +65,6 @@ const Signup = () => {
             return
         }
 
-        console.log('signupInfo', signupInfo)        
             dispatch(signup(signupInfo))
             dispatch(getLoggedinUser())
             navigate('/')

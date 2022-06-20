@@ -10,15 +10,11 @@ const Login = () => {
     const navigate = useNavigate()
     const [credentials, setCredentials] = useState({ username: '', password: '' })
 
-    useEffect(() => {
-
-    }, [])
-
-
     const handleChange = (event) => {
-        const value = event.target.value;
-        const name = event.target.name;
-        setCredentials({ credentials: { ...credentials, name: value } });
+        const {value} = event.target
+        const {name} = event.target
+        // setCredentials({ credentials: { ...credentials, [name]: value } });
+        setCredentials({  ...credentials, [name]: value })
     }
 
     const handleSubmit = (event) => {
@@ -56,11 +52,11 @@ const Login = () => {
             </div>
             <form onSubmit={handleSubmit} >
                 <div className="login-input">
-                    <label className="login-label" data-trans="userName"> שם משתמש</label>
-                    <input className="login-input" type="text" name="username" value={credentials.username} onChange={(ev) => handleChange(ev)} required />
+                    <label className="login-label" ><span data-trans="userName"> שם משתמש</span>
+                    <input className="login-input" type="text" name="username" value={credentials.username} onChange={handleChange} required /></label>
 
                     <label className="login-label" data-trans="password"> סיסמה</label>
-                    <input className="login-input" type="password" name="password" value={credentials.password} onChange={(ev) => handleChange(ev)} required />
+                    <input className="login-input" type="password" name="password" value={credentials.password} onChange={handleChange} required />
 
                     <button className="login-btn" data-trans="login">התחבר</button>
                 </div>

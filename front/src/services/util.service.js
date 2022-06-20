@@ -2,7 +2,9 @@ export const utilService = {
     makeId,
     makeLorem,
     getRandomIntInclusive,
-    delay
+    delay,
+    toTimestamp,
+    toDate
 }
 
 function makeId(length = 6) {
@@ -45,12 +47,31 @@ function padTo2Digits(num) {
     return num.toString().padStart(2, '0');
 }
 
-function formatDate(date) {
-    return [
-    // ✅ Reset a Date's time to midnight
-    date.setHours(0, 0, 0, 0);
-    date.getFullYear(),
-    padTo2Digits(date.getMonth() + 1),
-    padTo2Digits(date.getDate()),
-  ].join('-');
-}
+// function formatDate(date) {
+//     return [
+//     // ✅ Reset a Date's time to midnight
+//     date.setHours(0, 0, 0, 0);
+//     date.getFullYear(),
+//     padTo2Digits(date.getMonth() + 1),
+//     padTo2Digits(date.getDate()),
+//   ].join('-');
+// }
+
+
+function toTimestamp(date){
+    date += ' 00:00:01'
+    console.log('date', date)
+    var datum = Date.parse(date);
+    return datum/1000;
+ }
+
+ function toDate(timestamp){
+    
+    let date = new Date(timestamp * 1000)
+    let month = (date.getMonth()+1)
+    // month = month.padStart(2,'0')
+    month = (month < 10 ? '0'+month : month) 
+    
+    let newDate = (date.getFullYear() + "-" + month + "-" + date.getDate())
+    return newDate
+ }

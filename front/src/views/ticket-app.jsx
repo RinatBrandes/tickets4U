@@ -13,12 +13,12 @@ const TicketApp = () => {
     useEffect(() => {
         // dispatch(loadEvents())
         socketService.emit('chat topic', 'eventUser')
-        socketService.on('eventSaved',refreshEvent() )          
+        socketService.on('eventSaved',refreshEvent )          
 
         dispatch(loadEvents(filterBy))
         
         return () => {
-            socketService.off('eventSaved',refreshEvent())             
+            socketService.off('eventSaved',refreshEvent)             
         }
     }, [])
 

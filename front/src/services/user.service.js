@@ -42,7 +42,6 @@ async function signup(signupUser) {
     try {
 
         let users = await httpService.get('user')
-        console.log('users', users)
         const isUserExist = users.find(user => user.userName === signupUser.userName && user.password === signupUser.password)
         if (isUserExist) {
             const err = new Error('User already exist')
@@ -75,7 +74,6 @@ function getLoggedinUser() {
 
 function _handleLogin(user) {
 
-    const miniUser = { _id: user._id, userName: user.userName }
-    console.log('miniUser', miniUser)
+    const miniUser = { _id: user._id, userName: user.userName }    
     sessionStorage.setItem(STORAGE_KEY_LOGGEDIN, JSON.stringify(miniUser))
 }

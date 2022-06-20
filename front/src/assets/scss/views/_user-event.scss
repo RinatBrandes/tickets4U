@@ -1,0 +1,47 @@
+
+    .events-table {
+        background: unset;
+        border: 1px solid $gray-light;
+        width: 100%;        
+        color: $gray;
+                    
+        th {
+            padding: rem(20px) rem(15px);
+            text-align: left;
+            font-weight: 700;
+            font-size: rem(16px);
+            text-transform: uppercase;
+            border: 1px solid $gray-light;
+
+        }
+        
+        td {
+            padding: rem(15px);
+            text-align: left;
+            vertical-align: middle;
+            font-weight: 300;
+            font-size: rem(14px);
+            border: 1px solid $gray-light;
+            
+        }
+        @media screen and (max-width: 740px) {
+            th {
+                font-size: rem(14px);
+                padding: rem(10px) rem(5px);
+            }
+
+            td {
+                font-size: rem(12px);
+            }
+        }
+
+        tbody {
+            overflow-x: auto;
+            margin-top: 0px;
+            border: 1px solid $gray-light;
+
+        }
+    }
+    // .event-status-selector {
+    //     border: unset;
+    // }
