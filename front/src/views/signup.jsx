@@ -80,36 +80,36 @@ const Signup = () => {
             <form onSubmit={handleSubmit} >
                 <div className="signup-input">
                     <div className="signup-small-container">
-                        <input className="signup-input" type="text" name="firstName" value={user.firstName} onChange={(ev) => handleChange(ev)} required />
-                        <label className="signup-label " data-trans="firstName">שם פרטי </label>
+                        <label className="signup-label"><sapn data-trans="firstName">שם פרטי </sapn>
+                        <input className="signup-input" type="text" name="firstName" value={user.firstName} onChange={(ev) => handleChange(ev)} required /></label>
 
 
-                        <input className="signup-input" type="text" name="lastName" value={user.filasttName} onChange={(ev) => handleChange(ev)} required />
-                        <label className="signup-label" data-trans="lastName"> שם משפחה </label>
+                        <label className="signup-label"><span data-trans="lastName">שם משפחה</span>
+                        <input className="signup-input" type="text" name="lastName" value={user.filasttName} onChange={(ev) => handleChange(ev)} required /></label>
                     </div>
 
                     <div className="signup-small-container">
-                        <input className="signup-input" type="password" name="password" value={user.password} onChange={(ev) => handleChange(ev)} required />
-                        <label className="signup-label" data-trans="password"> סיסמה </label>
+                        <label className="signup-label"><span data-trans="password">סיסמה</span>
+                        <input className="signup-input" type="password" name="password" value={user.password} onChange={(ev) => handleChange(ev)} required /></label>
 
-                        <input className="signup-input" type="text" name="username" value={user.username} onChange={(ev) => handleChange(ev)} required />
-                        <label className="signup-label" data-trans="userName"> שם משתמש </label>
+                        <label className="signup-label"><span data-trans="userName">שם משתמש </span>
+                        <input className="signup-input" type="text" name="username" value={user.username} onChange={(ev) => handleChange(ev)} required /></label>
                     </div>
 
                     <div className="signup-small-container">
-                        <input className="signup-input" type="email" name="email" value={user.email} onChange={(ev) => handleChange(ev)} />
-                        <label className="signup-label" data-trans="email"> מייל </label>
+                        <label className="signup-label"><span  data-trans="email">מייל</span>
+                        <input className="signup-input" type="email" name="email" value={user.email} onChange={(ev) => handleChange(ev)} /></label>
 
-                        <input className="signup-input" type="phone" name="mobile" value={user.mobile} onChange={(ev) => handleChange(ev)} />
-                        <label className="signup-label" data-trans="mobile"> נייד </label>
+                        <label className="signup-label"><span  data-trans="mobile">נייד</span>
+                        <input className="signup-input" type="phone" name="mobile" value={user.mobile} onChange={(ev) => handleChange(ev)} /> </label>
                     </div>
 
                     <div className="signup-small-container">
-                        <label className="signup-label signup-checkbox-label" data-trans="approvedMobile">אישור שליחת הודעה</label>
-                        <input className="signup-input signup-checkbox-input" type="checkbox" name="approvedMobile" value={user.approvedMobile} onChange={(ev) => handleChange(ev)} />
+                        <label className="signup-label signup-checkbox-label"><span  data-trans="approvedMobile">אישור שליחת הודעה</span>
+                        <input className="signup-input signup-checkbox-input" type="checkbox" name="approvedMobile" value={user.approvedMobile} onChange={(ev) => handleChange(ev)} /></label>
 
-                        <label className="signup-label signup-checkbox-label" data-trans="approvedEmail">אישור שליחה למייל</label>
-                        <input className="signup-input signup-checkbox-input" type="checkbox" name="approvedEmail" value={user.approvedEmail} onChange={(ev) => handleChange(ev)} />
+                        <label className="signup-label signup-checkbox-label"><span data-trans="approvedEmail">אישור שליחה למייל</span>
+                        <input className="signup-input signup-checkbox-input" type="checkbox" name="approvedEmail" value={user.approvedEmail} onChange={(ev) => handleChange(ev)} /></label>
                     </div>
 
 

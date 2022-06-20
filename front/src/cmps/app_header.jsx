@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect,useState } from "react";
 import logo_big_bg from '../assets/img/logo_big_bg.jpg'
 import { i18nService } from "../services/i18n-service"
 import { useNavigate } from 'react-router-dom'
@@ -11,14 +11,14 @@ import { logout } from '../store/action/user.actions'
 
 
 const AppHeader = () => {
-    const { loggedInUser } = useSelector((storeState) => storeState.userModule)
+    const { loggedInUser} = useSelector((storeState) => storeState.userModule)
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const [profileMenu, setMenu] = useState(false)
 
     let user
     useEffect(() => {
-
+      
 
     }, [])
 
@@ -37,7 +37,7 @@ const AppHeader = () => {
         navigate('/login')
     }
 
-    const onOpenSignupPage = () => {
+    const onOpenSignupPage = () => {        
         navigate('/signup')
     }
 
@@ -56,35 +56,35 @@ const AppHeader = () => {
         navigate('/')
     }
 
-
+     
     return (
         <section className="header-container full">
             <div className="main-layout">
-                <div className="header-logo-container">
-                    <div className="header-options">
-                        <select onChange={onSetLang} className="lang-option">
-                            <option value="he" data-trans="langHe">עברית</option>
-                            <option value="en" data-trans="langEn">English</option>
-                        </select>
-                        <div className="header-nav-bar">
+            <div className="header-logo-container">
+                <div className="header-options">
+                    <select onChange={onSetLang} className="lang-option">
+                        <option value="he" data-trans="langHe">עברית</option>
+                        <option value="en" data-trans="langEn">English</option>
+                    </select>
+                    <div className="header-nav-bar">
+                            
+                       {!loggedInUser && <button onClick={onOpenSignupPage} data-trans="signup">התחברות</button>}
+                        {!loggedInUser &&  <button onClick={onOpenLoginPage} data-trans="login">כניסה</button>}
 
-                            {!loggedInUser && <button onClick={onOpenSignupPage} data-trans="signup">התחברות</button>}
-                            {!loggedInUser && <button onClick={onOpenLoginPage} data-trans="login">כניסה</button>}
-
-                            <div className="avatar-container">
-                                {loggedInUser && <img className="avatar-img" src={avatar} onClick={onToggleMenu} alt="Avatar"></img>}
-                            </div>
-                            <div className="profile-container">
-                                {profileMenu && <ProfileMenu onLogout={onLogout} user={loggedInUser} closeMenu={onToggleMenu} />}
-                            </div>
+                        <div className="avatar-container">
+                            {loggedInUser && <img className="avatar-img" src={avatar} onClick={onToggleMenu} alt="Avatar"></img>}
+                        </div>
+                        <div className="profile-container">
+                            {profileMenu && <ProfileMenu onLogout={onLogout} user={loggedInUser} closeMenu={onToggleMenu} />}
                         </div>
                     </div>
-                    <img className="header-logo" src={logo_big_bg} alt="logo" onClick={onGoBack}></img>
                 </div>
-
+                <img className="header-logo" src={logo_big_bg} alt="logo" onClick={onGoBack}></img>
+            </div>
+          
             </div>
             <UserMsg />
-        </section>
+         </section> 
     )
 }
 

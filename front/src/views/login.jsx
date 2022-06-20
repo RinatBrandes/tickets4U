@@ -41,11 +41,11 @@ const Login = () => {
             </div>
             <form onSubmit={handleSubmit} >
                 <div className="login-input">
-                    <label className="login-label" ><span data-trans="userName"> שם משתמש</span>
+                    <label className="login-label"><span data-trans="userName"> שם משתמש</span>
                         <input className="login-input" type="text" name="username" value={credentials.username} onChange={handleChange} required /></label>
 
-                    <label className="login-label" data-trans="password"> סיסמה</label>
-                    <input className="login-input" type="password" name="password" value={credentials.password} onChange={handleChange} required />
+                    <label className="login-label"><span data-trans="password">סיסמה</span>
+                    <input className="login-input" type="password" name="password" value={credentials.password} onChange={handleChange} required /></label>
 
                     <button className="login-btn" data-trans="login">התחבר</button>
                 </div>
