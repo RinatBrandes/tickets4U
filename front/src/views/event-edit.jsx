@@ -19,7 +19,7 @@ const EventEdit = () => {
     const [updateEvent, setUpdateEvent] = useState('עדכון ארוע')
     const [newEvent, setNewEvent] = useState('ארוע חדש')
     const [isNewEvent, setIsNewEvent] = useState(false)
-    const [eventType, setEventTypes] = useState(null)
+    const [eventTypes, setEventTypes] = useState([''])
     const [currEvent, setCurrEvent] = useState({
         date: '',
         time: '',
@@ -49,9 +49,8 @@ const EventEdit = () => {
         setNewEvent(i18nService.getTrans('new_event'))
         
         
-        const type = eventService.getEventTypes()
-        console.log('type',type)
-        setEventTypes(eventType)
+        const types = eventService.getEventTypes()
+        setEventTypes(types)
 
         if (eventId) {
             fetchEvent()
@@ -65,6 +64,7 @@ const EventEdit = () => {
     const handleChange = (event) => {
         let value = event.target.value
         const name = event.target.name;
+        if(name === 'eventType' && (value === 'בחר' || value === 'select')) return
         setCurrEvent({ ...currEvent, [name]: value })
     }
 
@@ -126,12 +126,12 @@ const EventEdit = () => {
 
 
 
-                    {/* <label className="event-label" data-trans="eventType">סוג הארוע</label>
-                    <select onChange={(ev) => handleChange(ev)} className="event-input" value={currEvent.eventType} name="eventType" required>
-                        {eventType.map(type =>
-                            <option value={type} data-trans={type}>{type}</option>
+                    <label className="event-label" data-trans="eventType">סוג הארוע</label>
+                    <select onChange={handleChange} className="event-input" value={currEvent.eventType} name="eventType" required>
+                        {eventTypes.map(type =>
+                            <option value={type} data-trans={type} key={type}>{type}</option>
                         )}
-                    </select> */}
+                    </select>
                                          
 
 

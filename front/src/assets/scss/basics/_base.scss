@@ -8,7 +8,11 @@ html {}
 body {
     margin: unset;
     font-family: adineue-light;
-    width: 100%;    
+    width: 100%; 
+    
+    &.rtl{
+        direction: rtl;
+    }   
 }
 
 h1,
@@ -40,3 +44,4 @@ a {
 a:hover {
     text-decoration: underline;
 }
+

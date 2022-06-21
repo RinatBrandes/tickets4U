@@ -2,7 +2,8 @@ const initialState = {
     currEvent: null,
     filterBy: {
         txt: '',
-        date: '',
+        fromDate: '',
+        toDate: '',
         eventName: '',
         eventType: '',
         eventCity: '',

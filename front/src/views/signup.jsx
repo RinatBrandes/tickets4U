@@ -80,7 +80,7 @@ const Signup = () => {
             <form onSubmit={handleSubmit} >
                 <div className="signup-input">
                     <div className="signup-small-container">
-                        <label className="signup-label"><sapn data-trans="firstName">שם פרטי </sapn>
+                        <label className="signup-label"><span data-trans="firstName">שם פרטי </span>
                         <input className="signup-input" type="text" name="firstName" value={user.firstName} onChange={(ev) => handleChange(ev)} required /></label>
 
 

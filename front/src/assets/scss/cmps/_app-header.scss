@@ -74,18 +74,19 @@
   z-index: 9999;
 }
 
-.profile-menu-wrapper {
-  position: absolute;
-  right: 0;
+// .profile-menu-wrapper {
+//   position: absolute;
+//   right: 0;
 
   .profile-menu {
-    position: relative;
+    position: absolute;
     z-index: 9999;
     background-color: $white;
     border: 1px solid #dbdbdb;
     border-radius: 3px;
     // font-weight: 400;
-    margin-top: 40px;
+    inset-inline-start: 0px;
+    inset-block-start: 50px;
     min-width: 140px;
     padding: 5px 15px;
 
@@ -116,7 +117,7 @@
         outline: 0;
       }
     }
-  }
+  // }
 }
 
 .menu-item {

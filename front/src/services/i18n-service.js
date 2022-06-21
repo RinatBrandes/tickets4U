@@ -87,7 +87,7 @@ const gTrans = {
     },
     eventName: {
         en: 'Event Name',
-        he: 'שם הארוע'
+        he: ' שם הארוע'
     },
     eventType: {
         en: 'Event Type',
@@ -248,7 +248,80 @@ const gTrans = {
     selectOption: {
         en: 'Select',
         he:'בחר'
+    },
+    fromDate: {
+        eh: 'From date',
+        he: 'מתאריך'
+    },
+    toDate: {
+        en: 'To date',
+        he: 'עד תאריך'
+    },
+    eventTicketQty: {
+        en: 'Ticket Quantity',
+        he: 'כמות כרטיסים'
+    },
+    Sport:{
+        en: "Sport",
+        he: "ספורט"
+    },
+    Theater: {
+        en: "Theater",
+        he: "תאטרון"
+    },
+    Standup: {
+        en: "Standup",
+        he: "סטנדאפ"
+    },
+    Music: {
+        en: "Music",
+        he: "מוזיקה"
+    },
+    Lecture: {
+        en: "Lecture",
+        he: "הרצאה"
+    },
+    Cinema: {
+        en: "Cinema",
+        he: "קולנוע"
+    },
+    Children: {
+        en: "Children",
+        he: "ילדים"
+    },
+    Seniors: {
+        en: "Seniors",
+        he: "גיל הזהב"
+    },
+    Circus: {
+        en: "Circus",
+        he: "קרקס"
+    },
+    Fashion: {
+        en: "Fashion",
+        he: "אופנה"
+    },
+    Gym: {
+        en: "Gym",
+        he: "מכון כושר"
+    },
+    Festival: {
+        en: "Festival",
+        he: "פסטיבל"
+    },
+    Other: {
+        en: "Other",
+        he: "אחר"
+    },
+    FoodTours: {
+        en: "Food tours",
+        he: "סיורי אוכל"
+    },
+    Workshop: {
+        en: "Workshop",
+        he: "סדנה"
     }
+    
 }
 
 
@@ -285,24 +358,24 @@ function setLang(lang) {
 }
 
 
-function _formatNum(num) {
-    return new Intl.NumberFormat(gCurrLang).format(num)
-}
+// function _formatNum(num) {
+//     return new Intl.NumberFormat(gCurrLang).format(num)
+// }
 
 
-function _formatCurrency(num) {
-    if (gCurrLang === 'en') return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(num)
-    else return new Intl.NumberFormat('he-IL', { style: 'currency', currency: 'ILS' }).format(num)
-}
+// function _formatCurrency(num) {
+//     if (gCurrLang === 'en') return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(num)
+//     else return new Intl.NumberFormat('he-IL', { style: 'currency', currency: 'ILS' }).format(num)
+// }
 
 
-function _formatDate(time) {
-    const option = {
-        year: 'numeric', month: 'short', day: 'numeric',
-        hour: 'numeric', minute: 'numeric',
-        hour12: true,
-    }
+// function _formatDate(time) {
+//     const option = {
+//         year: 'numeric', month: 'short', day: 'numeric',
+//         hour: 'numeric', minute: 'numeric',
+//         hour12: true,
+//     }
 
-    return new Intl.DateTimeFormat(gCurrLang, option).format(time)
-}
+//     return new Intl.DateTimeFormat(gCurrLang, option).format(time)
+// }
 

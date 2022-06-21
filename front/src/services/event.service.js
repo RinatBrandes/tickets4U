@@ -1,5 +1,7 @@
 import { httpService } from './http.service'
-const eventType = ["ספורט", "תאטרון", "סטנדאפ", "מוזיקה", "הרצאה", "קולנוע", "ילדים", "גיל הזהב", "קרקס", "אופנה", "מכון כושר", "פסטיבל", "סיורי אוכל", "סדנה", "אחר"]
+
+const eventType_he = ["בחר","ספורט", "תאטרון", "סטנדאפ", "מוזיקה", "הרצאה", "קולנוע", "ילדים", "גיל הזהב", "קרקס", "אופנה", "מכון כושר", "פסטיבל", "סיורי אוכל", "סדנה", "אחר"]
+const eventType = ["Select","Sport","Theater","Standup","Music","Lecture","Cinema","Children","Seniors","Circus","Fashion","Gym","Festival","FoodTours","Workshop", "Other"]
 export const eventService = {
     save,
     query,
@@ -9,9 +11,10 @@ export const eventService = {
 }
 
 async function query(filterBy = {}) {
-
-    const { txt = '', date = '', eventName = '', eventType = '', eventCity = '', eventArea = '', eventPricePerCard = '', eventTicketQty = '', userId = '', sortBy = 'date' } = filterBy
-    const url = `?txt=${txt}&date=${date}&eventName=${eventName}&eventType=${eventType}&eventCity=${eventCity}&eventArea=${eventArea}&eventPricePerCard=${eventPricePerCard}&eventTicketQty=${eventTicketQty}&userId=${userId}&sortBy=${sortBy}`
+    
+ 
+    const { txt = '', fromDate = '', toDate = '', eventName = '', eventType = '', eventCity = '', eventArea = '', eventPricePerCard = '', eventTicketQty = '', userId = '', sortBy = 'date' } = filterBy
+    const url = `?txt=${txt}&fromDate=${fromDate}&toDate=${toDate}&eventName=${eventName}&eventType=${eventType}&eventCity=${eventCity}&eventArea=${eventArea}&eventPricePerCard=${eventPricePerCard}&eventTicketQty=${eventTicketQty}&userId=${userId}&sortBy=${sortBy}`
     let urlToRequest
     if (filterBy.userId !== null) urlToRequest = 'event/user' + url
     urlToRequest = 'event/' + url    

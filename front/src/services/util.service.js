@@ -42,8 +42,8 @@ function delay(ms = 1500) {
 
 
 function toTimestamp(date){
-    date += ' 00:00:01'
-    console.log('date', date)
+    if(!date)return
+    date += ' 00:00:01'    
     var datum = Date.parse(date);
     return datum/1000;
  }
@@ -58,3 +58,14 @@ function toTimestamp(date){
     let newDate = (date.getFullYear() + "-" + month + "-" + date.getDate())
     return newDate
  }
+
+ 
+function debounce(func, timeout = 300) {
+    let timer
+    return (...args) => {
+      clearTimeout(timer)
+      timer = setTimeout(() => {
+        func.apply(this, args)
+      }, timeout)
+    }
+  }

@@ -6,7 +6,7 @@ export const ProfileMenu = ({ onLogout, user, closeMenu, onGoToEvents }) => {
     const { loggedInUser } = useSelector((storeState) => storeState.userModule)
 
     return (
-        <section className="profile-menu-wrapper">
+        // <section className="profile-menu-wrapper">
             <div className="profile-menu">
                 {/* <div className="Menu-subcategory"></div> */}
                 <ul className="sub-category clean-list">
@@ -16,6 +16,6 @@ export const ProfileMenu = ({ onLogout, user, closeMenu, onGoToEvents }) => {
                     <li className="menu-item logout" onClick={() => onLogout()} data-trans="logout"><NavLink to={`/`} className="menu-item">התנתק</NavLink></li>
                 </ul>
             </div>
-        </section>
+        // </section>
     )
 }
