@@ -8,7 +8,7 @@ const initialState = {
         eventCity: '',
         eventArea: '',
         eventTicketQty: '',
-        evenPricePerCard: '',
+        eventPricePerCard: '',
         userId: ''
     },
     events: []

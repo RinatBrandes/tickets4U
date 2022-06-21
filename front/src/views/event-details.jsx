@@ -2,6 +2,7 @@ import * as React from 'react'
 import { useParams } from 'react-router-dom';
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+
 import { useNavigate } from 'react-router-dom'
 import { getById } from '../store/action/event.actions';
 
@@ -46,7 +47,7 @@ const EventDetails = () => {
 
                     <label className="event-label" data-trans="eventType">סוג הארוע&#160;{currEvent.eventType}</label>
 
-                    <label className="event-label" data-trans="placeName"> שם מקום הארוע&#160;{currEvent.placeName}</label>
+                    <label className="event-label" data-trans="placeName"> מקום הארוע&#160;{currEvent.placeName}</label>
 
                     <label className="event-label" data-trans="eventCity">עיר הארוע&#160;{currEvent.eventCity}</label>
 

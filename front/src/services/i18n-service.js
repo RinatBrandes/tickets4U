@@ -95,7 +95,7 @@ const gTrans = {
     },
     placeName: {
         en: 'Event place name',
-        he: 'שם מקום הארוע'
+        he: 'מקום הארוע'
     },
     eventCity: {
         en: 'Event city name',
@@ -236,6 +236,18 @@ const gTrans = {
     new_event: {
         en: 'New event',
         he: 'ארוע חדש'
+    },
+    search: {
+        en: 'Search',
+        he: 'חפש'
+    },
+    clearSearch: {
+        en: 'Clear search',
+        he: 'נקה'
+    },
+    selectOption: {
+        en: 'Select',
+        he:'בחר'
     }
 }
 

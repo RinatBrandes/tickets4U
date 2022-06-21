@@ -11,7 +11,7 @@ import { utilService } from '../services/util.service'
 
 
 const EventEdit = () => {
-    const eventType = ["ספורט", "תאטרון", "סטנדאפ", "מוזיקה", "הרצאה", "קולנוע", "ילדים", "גיל הזהב", "קרקס", "אופנה", "מכון כושר", "פסטיבל", "סיורי אוכל", "סדנה", "אחר"]
+    
     const { loggedInUser } = useSelector((storeState) => storeState.userModule)
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -19,6 +19,7 @@ const EventEdit = () => {
     const [updateEvent, setUpdateEvent] = useState('עדכון ארוע')
     const [newEvent, setNewEvent] = useState('ארוע חדש')
     const [isNewEvent, setIsNewEvent] = useState(false)
+    const [eventType, setEventTypes] = useState(null)
     const [currEvent, setCurrEvent] = useState({
         date: '',
         time: '',
@@ -38,14 +39,20 @@ const EventEdit = () => {
     })
 
     useEffect(() => {
-
+        
         const fetchEvent = async () => {
             const selectedEvent = await eventService.getById(eventId)
             setCurrEvent(selectedEvent)
         }
-
+        
         setUpdateEvent(i18nService.getTrans('update_event'))
         setNewEvent(i18nService.getTrans('new_event'))
+        
+        
+        const type = eventService.getEventTypes()
+        console.log('type',type)
+        setEventTypes(eventType)
+
         if (eventId) {
             fetchEvent()
             setIsNewEvent(false)
@@ -73,8 +80,8 @@ const EventEdit = () => {
             eventCity: data.get('eventCity'),
             eventArea: data.get('eventArea'),
             userId: loggedInUser._id,
-            eventPricePerCard: data.get('eventPricePerCard'),
-            ticketCount: data.get('ticketCount'),
+            eventPricePerCard: +data.get('eventPricePerCard'),
+            ticketCount: +data.get('ticketCount'),
             eventStatus: 'new',
             createdAt: Date.now(),
             closeDate: null,
@@ -98,18 +105,18 @@ const EventEdit = () => {
             <form onSubmit={handleSubmit} >
                 <div className="event-inputs">
                     {/* <div className="event-small-container"> */}
-                    <label className="event-label " data-trans="eventDate" >תאריך הארוע</label>
-                    <input className="event-input" type="date" name="date" value={currEvent.date} onChange={(ev) => handleChange(ev)} required />
+                    <label className="event-label"><span data-trans="eventDate">תאריך הארוע</span>
+                    <input className="event-input" type="date" name="date" value={currEvent.date} onChange={(ev) => handleChange(ev)} required /></label>
 
 
-                    <label className="event-label" data-trans="eventTime">שעת הארוע</label>
-                    <input className="event-input" type="time" name="time" value={currEvent.time} onChange={(ev) => handleChange(ev)} required />
+                    <label className="event-label"><span  data-trans="eventTime">שעת הארוע</span>
+                    <input className="event-input" type="time" name="time" value={currEvent.time} onChange={(ev) => handleChange(ev)} required /></label>
 
                     {/* </div> */}
 
 
-                    <label className="event-label" data-trans="eventName">שם הארוע </label>
-                    <input className="event-input" type="text" name="eventName" value={currEvent.eventName} onChange={(ev) => handleChange(ev)} required />
+                    <label className="event-label"><span data-trans="eventName">שם הארוע </span>
+                    <input className="event-input" type="text" name="eventName" value={currEvent.eventName} onChange={(ev) => handleChange(ev)} required /></label>
 
                     {currEvent._id && <label className="event-label" data-trans="eventStatus">סטטוס</label>}
                     {currEvent._id && <select onChange={(ev) => handleChange(ev)} className="event-input" value={currEvent.eventStatus} name="eventStatus" required>
@@ -119,27 +126,21 @@ const EventEdit = () => {
 
 
 
-                    <label className="event-label" data-trans="eventType">סוג הארוע</label>
+                    {/* <label className="event-label" data-trans="eventType">סוג הארוע</label>
                     <select onChange={(ev) => handleChange(ev)} className="event-input" value={currEvent.eventType} name="eventType" required>
                         {eventType.map(type =>
-                            <option value="{type}" data-trans="{type}">{type}</option>
+                            <option value={type} data-trans={type}>{type}</option>
                         )}
-                        {/* <option value="sport" data-trans="sport">מוזיקה</option>
-                               <option value="movie" data-trans="movie">קולנוע</option> */}
-                    </select>
-                    {/* <select onChange={(ev) => handleChange(ev)} className="event-input" value={currEvent.eventType} required>
-                            {eventTypes.map(type => 
-                                <option value="hetype" data-trans={type}>{type}</option>
-                            )}                            
-                        </select>                                             */}
+                    </select> */}
+                                         
 
 
-                    <label className="event-label" data-trans="placeName"> שם מקום הארוע</label>
-                    <input className="event-input" type="text" name="placeName" value={currEvent.placeName} onChange={(ev) => handleChange(ev)} />
+                    <label className="event-label"><span data-trans="placeName">מקום הארוע</span>
+                    <input className="event-input" type="text" name="placeName" value={currEvent.placeName} onChange={(ev) => handleChange(ev)} /></label>
 
 
-                    <label className="event-label" data-trans="eventCity">עיר הארוע</label>
-                    <input className="event-input" type="text" name="eventCity" value={currEvent.eventCity} onChange={(ev) => handleChange(ev)} />
+                    <label className="event-label"><span data-trans="eventCity">עיר הארוע</span>
+                    <input className="event-input" type="text" name="eventCity" value={currEvent.eventCity} onChange={(ev) => handleChange(ev)} /></label>
                     {/* <select onChange={(ev) => handleChange(ev)} className="event-input" value={currEvent.eventCity} name="eventCity" required>
                                <option value="tiberias" data-trans="tiberias">טבריה</option>
                                <option value="telAviv" data-trans="telAviv">תל אביב</option>
@@ -159,15 +160,15 @@ const EventEdit = () => {
                     </select>
 
 
-                    <label className="event-label" data-trans="eventPricePerCard">מחיר לכרטיס</label>
-                    <input className="event-input" type="number" step=".01" name="eventPricePerCard" value={currEvent.eventPricePerCard} onChange={(ev) => handleChange(ev)} required />
+                    <label className="event-label"><span data-trans="eventPricePerCard">מחיר לכרטיס</span>
+                    <input className="event-input" type="number" step=".01" name="eventPricePerCard" value={currEvent.eventPricePerCard} onChange={(ev) => handleChange(ev)} required /></label>
 
 
-                    <label className="event-label" data-trans="ticketCount">כמות כרטיסים</label>
-                    <input className="event-input" type="number" name="ticketCount" min={0} max={10} value={currEvent.ticketCount} onChange={(ev) => handleChange(ev)} required />
+                    <label className="event-label"><span data-trans="ticketCount">כמות כרטיסים</span>
+                    <input className="event-input" type="number" name="ticketCount" min={0} max={10} value={currEvent.ticketCount} onChange={(ev) => handleChange(ev)} required /></label>
 
-                    <label className="event-label" data-trans="userRemark">הערות/פרטים נוספים</label>
-                    <textarea className="event-input" type="number" name="userRemark" rows={5} cols={10} value={currEvent.userRemark} onChange={(ev) => handleChange(ev)} />
+                    <label className="event-label"><span data-trans="userRemark">הערות/פרטים נוספים</span>
+                    <textarea className="event-input" type="number" name="userRemark" rows={5} cols={10} value={currEvent.userRemark} onChange={(ev) => handleChange(ev)} /></label>
 
 
                     <button className="event-btn" data-trans="save">שמור</button>

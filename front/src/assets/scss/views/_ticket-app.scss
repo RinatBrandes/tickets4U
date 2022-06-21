@@ -1,26 +1,10 @@
-// .root-container {
-//     display: flex;
-//     flex-direction: column;
-//     padding: 0 8em;
-//     // grid-template-rows: 2fr auto 2fr;
-//     // grid-template-columns: auto;
-//     // grid-template-areas: 
-//     // "header"
-//     // "main"
-//     // "footer";
-
-//     .header-container {
-//         // grid-area: header;
-//         max-height: 20%;
-//     }
-
-//     .ticket-app {
-//         // grid-area: main;
-//         max-height: 70%;
-//     }
-
-//     .footer-container {
-//         // grid-area: footer;
-//         max-height: 10%;
-//     }
-// }
+.filter-container {
+    display: flex;
+    
+    border: 1px solid $gray-light;
+    border-radius: 5px;
+    .filter-contant {
+        display: flex;
+        flex-direction: column;
+    }
+}

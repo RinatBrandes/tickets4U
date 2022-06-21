@@ -60,7 +60,7 @@ const Signup = () => {
                 showErrorMsg('The user didn\'t select mobile or mail ')
                 console.log('the user didn\'t select mobile or mail')
                 return
-            }
+            } 
 
             dispatch(signup(signupInfo))
             dispatch(getLoggedinUser())

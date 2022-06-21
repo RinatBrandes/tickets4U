@@ -19,7 +19,7 @@ export const EventPreview = ({ event }) => {
                     <p className="event-preview-span">{event.date} &#160;</p> <p className="event-preview-txt" data-trans="eventDate">תאריך הארוע: </p><br></br>
                     <p className="event-preview-span">{event.time} &#160;</p> <p className="event-preview-txt" data-trans="eventTime"> שעת הארוע:</p><br></br>
                     <p className="event-preview-span">...{event.eventName.substr(0, 15)} &#160;</p> <p className="event-preview-txt" data-trans="eventName">שם הארוע:</p><br></br>
-                    <p className="event-preview-span">...{event.placeName.substr(0, 15)} &#160;</p> <p className="event-preview-txt" data-trans="placeName">מקום הארוע:</p><br></br>
+                    <p className="event-preview-span">...{event.placeName.substr(0, 12)} &#160;</p> <p className="event-preview-txt" data-trans="placeName">מקום הארוע:</p><br></br>
                     <p className="event-preview-span">{pricePerCard} &#160;</p> <p className="event-preview-txt" data-trans="eventPricePerCard">מחיר לכרטיס:</p><br></br>
                 </div>
             </div>
