@@ -24,10 +24,11 @@ async function getEvents(req, res) {
             eventType: req.query?.eventType || '',
             eventCity: req.query?.eventCity || '',
             eventArea: req.query?.eventArea || '',
-            evenPricePerCard: req.query?.evenPricePerCard || '',
+            eventPricePerCard: req.query?.eventPricePerCard || '',
             eventTicketQty: req.query?.eventTicketQty || '',
             userId: req.query?.userId || ''
         }        
+        
         const events = await eventService.query(filterBy)
         res.send(events)
     } catch (err) {

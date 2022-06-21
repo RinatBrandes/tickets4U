@@ -17,7 +17,7 @@ module.exports = {
 
 async function query(filterBy = {}) {
     const criteria = _buildCriteria(filterBy)
-      
+      console.log('criteria', criteria)
     try {
         const collection = await dbService.getCollection('event')        
         filterBy.sortBy = 'date' 
@@ -107,7 +107,7 @@ async function update(event) {
 async function add(currEvent) {
    
     try {
-
+        
         const collection = await dbService.getCollection('event')
         await collection.insertOne(currEvent)
         addLog('event', 'info', 'add event', currEvent)
@@ -140,20 +140,7 @@ async function addLog(collectionName, logType, details, eventData={}){
 
 function _buildCriteria(filterBy) {
     const criteria = {}
-    if (filterBy.txt) {
-        const txtCriteria = { $regex: filterBy.txt, $options: 'i' } //'i' for Capitals       
-        criteria.$or = [
-            {
-                eventName: txtCriteria
-            },
-            {
-                eventType: txtCriteria
-            },
-            {
-                eventArea: txtCriteria
-            }
-        ]
-    }
+   
     if (filterBy.date) {
         criteria.date = { $regex: filterBy.date }
     } 
@@ -164,28 +151,30 @@ function _buildCriteria(filterBy) {
         
     }
     
-    // if (filterBy.eventName) {
-    //     criteria.eventName = { $regex: filterBy.eventName, $options: 'i' }
-    // }
+    if (filterBy.eventName) {
+        criteria.eventName = { $regex: filterBy.eventName, $options: 'i' }
+    }
     
-    // if (filterBy.eventType) {
-    //     criteria.eventType = { $regex: filterBy.eventType, $options: 'i' }
-    // }
+    if (filterBy.eventType) {
+        criteria.eventType = { $regex: filterBy.eventType, $options: 'i' }
+    }
     
-    // if (filterBy.eventCity) {
-    //     criteria.eventCity = { $regex: filterBy.eventCity, $options: 'i' }
-    // }
+    if (filterBy.eventCity) {
+        criteria.eventCity = { $regex: filterBy.eventCity, $options: 'i' }
+    }
     
-    // if (filterBy.eventArea) {
-    //     criteria.eventArea = { $regex: filterBy.eventArea, $options: 'i' }
-    // }
+    if (filterBy.eventArea) {
+        criteria.eventArea = { $regex: filterBy.eventArea, $options: 'i' }
+    }
     
-    if (filterBy.evenPricePerCard) {
-        criteria.evenPricePerCard = { $regex: filterBy.evenPricePerCard, $options: 'i' }
+    
+    if (filterBy.eventPricePerCard) {
+        criteria.eventPricePerCard = { $gte: +filterBy.eventPricePerCard }
+        // criteria.eventPricePerCard = { $regex: filterBy.eventPricePerCard, $options: 'i' }
     }
     
     if (filterBy.eventTicketQty) {
-        criteria.eventTicketQty = { $regex: filterBy.eventTicketQty, $options: 'i' }
+        criteria.ticketCount = { $gte: +filterBy.eventTicketQty }
     }
     
     if (filterBy.userId) {
