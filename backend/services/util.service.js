@@ -110,6 +110,15 @@ function toDate(timestamp){
   let newDate = (date.getFullYear() + "-" + month + "-" + day)
   return newDate
 }
+
+
+function toTimestamp(date){
+    
+  date += ' 00:00:01'    
+  var datum = Date.parse(date);
+  return datum/1000;
+}
+
 module.exports = {
   makeId,
   getRandomInt,
@@ -117,5 +126,6 @@ module.exports = {
   generateRandomName,
   timeAgo,
   generateRandomImg,
-  toDate
+  toDate,
+  toTimestamp
 }

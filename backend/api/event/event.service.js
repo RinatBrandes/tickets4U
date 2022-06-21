@@ -17,15 +17,12 @@ module.exports = {
 
 async function query(filterBy = {}) {
     const criteria = _buildCriteria(filterBy)
-      console.log('criteria', criteria)
+    
     try {
-        const collection = await dbService.getCollection('event')        
-        filterBy.sortBy = 'date' 
-        // console.log('filterBy in event service row 24',filterBy )
-        // console.log('criteria', criteria)
-        var events = await collection.find(criteria).sort(filterBy.sortBy, 1).toArray()        
-        events.map(event => {
-            // console.log('utilService.toDate(event.date)', (event.date))
+            const collection = await dbService.getCollection('event')        
+            filterBy.sortBy = 'fromDate' 
+            var events = await collection.find(criteria).sort(filterBy.sortBy, 1).toArray()        
+            events.map(event => {    
             return event.date = utilService.toDate(event.date)
         })        
         return events
@@ -140,17 +137,20 @@ async function addLog(collectionName, logType, details, eventData={}){
 
 function _buildCriteria(filterBy) {
     const criteria = {}
-   
-    if (filterBy.date) {
-        criteria.date = { $regex: filterBy.date }
+
+    if (filterBy.fromDate) {
+        criteria.date = { $gte: filterBy.fromDate ,  $lte:filterBy.fromDate}
+        if(filterBy.toDate)
+        criteria.date = { $gte: filterBy.fromDate ,  $lte:filterBy.toDate }
     } 
     else {
         const today = Date.now()
         //from some resean the today date is longer
-        criteria.date = {$gte: (Math.trunc(today/1000)) }
-        
+        criteria.date = {$gte: (Math.trunc(today/1000)) }        
     }
-    
+
+
+
     if (filterBy.eventName) {
         criteria.eventName = { $regex: filterBy.eventName, $options: 'i' }
     }

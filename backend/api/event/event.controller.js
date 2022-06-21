@@ -1,6 +1,7 @@
 const eventService = require('./event.service')
 const socketService = require('../../services/socket.service')
 const logger = require('../../services/logger.service')
+const utilService = require('../../services/util.service')
 
 async function getEvent(req, res) {
     
@@ -19,16 +20,21 @@ async function getEvents(req, res) {
 
         const filterBy = {
             txt: req.query?.txt || '',
-            date: req.query?.date || '',
+            fromDate: req.query?.fromDate || '',
+            toDate: req.query?.toDate || '',
             eventName: req.query?.eventName || '',
             eventType: req.query?.eventType || '',
             eventCity: req.query?.eventCity || '',
             eventArea: req.query?.eventArea || '',
             eventPricePerCard: req.query?.eventPricePerCard || '',
             eventTicketQty: req.query?.eventTicketQty || '',
-            userId: req.query?.userId || ''
+            userId: req.query?.userId || '',
+            sortBy: req.query?.sortBy || ''
         }        
-        
+        //set the date to timestamp
+        if(filterBy.fromDate !== '') filterBy.fromDate= utilService.toTimestamp(filterBy.fromDate)
+        if(filterBy.toDate !== '') filterBy.toDate=utilService.toTimestamp(filterBy.toDate)
+
         const events = await eventService.query(filterBy)
         res.send(events)
     } catch (err) {
