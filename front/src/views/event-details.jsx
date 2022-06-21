@@ -33,35 +33,35 @@ const EventDetails = () => {
     return (
         <section className="event-container">
             <div className="event-title" >
-                <h1 data-trans="eventDetails" >ארוע </h1>
+                <h1 data-trans="eventDetails">Event </h1>
             </div>
             <form  >
                 <div className="event-inputs">
 
-                    <label className="event-label" data-trans="eventDate">תאריך הארוע &#160;</label>
+                    <label className="event-label" data-trans="eventDate">Event date &#160;</label>
                     <label className="event-label">{currEvent.date}</label>
 
-                    <label className="event-label" data-trans="eventTime">שעת הארוע&#160;{currEvent.time}</label>
+                    <label className="event-label" data-trans="eventTime">Event hour &#160;{currEvent.time}</label>
 
-                    <label className="event-label" data-trans="eventName">שם הארוע &#160;{currEvent.eventName}</label>
+                    <label className="event-label" data-trans="eventName">Event name &#160;{currEvent.eventName}</label>
 
-                    <label className="event-label" data-trans="eventType">סוג הארוע&#160;{currEvent.eventType}</label>
+                    <label className="event-label" data-trans="eventType">Event type &#160;{currEvent.eventType}</label>
 
-                    <label className="event-label" data-trans="placeName"> מקום הארוע&#160;{currEvent.placeName}</label>
+                    <label className="event-label" data-trans="placeName">Place name &#160;{currEvent.placeName}</label>
 
-                    <label className="event-label" data-trans="eventCity">עיר הארוע&#160;{currEvent.eventCity}</label>
+                    <label className="event-label" data-trans="eventCity">Event city &#160;{currEvent.eventCity}</label>
 
-                    <label className="event-label" data-trans="eventArea">אזור הארוע&#160;{currEvent.eventArea}</label>
+                    <label className="event-label" data-trans="eventArea">Event area &#160;{currEvent.eventArea}</label>
 
-                    <label className="event-label" data-trans="eventPricePerCard">מחיר לכרטיס&#160;{currEvent.eventPricePerCard}</label>
+                    <label className="event-label" data-trans="eventPricePerCard">Price per ticket &#160;{currEvent.eventPricePerCard}</label>
 
-                    <label className="event-label" data-trans="ticketCount">כמות כרטיסים&#160;{currEvent.ticketCount}</label>
+                    <label className="event-label" data-trans="ticketCount">Ticket quantity &#160;{currEvent.ticketCount}</label>
 
-                    <label className="event-label" data-trans="userRemark">הערות/פרטים נוספים&#160;{currEvent.userRemark}</label>
+                    <label className="event-label" data-trans="userRemark">Remark / Extra details &#160;{currEvent.userRemark}</label>
 
 
-                    <button className="event-btn" data-trans="return" onClick={() => onGoBack()}>חזור</button>
-                    {loggedInUser && <button className="event-btn" data-trans="update" onClick={() => GoToEdit()}> עדכון ארוע</button>}
+                    <button className="event-btn" data-trans="return" onClick={() => onGoBack()}>Return</button>
+                    {loggedInUser && <button className="event-btn" data-trans="update" onClick={() => GoToEdit()}>Update event</button>}
                 </div>
             </form>
         </section>

@@ -37,17 +37,17 @@ const Login = () => {
     return (
         <section className="login-container">
             <div className="login-title">
-                <h1 data-trans="login">כניסה</h1>
+                <h1 data-trans="login">Login</h1>
             </div>
             <form onSubmit={handleSubmit} >
                 <div className="login-input">
-                    <label className="login-label"><span data-trans="userName"> שם משתמש</span>
+                    <label className="login-label"><span data-trans="userName">User name</span>
                         <input className="login-input" type="text" name="username" value={credentials.username} onChange={handleChange} required /></label>
 
-                    <label className="login-label"><span data-trans="password">סיסמה</span>
+                    <label className="login-label"><span data-trans="password">Password</span>
                     <input className="login-input" type="password" name="password" value={credentials.password} onChange={handleChange} required /></label>
 
-                    <button className="login-btn" data-trans="login">התחבר</button>
+                    <button className="login-btn" data-trans="login">Login</button>
                 </div>
             </form>
         </section>

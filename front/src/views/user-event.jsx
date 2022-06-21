@@ -32,10 +32,10 @@ const UserEvent = () => {
                     <thead>
                         <tr>
 
-                            <th>שם הארוע</th>
-                            <th>תאריך הארוע</th>
-                            <th>סטטוס</th>
-                            <th>עדכון</th>
+                            <th data-trans="eventName">Event name</th>
+                            <th data-trans="eventDate">Event date</th>
+                            <th data-trans="eventStatus">Event status</th>
+                            <th data-trans="edit">Edit</th>
                         </tr>
                     </thead>
                     <tbody>

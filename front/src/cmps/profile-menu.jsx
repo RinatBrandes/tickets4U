@@ -10,10 +10,10 @@ export const ProfileMenu = ({ onLogout, user, closeMenu, onGoToEvents }) => {
             <div className="profile-menu">
                 {/* <div className="Menu-subcategory"></div> */}
                 <ul className="sub-category clean-list">
-                    {user && <li className="menu-item" data-trans="hello">שלום <span>{user.userName}</span></li>}
-                    <li className="menu-item" onClick={() => closeMenu()} data-trans="addEvent"><NavLink to={`/event/edit`} className="menu-item">הוסף ארוע</NavLink></li>
-                    <li className="menu-item" onClick={() => closeMenu()} data-trans="events"><NavLink to={`/event/user/${loggedInUser._id}`} className="menu-item">ארועים</NavLink></li>
-                    <li className="menu-item logout" onClick={() => onLogout()} data-trans="logout"><NavLink to={`/`} className="menu-item">התנתק</NavLink></li>
+                    {user && <li className="menu-item" data-trans="hello">Hello <span>{user.userName}</span></li>}
+                    <li className="menu-item" onClick={() => closeMenu()} data-trans="addEvent"><NavLink to={`/event/edit`} className="menu-item">Add event</NavLink></li>
+                    <li className="menu-item" onClick={() => closeMenu()} data-trans="events"><NavLink to={`/event/user/${loggedInUser._id}`} className="menu-item">Events</NavLink></li>
+                    <li className="menu-item logout" onClick={() => onLogout()} data-trans="logout"><NavLink to={`/`} className="menu-item">Logout</NavLink></li>
                 </ul>
             </div>
         // </section>

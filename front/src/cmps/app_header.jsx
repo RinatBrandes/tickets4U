@@ -69,13 +69,13 @@ const AppHeader = () => {
                 <div className="header-logo-container">
                     <div className="header-options">
                         <select onChange={onSetLang} className="lang-option">
-                            <option value="he" data-trans="langHe">עברית</option>
+                            <option value="he" data-trans="langHe">Hebrew</option>
                             <option value="en" data-trans="langEn">English</option>
                         </select>
                         <div className="header-nav-bar">
 
-                            {!loggedInUser && <button onClick={onOpenSignupPage} data-trans="signup">התחברות</button>}
-                            {!loggedInUser && <button onClick={onOpenLoginPage} data-trans="login">כניסה</button>}
+                            {!loggedInUser && <button onClick={onOpenSignupPage} data-trans="signup">Signup</button>}
+                            {!loggedInUser && <button onClick={onOpenLoginPage} data-trans="login">Login</button>}
 
                             <div className="avatar-container">
                                 {loggedInUser && <img className="avatar-img" src={avatar} onClick={onToggleMenu} alt="Avatar"></img>}

@@ -105,28 +105,28 @@ const EventEdit = () => {
             <form onSubmit={handleSubmit} >
                 <div className="event-inputs">
                     {/* <div className="event-small-container"> */}
-                    <label className="event-label"><span data-trans="eventDate">תאריך הארוע</span>
+                    <label className="event-label"><span data-trans="eventDate">Event date</span>
                     <input className="event-input" type="date" name="date" value={currEvent.date} onChange={(ev) => handleChange(ev)} required /></label>
 
 
-                    <label className="event-label"><span  data-trans="eventTime">שעת הארוע</span>
+                    <label className="event-label"><span  data-trans="eventTime">Event hour</span>
                     <input className="event-input" type="time" name="time" value={currEvent.time} onChange={(ev) => handleChange(ev)} required /></label>
 
                     {/* </div> */}
 
 
-                    <label className="event-label"><span data-trans="eventName">שם הארוע </span>
+                    <label className="event-label"><span data-trans="eventName">Event name </span>
                     <input className="event-input" type="text" name="eventName" value={currEvent.eventName} onChange={(ev) => handleChange(ev)} required /></label>
 
-                    {currEvent._id && <label className="event-label" data-trans="eventStatus">סטטוס</label>}
+                    {currEvent._id && <label className="event-label" data-trans="eventStatus">Event status</label>}
                     {currEvent._id && <select onChange={(ev) => handleChange(ev)} className="event-input" value={currEvent.eventStatus} name="eventStatus" required>
-                        <option value="new" data-trans="new">חדש</option>
-                        <option value="close" data-trans="close">סגור</option>
+                        <option value="new" data-trans="new">New</option>
+                        <option value="close" data-trans="close">Close</option>
                     </select>}
 
 
 
-                    <label className="event-label" data-trans="eventType">סוג הארוע</label>
+                    <label className="event-label" data-trans="eventType">Event type</label>
                     <select onChange={handleChange} className="event-input" value={currEvent.eventType} name="eventType" required>
                         {eventTypes.map(type =>
                             <option value={type} data-trans={type} key={type}>{type}</option>
@@ -135,11 +135,11 @@ const EventEdit = () => {
                                          
 
 
-                    <label className="event-label"><span data-trans="placeName">מקום הארוע</span>
+                    <label className="event-label"><span data-trans="placeName">Place name</span>
                     <input className="event-input" type="text" name="placeName" value={currEvent.placeName} onChange={(ev) => handleChange(ev)} /></label>
 
 
-                    <label className="event-label"><span data-trans="eventCity">עיר הארוע</span>
+                    <label className="event-label"><span data-trans="eventCity">Event city</span>
                     <input className="event-input" type="text" name="eventCity" value={currEvent.eventCity} onChange={(ev) => handleChange(ev)} /></label>
                     {/* <select onChange={(ev) => handleChange(ev)} className="event-input" value={currEvent.eventCity} name="eventCity" required>
                                <option value="tiberias" data-trans="tiberias">טבריה</option>
@@ -149,29 +149,29 @@ const EventEdit = () => {
 
 
 
-                    <label className="event-label" data-trans="eventArea">אזור הארוע</label>
+                    <label className="event-label" data-trans="eventArea">Event area</label>
                     <select onChange={(ev) => handleChange(ev)} className="event-input" value={currEvent.eventArea} name="eventArea" required>
-                        <option value="south" data-trans="south">דרום</option>
-                        <option value="haifa" data-trans="haifa">חיפה</option>
-                        <option value="jerusalem" data-trans="jerusalem">ירושלים</option>
-                        <option value="center-and-humiliation" data-trans="center-humiliation">מרכז ושפלה</option>
-                        <option value="north" data-trans="north">צפון</option>
-                        <option value="sharon" data-trans="sharon">שרון</option>
+                        <option value="south" data-trans="south">South</option>
+                        <option value="haifa" data-trans="haifa">Haifa</option>
+                        <option value="jerusalem" data-trans="jerusalem">Jerusalem</option>
+                        <option value="center-and-humiliation" data-trans="center-humiliation">Center && Humiliation</option>
+                        <option value="north" data-trans="north">North</option>
+                        <option value="sharon" data-trans="sharon">Sharon</option>
                     </select>
 
 
-                    <label className="event-label"><span data-trans="eventPricePerCard">מחיר לכרטיס</span>
+                    <label className="event-label"><span data-trans="eventPricePerCard">Price per ticket</span>
                     <input className="event-input" type="number" step=".01" name="eventPricePerCard" value={currEvent.eventPricePerCard} onChange={(ev) => handleChange(ev)} required /></label>
 
 
-                    <label className="event-label"><span data-trans="ticketCount">כמות כרטיסים</span>
+                    <label className="event-label"><span data-trans="ticketCount">Ticket quantity</span>
                     <input className="event-input" type="number" name="ticketCount" min={0} max={10} value={currEvent.ticketCount} onChange={(ev) => handleChange(ev)} required /></label>
 
-                    <label className="event-label"><span data-trans="userRemark">הערות/פרטים נוספים</span>
+                    <label className="event-label"><span data-trans="userRemark">Remarks / Extra details</span>
                     <textarea className="event-input" type="number" name="userRemark" rows={5} cols={10} value={currEvent.userRemark} onChange={(ev) => handleChange(ev)} /></label>
 
 
-                    <button className="event-btn" data-trans="save">שמור</button>
+                    <button className="event-btn" data-trans="save">Save</button>
                 </div>
             </form>
         </section>

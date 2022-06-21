@@ -118,7 +118,7 @@ const gTrans = {
         he: 'אזור הארוע'
     },
     eventTime: {
-        en: 'Event time',
+        en: 'Event hour',
         he: 'שעת הארוע'
     },
     return: {
@@ -135,7 +135,7 @@ const gTrans = {
     },
     eventStatus: {
         en: 'Event status',
-        he: 'סטטוס'
+        he: 'סטטוס ארוע'
     },
     new: {
         en: 'New',
@@ -320,6 +320,10 @@ const gTrans = {
     Workshop: {
         en: "Workshop",
         he: "סדנה"
+    },
+    edit: {
+        en: 'Edit',
+        he: 'ערוך'
     }
     
 }

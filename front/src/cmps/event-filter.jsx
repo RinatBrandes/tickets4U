@@ -24,7 +24,7 @@ export const EventFilter = ({ filterBy, handleChange, refreshEvent, clearSearch 
                 <label><span  className="event-label" data-trans="eventType">Event type</span>&#160;
                 <select onChange={handleChange} className="event-input" value={filterBy.eventType} name="eventType" >
                     {eventTypes.map(type =>
-                        <option value={type === 'Select' ? '' : type} data-trans={type} key={type}>{type}</option>
+                        <option data-trans={type} value={type === 'Select' ? '' : type}  key={type}>{type}</option>
                     )}
                 </select></label>
 
