@@ -98,8 +98,7 @@ const EventDetails = () => {
                         {currEvent.user.email && <label className="event-label" data-trans="email">Email &#160;{currEvent.user.email}</label>}
                    
                         {currEvent.user.email && <div className="contact-user">
-                            <a className='contact-seller' href={`mailto:${currEvent.user.email}`}>Contact Seller</a>
-                                {/* <button onClick={() => Linking.openURL(`mailto:${currEvent.user.email}`)} title="support@ticket4u.com" /> */}
+                            <a className='contact-seller' href={`https://mail.google.com/mail/?view=cm&source=mailto&to=${currEvent.user.email}`} target="_blank">Contact Seller</a>
                         </div>}
                     </fieldset>}
 
