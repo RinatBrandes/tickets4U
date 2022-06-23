@@ -13,6 +13,9 @@ import { utilService } from '../services/util.service'
 const EventEdit = () => {
     
     const { loggedInUser } = useSelector((storeState) => storeState.userModule)
+    const initialEvent  = {date: '', time: '', eventName: '', eventType: '', placeName: '',eventCity: '', eventArea: '', user_id: loggedInUser._id,
+        eventPricePerCard: 0, ticketCount: '', eventStatus: 'new', createdAt: Date.now(), closeDate: null, userRemark: '', systemRemark: ''}
+    
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const { eventId } = useParams()
@@ -20,26 +23,9 @@ const EventEdit = () => {
     const [newEvent, setNewEvent] = useState('ארוע חדש')
     const [isNewEvent, setIsNewEvent] = useState(false)
     const [eventTypes, setEventTypes] = useState([''])
-    const [currEvent, setCurrEvent] = useState({
-        date: '',
-        time: '',
-        eventName: '',
-        eventType: '',
-        placeName: '',
-        eventCity: '',
-        eventArea: '',
-        user_id: loggedInUser._id,
-        eventPricePerCard: 0,
-        ticketCount: '',
-        eventStatus: 'new',
-        createdAt: Date.now(),
-        closeDate: null,
-        userRemark: '',
-        systemRemark: ''
-    })
+    const [currEvent, setCurrEvent] = useState(initialEvent)
 
     useEffect(() => {
-        
         const fetchEvent = async () => {
             const selectedEvent = await eventService.getById(eventId)
             setCurrEvent(selectedEvent)
@@ -51,20 +37,21 @@ const EventEdit = () => {
         
         const types = eventService.getEventTypes()
         setEventTypes(types)
-
+        
         if (eventId) {
             fetchEvent()
             setIsNewEvent(false)
         } else {
             setIsNewEvent(true)
+            setCurrEvent(initialEvent)
         }
-    }, [])
+    }, [eventId])
 
 
     const handleChange = (event) => {
         let value = event.target.value
         const name = event.target.name;
-        if(name === 'eventType' && (value === 'בחר' || value === 'select')) return
+        if(name === 'eventType' && (value === 'בחר' || value === 'select')) value = ''
         setCurrEvent({ ...currEvent, [name]: value })
     }
 

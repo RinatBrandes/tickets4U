@@ -31,7 +31,6 @@ const Signup = () => {
 
         if (name === 'approvedMobile' || name === 'approvedEmail') {
             value = event.target.checked
-
         }
         setUser({ ...user, [name]: value })
     }

@@ -19,6 +19,7 @@ const AppHeader = () => {
 
     useEffect(() => {
         onSetLang()
+        
 
     }, [])
 
@@ -34,7 +35,7 @@ const AppHeader = () => {
         // If lang is hebrew add RTL class to document.body
         if (lang === 'he') document.body.classList.add('rtl')
         else document.body.classList.remove('rtl')
-
+console.log('lang',lang);
         i18nService.doTrans()
     }
 
@@ -64,8 +65,10 @@ const AppHeader = () => {
 
 
     return (
-        <section className="header-container full">
-            <div className="main-layout">
+        // <section className="header-container">
+        // <div className="main-layout">
+          <section className="header-container full">
+             <div className="main-layout"> 
                 <div className="header-logo-container">
                     <div className="header-options">
                         <select onChange={onSetLang} className="lang-option">

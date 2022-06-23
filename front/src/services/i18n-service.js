@@ -324,6 +324,22 @@ const gTrans = {
     edit: {
         en: 'Edit',
         he: 'ערוך'
+    },
+    contactInformation : {
+        en: 'Contact Information',
+        he: 'פרטי התקשרות'
+    },
+    when: {
+        en: 'When',
+        he: 'מתי'
+    },
+    where: {
+        en: 'Where',
+        he: 'איפה'
+    },
+    whoMuch: {
+        en: 'Who much',
+        he: 'כמה'
     }
     
 }

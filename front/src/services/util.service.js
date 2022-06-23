@@ -4,7 +4,8 @@ export const utilService = {
     getRandomIntInclusive,
     delay,
     toTimestamp,
-    toDate
+    toDate,
+    debounce
 }
 
 function makeId(length = 6) {

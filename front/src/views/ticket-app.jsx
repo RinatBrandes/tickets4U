@@ -7,6 +7,9 @@ import { socketService } from "../services/socket.service.js";
 import { EventFilter } from "../cmps/event-filter";
 import { showErrorMsg } from '../services/event-bus.service.js'
 import { utilService } from "../services/util.service";
+import { i18nService } from "../services/i18n-service";
+
+
 
 const TicketApp = () => {
 
@@ -15,14 +18,14 @@ const TicketApp = () => {
     const dispatch = useDispatch()
     const { events } = useSelector((storeState) => storeState.eventModule)
     const [filterBy, setfilterBy] = useState(initialFilter)
-
+    // setfilterBy = utilService.debounce(setfilterBy,2500)
 
     useEffect(() => {
-
         socketService.emit('chat topic', 'eventUser')
         socketService.on('eventSaved', refreshEvent)
-
+        
         dispatch(loadEvents(filterBy))
+        onSetLang()
 
         return () => {
             socketService.off('eventSaved', refreshEvent)
@@ -34,9 +37,25 @@ const TicketApp = () => {
         refreshEvent()
     }, [filterBy])
 
-    function refreshEvent() {
-
+    const refreshEvent = () => {
         dispatch(loadEvents(filterBy))
+    }
+
+    
+    const onSetLang = (ev) => {
+        let lang
+        if(ev) {
+            lang = ev.target.value
+        } else {
+            lang = 'he'
+        }
+        
+        i18nService.setLang(lang)
+        // If lang is hebrew add RTL class to document.body
+        if (lang === 'he') document.body.classList.add('rtl')
+        else document.body.classList.remove('rtl')
+console.log('lang',lang);
+        i18nService.doTrans()
     }
 
 
@@ -57,7 +76,7 @@ const TicketApp = () => {
     }
 
     // const debouncedHandleChange = utilService.debounce((event) => {
-
+    //     console.log('ev', event);
     //     let value = event.target.value
     //     const name = event.target.name
     //     if (name === 'fromDate' || name === 'toDate') {
@@ -68,9 +87,9 @@ const TicketApp = () => {
     //             return showErrorMsg('תאריך סיום לא יכול להיות גדול מתאריך התחלה')
     //         }
     //     }
-
+    //     console.dir(event.target);
     //     setfilterBy({ ...filterBy, [name]: value })
-    // },2000)
+    // }, 2000)
 
 
     const clearSearch = () => {

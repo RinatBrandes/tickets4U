@@ -9,7 +9,10 @@ export const userService = {
     login,
     getLoggedinUser,
     logout,
-    signup
+    signup,
+    getById
+
+
 }
 
 async function login(userCred) {
@@ -28,11 +31,11 @@ async function login(userCred) {
 }
 
 
-// async function getById(userId) {
+async function getById(userId) {
 
-//     const user = await httpService.get(`user/${userId}`)
-//     return user
-// }
+    const user = await httpService.get(`user/${userId}`)
+    return user
+}
 
 
 async function signup(signupUser) {

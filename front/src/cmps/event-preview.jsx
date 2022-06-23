@@ -17,6 +17,9 @@ export const EventPreview = ({ event }) => {
 
         <li className="event-preview-container  note-modal">
             <div className="event-preview-info" onClick={onGoToDetails}>
+                <div className="event-type-name">
+                    <p>{event.eventType}</p>
+                </div>
                 <div className="event-preview-card">
                     <p className="event-preview-span"> <span className="event-preview-txt" data-trans="eventDate">Event date</span> {event.date} &#160;</p><br></br>
                     {/* <p className="event-preview-span">{event.date} &#160;</p> <p className="event-preview-txt" data-trans="eventDate">תאריך הארוע: </p><br></br> */}

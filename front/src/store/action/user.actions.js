@@ -82,16 +82,21 @@ export function loadUsers() {
 
 
 export async function loadUser(userId) {
+    console.log('userId', userId)
+    return async dispatch => {
+        try {
+            const user = await userService.getById(userId);
+            console.log('user', user)
+            dispatch({
+                type: 'SET_USER_ID',
+                user
+            })
 
-    try {
-        const user = await userService.getById(userId);
-        return user
-
-    } catch (err) {
-        showErrorMsg('Cannot load user')
-        console.log('Cannot load user', err)
+        } catch (err) {
+            showErrorMsg('Cannot load user')
+            console.log('Cannot load user', err)
+        }
     }
-
 }
 
 export function getLoggedinUser() {

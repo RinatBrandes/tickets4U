@@ -5,6 +5,7 @@ const initialState = {
     loggedInUser: userService.getLoggedinUser() || null,
     users: [],
     watchedUser: null,
+    user: null
 }
 
 export function userReducer(state = initialState, action) {
@@ -25,7 +26,8 @@ export function userReducer(state = initialState, action) {
         case 'SET_USERS':
             newState = { ...state, users: action.users }
             break;
-
+        case 'SET_USER_ID':
+            newState = { ...state, user: action.user }
         default:
     }
     // For debug:
