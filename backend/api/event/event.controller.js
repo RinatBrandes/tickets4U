@@ -6,7 +6,8 @@ const utilService = require('../../services/util.service')
 async function getEvent(req, res) {
     
     try {
-        const event = await eventService.getById(req.params.id)        
+        const event = await eventService.getById(req.params.id)      
+          
         res.send(event)
     } catch (err) {
         logger.error('Failed to get event', err)

@@ -116,7 +116,7 @@ async function addLog(collectionName, logType, details, userData,eventData={}){
         eventId: eventData._id ? eventData._id: null,
         type: logType,
         details: details,
-        createAt: Date.now()
+        createdAt: Date.now()
     }
     const collection = await dbService.getCollection('log')
     await collection.insertOne(logDetails)

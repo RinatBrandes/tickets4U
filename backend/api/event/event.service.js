@@ -3,7 +3,7 @@ const dbService = require('../../services/db.service')
 const logger = require('../../services/logger.service')
 const utilService = require('../../services/util.service')
 const ObjectId = require('mongodb').ObjectId
-
+const userService = require('../user/user.service')
 
 module.exports = {
     query,
@@ -11,7 +11,7 @@ module.exports = {
     remove,
     update,
     add,    
-    addLog,
+    // addLog,
     getTypes
 }
 
@@ -41,7 +41,7 @@ async function getTypes() {
         var eventTypes = await collection.find(criteria).toArray()
         return events
     } catch (err) {
-        logger.error('cannot find eventTypes', err)
+        logger.error('Cannot find eventTypes', err)
         throw err
     }
 }
@@ -57,7 +57,7 @@ async function getById(eventId) {
 
         return event
     } catch (err) {
-        logger.error(`while finding event ${eventId}`, err)
+        logger.error(`While finding event ${eventId}`, err)
         throw err
     }
 }
@@ -79,8 +79,11 @@ async function remove(eventId) {
     try {
         const collection = await dbService.getCollection('event')
         await collection.deleteOne({ '_id': ObjectId(eventId) })
+        userService.addLog('Event', 'Info', 'Remove event')
     } catch (err) {
+
         logger.error(`cannot remove event ${eventId}`, err)
+        userService.addLog('Event', 'Error', `Cannot remove event -  ${eventId}`, err)
         throw err
     }
 }
@@ -91,12 +94,15 @@ async function update(event) {
 
         const id = event._id
         delete event._id
+        const user = {_id: event.userId}
         const collection = await dbService.getCollection('event')
         await collection.updateOne({'_id':ObjectId(id)},{$set:event})
-        addLog('event', 'info', 'update event', event)
+        userService.addLog('Event', 'Info', 'Update event',user, event)
         return event
     } catch (err) {
+
         logger.error(`cannot update event ${event._id}`, err)
+        userService.addLog('Event', 'Error', `Cannot update event - ${err}`,user, event)
         throw err
     }
 }
@@ -104,35 +110,17 @@ async function update(event) {
 async function add(currEvent) {
    
     try {
-        
+        const user = {_id : currEvent.userId}
         const collection = await dbService.getCollection('event')
         await collection.insertOne(currEvent)
-        addLog('event', 'info', 'add event', currEvent)
-        
+        userService.addLog('Event', 'Info', 'Add event',user, currEvent)        
         return currEvent
     } catch (err) {
-        addLog('event', 'error', `cannot insert event -${signupEvent} -  ${err}`,  signupEvent )
+        userService.addLog('Event', 'Error', `Cannot insert event -${signupEvent} -  ${err}`,user , signupEvent )
         logger.error('cannot insert event', err)
         throw err
     }
 }
-
-
-async function addLog(collectionName, logType, details, eventData={}){
-    const logDetails = {
-        subject: collectionName,
-        userId: ObjectId(eventData.userId),
-        eventId: eventData._id ? eventData._id: null,
-        type: logType,
-        details: details,
-        createdAt: Date.now()
-    }
-    
-    const collection = await dbService.getCollection('log')
-    await collection.insertOne(logDetails)
-}
-
-
 
 
 function _buildCriteria(filterBy) {
