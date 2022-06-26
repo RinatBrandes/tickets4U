@@ -19,12 +19,12 @@ export const EventType = ({showEventByType}) => {
         <section className="event-types-container">
             <div className="types-contant">
                               
-                <ul  className="types-card clean-list" name="eventType" >
+                <div  className="types-card clean-list" name="eventType" >
                     {eventTypes.map(type =>
-                        <li onClick={(ev) => showEventByType(ev,type)} className="type-details" value={type === 'Select' ? '' : type} data-trans={type} key={type}>{type}</li>
+                        <p onClick={(ev) => showEventByType(ev,type)} className="type-details" value={type === 'Select' ? '' : type} data-trans={type} key={type}>{type}</p>
                         // {(type !== 'Select' || type !== 'Other') && <li value={type === 'Select' ? '' : type} data-trans={type} key={type}>{type}</li>}
                     )}
-                </ul>
+                </div>
 
 
             </div>
