@@ -1,7 +1,10 @@
 const eventService = require('./event.service')
+const userService = require('../user/user.service')
 const socketService = require('../../services/socket.service')
 const logger = require('../../services/logger.service')
 const utilService = require('../../services/util.service')
+const nodemailer = require('nodemailer');
+
 
 async function getEvent(req, res) {
     
@@ -30,6 +33,7 @@ async function getEvents(req, res) {
             eventPricePerCard: req.query?.eventPricePerCard || '',
             eventTicketQty: req.query?.eventTicketQty || '',
             userId: req.query?.userId || '',
+            allDate: req.query?.allDate || '',
             sortBy: req.query?.sortBy || ''
         }        
         //set the date to timestamp
@@ -71,6 +75,7 @@ async function addEvent(req, res) {
     try {
         const event = req.body
         const savedEvent = await eventService.add(event)
+        checkUser(event.userId)
         res.send(savedEvent)
     } catch (err) {
         logger.error('Failed to add event', err)
@@ -78,6 +83,40 @@ async function addEvent(req, res) {
     }
 }
 
+// checkUser('62ab031c6237d6973532a6ee')
+async function checkUser(userId){
+    const filterBy = {}
+    filterBy.userId = userId
+    filterBy.eventStatus = 'new'
+    const events = await eventService.query(filterBy)
+    const openEvents = events.map(currEvent => currEvent.eventStatus === "new")  
+    const user = await userService.getById(userId)
+    if(events.length > 2 ){
+        var transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+            user: 'ticket4u.info@gmail.com',
+            pass: 'zqepkdezcvzohthi'
+            }
+        })
+        var mailOptions = {
+            from: 'ticket4u.info@gmail.com',
+            to: 'ticket4u.info@gmail.com',
+            subject: 'The user create more the 2 events',
+            text: 'User id '+userId + 'name' +user.firstName+ ' ' + user.lastName +  ' has created ' + events.length + ' events - please check him'
+        }
+        
+    transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+        console.log(error);
+        } else {
+        console.log('Email sent: ' + info.response);
+        }
+       })
+}
+
+
+}
 module.exports = {
     getEvent,
     getEvents,

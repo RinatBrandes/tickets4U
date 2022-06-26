@@ -17,14 +17,16 @@ module.exports = {
 
 async function query(filterBy = {}) {
     const criteria = _buildCriteria(filterBy)
-    
+    console.log('criteria', criteria)
     try {
+        
             const collection = await dbService.getCollection('event')        
-            filterBy.sortBy = 'fromDate' 
-            var events = await collection.find(criteria).sort(filterBy.sortBy, 1).toArray()        
+            filterBy.sortBy = 'date' 
+            var events = await collection.find(criteria).sort(filterBy.sortBy, 1).toArray()   
             events.map(event => {    
-            return event.date = utilService.toDate(event.date)
-        })        
+             return event.date = utilService.toDate(event.date)
+            })
+            console.log('events',events )
         return events
     } catch (err) {
         logger.error('cannot find events', err)
@@ -125,19 +127,27 @@ async function add(currEvent) {
 
 function _buildCriteria(filterBy) {
     const criteria = {}
-
-    if (filterBy.fromDate) {
-        criteria.date = { $gte: filterBy.fromDate ,  $lte:filterBy.fromDate}
-        if(filterBy.toDate)
-        criteria.date = { $gte: filterBy.fromDate ,  $lte:filterBy.toDate }
+  
+    if (filterBy.fromDate && filterBy.allDate === 'false') {
+        //if we ask the event of user to show in his page we want to bring all        
+            criteria.date = { $gte: filterBy.fromDate ,  $lte:filterBy.fromDate}
+            if(filterBy.toDate)
+            criteria.date = { $gte: filterBy.fromDate ,  $lte:filterBy.toDate }        
     } 
     else {
-        const today = Date.now()
-        //from some resean the today date is longer
-        criteria.date = {$gte: (Math.trunc(today/1000)) }        
+        if(filterBy.allDate === 'false') {
+            
+            const today = Date.now()
+            //from some resean the today date is longer
+            criteria.date = {$gte: (Math.trunc(today/1000)) }       
+            
+        }
+        
     }
 
-
+    if (filterBy.eventStatus) {
+        criteria.eventStatus = { $regex: filterBy.eventStatus, $options: 'i' }
+    }
 
     if (filterBy.eventName) {
         criteria.eventName = { $regex: filterBy.eventName, $options: 'i' }
@@ -168,7 +178,7 @@ function _buildCriteria(filterBy) {
     if (filterBy.userId) {
         criteria.userId = { $regex: filterBy.userId }
     }
-    
+    console.log('criteria',criteria )
 
     return criteria
 }
