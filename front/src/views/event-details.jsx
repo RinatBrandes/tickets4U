@@ -2,7 +2,6 @@ import * as React from 'react'
 import { useParams } from 'react-router-dom';
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-
 import { useNavigate } from 'react-router-dom'
 import { getById } from '../store/action/event.actions';
 import { i18nService } from '../services/i18n-service';
@@ -11,20 +10,19 @@ import { i18nService } from '../services/i18n-service';
 const EventDetails = () => {
     const { loggedInUser } = useSelector((storeState) => storeState.userModule)
     const { currEvent } = useSelector((storeState) => storeState.eventModule)
-    const { user } = useSelector((storeState) => storeState.userModule)
+    // const { user } = useSelector((storeState) => storeState.userModule)
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const params = useParams()
 
     useEffect(() => {
-
+        onSetLang()
         
         const fetchEvent = async () => {
             dispatch(getById(params.eventId))
         }
         fetchEvent()
         
-        onSetLang()
     }, [])
 
     
@@ -62,7 +60,7 @@ const EventDetails = () => {
                 <div className="event-inputs">
                     <fieldset className="event-details-fieldset">
                         <legend data-trans="when">When</legend>
-                        <label className="event-label" data-trans="eventDate">Event date &#160; <span>{currEvent.date}</span></label>
+                        <label className="event-label" data-trans="eventDate"> &#160; <span>{currEvent.date}</span>Event date</label>
                         {/* <label className="event-label"></label> */}
 
                         <label className="event-label" data-trans="eventTime">Event hour &#160;{currEvent.time}</label>

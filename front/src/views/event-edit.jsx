@@ -26,6 +26,7 @@ const EventEdit = () => {
     const [currEvent, setCurrEvent] = useState(initialEvent)
 
     useEffect(() => {
+        onSetLang()
         const fetchEvent = async () => {
             const selectedEvent = await eventService.getById(eventId)
             setCurrEvent(selectedEvent)
@@ -47,7 +48,21 @@ const EventEdit = () => {
         }
     }, [eventId])
 
-
+    const onSetLang = (ev) => {
+        let lang
+        if(ev) {
+            lang = ev.target.value
+        } else {
+            lang = 'he'
+        }
+        
+        i18nService.setLang(lang)
+        // If lang is hebrew add RTL class to document.body
+        if (lang === 'he') document.body.classList.add('rtl')
+        else document.body.classList.remove('rtl')
+        i18nService.doTrans()
+    }
+    
     const handleChange = (event) => {
         let value = event.target.value
         const name = event.target.name;
@@ -83,7 +98,6 @@ const EventEdit = () => {
         navigate('/')
     }
 
-
     return (
         <section className="event-container">
             <div className="event-title">
@@ -91,17 +105,15 @@ const EventEdit = () => {
             </div>
             <form onSubmit={handleSubmit} >
                 <div className="event-inputs">
-                    {/* <div className="event-small-container"> */}
-                    <label className="event-label"><span data-trans="eventDate">Event date</span>
-                    <input className="event-input" type="date" name="date" value={currEvent.date} onChange={(ev) => handleChange(ev)} required /></label>
+                    
+                    <label className="event-label"><span data-trans="eventDate">&#160;Event date</span>
+                    <input className="event-input" type="date" name="date" value={currEvent.date}  onChange={(ev) => handleChange(ev)} required /></label>
 
 
                     <label className="event-label"><span  data-trans="eventTime">Event hour</span>
                     <input className="event-input" type="time" name="time" value={currEvent.time} onChange={(ev) => handleChange(ev)} required /></label>
 
-                    {/* </div> */}
-
-
+                    
                     <label className="event-label"><span data-trans="eventName">Event name </span>
                     <input className="event-input" type="text" name="eventName" value={currEvent.eventName} onChange={(ev) => handleChange(ev)} required /></label>
 
@@ -111,37 +123,25 @@ const EventEdit = () => {
                         <option value="close" data-trans="close">Close</option>
                     </select>}
 
-
-
                     <label className="event-label" data-trans="eventType">Event type</label>
                     <select onChange={handleChange} className="event-input" value={currEvent.eventType} name="eventType" required>
                         {eventTypes.map(type =>
-                            <option value={type} data-trans={type} key={type}>{type}</option>
+                            <option value={type === 'Select' ? '' : type} data-trans={type} key={type}>{type}</option>
                         )}
-                    </select>
-                                         
-
+                    </select>                                                                                       
 
                     <label className="event-label"><span data-trans="placeName">Place name</span>
                     <input className="event-input" type="text" name="placeName" value={currEvent.placeName} onChange={(ev) => handleChange(ev)} /></label>
 
-
                     <label className="event-label"><span data-trans="eventCity">Event city</span>
-                    <input className="event-input" type="text" name="eventCity" value={currEvent.eventCity} onChange={(ev) => handleChange(ev)} /></label>
-                    {/* <select onChange={(ev) => handleChange(ev)} className="event-input" value={currEvent.eventCity} name="eventCity" required>
-                               <option value="tiberias" data-trans="tiberias">טבריה</option>
-                               <option value="telAviv" data-trans="telAviv">תל אביב</option>
-                               <option value="Jerusalem" data-trans="Jerusalem">ירושלים</option>
-                        </select>                                                                     */}
-
-
+                    <input className="event-input" type="text" name="eventCity" value={currEvent.eventCity} onChange={(ev) => handleChange(ev)} /></label>                                                                 
 
                     <label className="event-label" data-trans="eventArea">Event area</label>
                     <select onChange={(ev) => handleChange(ev)} className="event-input" value={currEvent.eventArea} name="eventArea" required>
                         <option value="south" data-trans="south">South</option>
                         <option value="haifa" data-trans="haifa">Haifa</option>
                         <option value="jerusalem" data-trans="jerusalem">Jerusalem</option>
-                        <option value="center-and-humiliation" data-trans="center-humiliation">Center && Humiliation</option>
+                        <option value="center-and-humiliation" data-trans="center_humiliation">Center && Humiliation</option>
                         <option value="north" data-trans="north">North</option>
                         <option value="sharon" data-trans="sharon">Sharon</option>
                     </select>
@@ -163,6 +163,7 @@ const EventEdit = () => {
             </form>
         </section>
     )
+
 }
 
 export default EventEdit;

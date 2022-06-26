@@ -169,55 +169,55 @@ const gTrans = {
         en: 'Sharon',
         he: 'שרון'
     },
-    sport: {
+    Sport: {
         en: 'Sport',
         he: 'ספורט'
     },
-    theater: {
+    Theater: {
         en: 'Theater',
         he: 'תאטרון'
     },
-    standup: {
+    Standup: {
         en: 'Standup',
         he: 'סטנדאפ'
     },
-    music: {
+    Music: {
         en: 'Music',
         he: 'מוזיקה'
     },
-    lecture: {
+    Lecture: {
         en: 'Lecture',
         he: 'הרצאה'
     },
-    cinema: {
+    Cinema: {
         en: 'Cinema',
         he: 'קולנוע'
     },
-    children: {
+    Children: {
         en: 'Children',
         he: 'ילדים'
     },
-    seniors: {
+    Seniors: {
         en: 'Seniors',
         he: 'גיל הזהב'
     },
-    circus: {
+    Circus: {
         en: 'Circus',
         he: 'קרקס'
     },
-    fashion: {
+    Fashion: {
         en: 'Fashion',
         he: 'אופנה'
     },
-    gym: {
+    Gym: {
         en: 'Gym',
         he: 'מכון כושר'
     },
-    festival: {
+    Festival: {
         en: 'Festival',
         he: 'פסטיבל'
     },
-    other: {
+    Other: {
         en: 'Other',
         he: 'אחר'
     },
@@ -245,7 +245,7 @@ const gTrans = {
         en: 'Clear search',
         he: 'נקה'
     },
-    selectOption: {
+    Select: {
         en: 'Select',
         he:'בחר'
     },
@@ -340,8 +340,15 @@ const gTrans = {
     whoMuch: {
         en: 'Who much',
         he: 'כמה'
+    },
+    date_passed_msg: {
+        en: 'The events that marked in red are events that their date passed - please close it!',
+        he: 'הארועים שמסומנים באדום, התאריך שלהם עבר - בבקשה תסגור אותם!'
+    },
+    needToClose: {
+        en: 'Need to close',
+        he: 'בבקשה לסגור'
     }
-    
 }
 
 

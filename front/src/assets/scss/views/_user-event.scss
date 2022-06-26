@@ -7,17 +7,16 @@
                     
         th {
             padding: rem(20px) rem(15px);
-            text-align: left;
+            text-align: center;
             font-weight: 700;
             font-size: rem(16px);
             text-transform: uppercase;
-            border: 1px solid $gray-light;
-
+            border: 1px solid $gray-light;            
         }
         
         td {
             padding: rem(15px);
-            text-align: left;
+            text-align: center;
             vertical-align: middle;
             font-weight: 300;
             font-size: rem(14px);
@@ -45,3 +44,10 @@
     // .event-status-selector {
     //     border: unset;
     // }
+.datePassed {
+    color: red;
+}
+
+.datefuture {
+    color: #373738;
+}

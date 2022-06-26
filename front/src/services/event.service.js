@@ -13,8 +13,8 @@ export const eventService = {
 async function query(filterBy = {}) {
     
  
-    const { txt = '', fromDate = '', toDate = '', eventName = '', eventType = '', eventCity = '', eventArea = '', eventPricePerCard = '', eventTicketQty = '', userId = '', sortBy = 'date' } = filterBy
-    const url = `?txt=${txt}&fromDate=${fromDate}&toDate=${toDate}&eventName=${eventName}&eventType=${eventType}&eventCity=${eventCity}&eventArea=${eventArea}&eventPricePerCard=${eventPricePerCard}&eventTicketQty=${eventTicketQty}&userId=${userId}&sortBy=${sortBy}`
+    const { txt = '', fromDate = '', toDate = '', eventName = '', eventType = '', eventCity = '', eventArea = '', eventPricePerCard = '', eventTicketQty = '', userId = '', allDate = false, sortBy = 'date' } = filterBy
+    const url = `?txt=${txt}&fromDate=${fromDate}&toDate=${toDate}&eventName=${eventName}&eventType=${eventType}&eventCity=${eventCity}&eventArea=${eventArea}&eventPricePerCard=${eventPricePerCard}&eventTicketQty=${eventTicketQty}&userId=${userId}&allDate=${allDate}&sortBy=${sortBy}`
     let urlToRequest
     if (filterBy.userId !== null) urlToRequest = 'event/user' + url
     urlToRequest = 'event/' + url    
@@ -24,7 +24,13 @@ async function query(filterBy = {}) {
 }
 
 function getEventTypes(){
-    return eventType
+    var sortEvents = eventType.sort((type1, type2) => {
+        if(type1 < type2) return -1
+        if(type1 > type2) return 1
+        return 0
+    })
+    return sortEvents
+    
 }
 
 async function getById(eventId) {

@@ -8,6 +8,7 @@ import { EventFilter } from "../cmps/event-filter";
 import { showErrorMsg } from '../services/event-bus.service.js'
 import { utilService } from "../services/util.service";
 import { i18nService } from "../services/i18n-service";
+import { EventType } from "../cmps/event-type";
 
 
 
@@ -18,12 +19,15 @@ const TicketApp = () => {
     const dispatch = useDispatch()
     const { events } = useSelector((storeState) => storeState.eventModule)
     const [filterBy, setfilterBy] = useState(initialFilter)
+    
     // setfilterBy = utilService.debounce(setfilterBy,2500)
 
     useEffect(() => {
         socketService.emit('chat topic', 'eventUser')
         socketService.on('eventSaved', refreshEvent)
-        
+        const filterBy = {            
+            allDate: false
+        }
         dispatch(loadEvents(filterBy))
         onSetLang()
 
@@ -54,7 +58,6 @@ const TicketApp = () => {
         // If lang is hebrew add RTL class to document.body
         if (lang === 'he') document.body.classList.add('rtl')
         else document.body.classList.remove('rtl')
-console.log('lang',lang);
         i18nService.doTrans()
     }
 
@@ -96,11 +99,22 @@ console.log('lang',lang);
         setfilterBy(initialFilter)
     }
 
-
+    const showEventByType = (ev,type) => {
+        // const value = ev
+        // console.log('ev', ev.target)
+        // console.log('type', type)
+        
+        const filterBy = {
+            eventType: type
+        }
+        console.log('filterBy', filterBy)
+        dispatch(loadEvents(filterBy))
+    }
 
 
     return (
         <section className="ticket-app">
+            <EventType showEventByType={showEventByType}/>
             <EventFilter filterBy={filterBy} handleChange={handleChange} refreshEvent={refreshEvent} clearSearch={clearSearch} />
             <EventList events={events} />
         </section>

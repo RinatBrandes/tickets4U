@@ -26,7 +26,7 @@ export function getActionUpdateEvent(event) {
 
 
 export function loadEvents(filterBy) {
-
+console.log('filterBy',filterBy )
     return async (dispatch) => {
         try {
             const events = await eventService.query(filterBy)

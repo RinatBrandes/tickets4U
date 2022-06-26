@@ -18,6 +18,7 @@
 @import "views/event";
 @import "views/user-event";
 @import "views/_event-details";
+@import "views/event-edit";
 
 
 // Components
@@ -25,3 +26,4 @@
 @import "cmps/app-footer";
 @import "cmps/user-msg";
 @import "cmps/event-preview";
+@import "cmps/event-type";
