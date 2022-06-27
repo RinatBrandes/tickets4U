@@ -68,7 +68,8 @@ const UserEvent = () => {
                             <td>{event.eventName}</td>
                             <td>{event.date}</td>
                 {/* {today > event.date && event.eventStatus === 'new' ? <p className="date-passed-msg" data-trans="date_passed_msg">The events that marked in red are events that their date passed - please close it!</p>: ''} */}
-                            <td data-trans={ (today > utilService.toTimestamp(event.date)) ?  (event.eventStatus === "new" ? "needToClose" : "close"):(event.eventStatus=== "new" ? "new" : "close")}  className={today > utilService.toTimestamp(event.date)? "datePassed": "datefuture"} title={today > utilService.toTimestamp(event.date) && event.eventStatus === "new" ?'The event has passed please close it!':''}>{event.status}</td>
+                            <td data-trans={event.eventStatus === "new" ? "new" : "close"}  >{event.status}</td>
+                            {/* <td data-trans={ (today > utilService.toTimestamp(event.date)) ?  (event.eventStatus === "new" ? "needToClose" : "close"):(event.eventStatus=== "new" ? "new" : "close")}  className={today > utilService.toTimestamp(event.date)? "datePassed": "datefuture"} title={today > utilService.toTimestamp(event.date) && event.eventStatus === "new" ?'The event has passed please close it!':''}>{event.status}</td> */}
                             <td><button className="event-btn" data-trans="update" onClick={(ev) => GoToEdit(ev, event._id)}> Edit</button></td>
                         </tr>)}
                     </tbody>

@@ -16,7 +16,8 @@ const EventDetails = () => {
     const params = useParams()
 
     useEffect(() => {
-        onSetLang()
+        
+        // onSetLang()
         
         const fetchEvent = async () => {
             dispatch(getById(params.eventId))
@@ -34,12 +35,14 @@ const EventDetails = () => {
             lang = 'he'
         }
         
+
         i18nService.setLang(lang)
         // If lang is hebrew add RTL class to document.body
-        if (lang === 'he') document.body.classList.add('rtl')
-        else document.body.classList.remove('rtl')
+        // if (lang === 'he') document.body.classList.add('rtl')
+        // else document.body.classList.remove('rtl')
         i18nService.doTrans()
     }
+ 
 
     const goToEdit = () => {
         navigate(`/event/edit/${currEvent._id}`)

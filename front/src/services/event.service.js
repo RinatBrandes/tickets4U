@@ -1,6 +1,6 @@
 import { httpService } from './http.service'
 
-const eventType_he = ["בחר","ספורט", "תאטרון", "סטנדאפ", "מוזיקה", "הרצאה", "קולנוע", "ילדים", "גיל הזהב", "קרקס", "אופנה", "מכון כושר", "פסטיבל", "סיורי אוכל", "סדנה", "אחר"]
+const eventType_he = ["בחר","ספורט", "תאטרון", "סטנדאפ", "מוזיקה", "הרצאה", "קולנוע", "ילדים", "גיל הזהב", "קרקס", "אופנה", "מכון כושר", "פסטיבל", "סיורי אוכל", "סדנה", "אחר", "הכל"]
 const eventType = ["Select","Sport","Theater","Standup","Music","Lecture","Cinema","Children","Seniors","Circus","Fashion","Gym","Festival","FoodTours","Workshop", "Other"]
 export const eventService = {
     save,
@@ -24,19 +24,19 @@ async function query(filterBy = {}) {
 }
 
 function getEventTypes(){
-    var sortEvents = eventType.sort((type1, type2) => {
-        if(type1 < type2) return -1
-        if(type1 > type2) return 1
-        return 0
-    })
-    return sortEvents
-    
+    // var sortEvents = eventType.sort((type1, type2) => {
+    //     if(type1 < type2) return -1
+    //     if(type1 > type2) return 1
+    //     return 0
+    // })
+    // return sortEvents
+    return eventType
 }
 
 async function getById(eventId) {
     // return storageService.get(STORAGE_KEY, gigId)
     let event = await httpService.get(`event/${eventId}`)
-    return event
+    return event 
 }
 
 async function save(currEvent) {

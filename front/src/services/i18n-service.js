@@ -102,12 +102,12 @@ const gTrans = {
         he: 'עיר הארוע'
     },
     eventPricePerCard: {
-        en: 'Price per ticket',
-        he: 'מחיר לכרטיס'
+        en: 'Price',
+        he: 'מחיר'
     },
     ticketCount: {
-        en: 'Ticket count',
-        he: 'כמות כרטיסים'
+        en: 'Count',
+        he: 'כמות'
     },
     userRemark: {
         en: 'Remarks / Extra details',
@@ -258,8 +258,8 @@ const gTrans = {
         he: 'עד תאריך'
     },
     eventTicketQty: {
-        en: 'Ticket Quantity',
-        he: 'כמות כרטיסים'
+        en: 'Quantity',
+        he: 'כמות'
     },
     Sport:{
         en: "Sport",
@@ -348,6 +348,10 @@ const gTrans = {
     needToClose: {
         en: 'Need to close',
         he: 'בבקשה לסגור'
+    },
+    All: {
+        en: 'All',
+        he: 'הכל'
     }
 }
 

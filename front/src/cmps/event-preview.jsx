@@ -15,6 +15,7 @@ export const EventPreview = ({ event }) => {
 
     const onGoToDetails = (ev) => {
         ev.stopPropagation()
+        console.log('event._id', event._id)
         navigate(`/event/${event._id}`)
     }
 
@@ -29,8 +30,8 @@ export const EventPreview = ({ event }) => {
         
         i18nService.setLang(lang)
         // If lang is hebrew add RTL class to document.body
-        if (lang === 'he') document.body.classList.add('rtl')
-        else document.body.classList.remove('rtl')
+        // if (lang === 'he') document.body.classList.add('rtl')
+        // else document.body.classList.remove('rtl')
         i18nService.doTrans()
     }
  

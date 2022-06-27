@@ -73,6 +73,7 @@ const EventEdit = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
+      
         const currEventInfo = {
             date: utilService.toTimestamp(data.get('date')),
             time: data.get('time'),
@@ -90,12 +91,12 @@ const EventEdit = () => {
             userRemark: data.get('userRemark'),
             systemRemark: ''
         }
-
+console.log('', currEventInfo.date)
         if (!isNewEvent) currEventInfo._id = eventId
         console.log('currEventInfo', currEventInfo)
         dispatch(addEvent(currEventInfo, isNewEvent))
         if (isNewEvent) socketService.emit('addedEvent', currEventInfo)
-        navigate('/')
+        navigate(-1)
     }
 
     return (
@@ -126,7 +127,7 @@ const EventEdit = () => {
                     <label className="event-label" data-trans="eventType">Event type</label>
                     <select onChange={handleChange} className="event-input" value={currEvent.eventType} name="eventType" required>
                         {eventTypes.map(type =>
-                            <option value={type === 'Select' ? '' : type} data-trans={type} key={type}>{type}</option>
+                            <option value={type === 'Select' ? '' : type} data-trans={type} key={type} >{type}</option>
                         )}
                     </select>                                                                                       
 
