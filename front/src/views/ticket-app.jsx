@@ -9,12 +9,13 @@ import { showErrorMsg } from '../services/event-bus.service.js'
 import { utilService } from "../services/util.service";
 import { i18nService } from "../services/i18n-service";
 import { EventType } from "../cmps/event-type";
+import { useTranslation } from 'react-i18next'
 import _ from 'lodash' 
 
 
 
 const TicketApp = () => {
-
+    const { t } = useTranslation()
     const initialFilter = { fromDate: '', toDate: '', eventName: '', eventType: '', eventCity: '', eventArea: '', eventTicketQty: '', eventPricePerCard: '' }
 
     const dispatch = useDispatch()
@@ -71,7 +72,8 @@ const TicketApp = () => {
             const toDate = utilService.toTimestamp(name === 'toDate' ? value : filterBy.toDate)
             
             if (fromDate && toDate && (toDate < fromDate)) {
-                return showErrorMsg('תאריך סיום לא יכול להיות גדול מתאריך התחלה')
+                return showErrorMsg(`{t('dateToCantBeSmaller')}`) 
+                
             }
         }        
         setfilterBy({ ...filterBy, [name]: value })

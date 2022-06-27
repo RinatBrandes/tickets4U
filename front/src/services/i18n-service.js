@@ -261,66 +261,12 @@ const gTrans = {
         en: 'Quantity',
         he: 'כמות'
     },
-    Sport:{
-        en: "Sport",
-        he: "ספורט"
-    },
-    Theater: {
-        en: "Theater",
-        he: "תאטרון"
-    },
-    Standup: {
-        en: "Standup",
-        he: "סטנדאפ"
-    },
-    Music: {
-        en: "Music",
-        he: "מוזיקה"
-    },
-    Lecture: {
-        en: "Lecture",
-        he: "הרצאה"
-    },
-    Cinema: {
-        en: "Cinema",
-        he: "קולנוע"
-    },
-    Children: {
-        en: "Children",
-        he: "ילדים"
-    },
-    Seniors: {
-        en: "Seniors",
-        he: "גיל הזהב"
-    },
-    Circus: {
-        en: "Circus",
-        he: "קרקס"
-    },
-    Fashion: {
-        en: "Fashion",
-        he: "אופנה"
-    },
-    Gym: {
-        en: "Gym",
-        he: "מכון כושר"
-    },
-    Festival: {
-        en: "Festival",
-        he: "פסטיבל"
-    },
-    Other: {
-        en: "Other",
-        he: "אחר"
-    },
+
     FoodTours: {
         en: "Food tours",
         he: "סיורי אוכל"
     },
-    Workshop: {
-        en: "Workshop",
-        he: "סדנה"
-    },
+ 
     edit: {
         en: 'Edit',
         he: 'ערוך'

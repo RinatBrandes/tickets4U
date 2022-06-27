@@ -6,12 +6,13 @@ import { useNavigate } from 'react-router-dom'
 import { socketService } from '../services/socket.service'
 import { useParams } from 'react-router-dom'
 import { eventService } from '../services/event.service'
-import { i18nService } from '../services/i18n-service'
+// import { i18nService } from '../services/i18n-service'
 import { utilService } from '../services/util.service'
+import { useTranslation } from 'react-i18next'
 
 
 const EventEdit = () => {
-    
+    const { t } = useTranslation()
     const { loggedInUser } = useSelector((storeState) => storeState.userModule)
     const initialEvent  = {date: '', time: '', eventName: '', eventType: '', placeName: '',eventCity: '', eventArea: '', user_id: loggedInUser._id,
         eventPricePerCard: 0, ticketCount: '', eventStatus: 'new', createdAt: Date.now(), closeDate: null, userRemark: '', systemRemark: ''}
@@ -26,16 +27,13 @@ const EventEdit = () => {
     const [currEvent, setCurrEvent] = useState(initialEvent)
 
     useEffect(() => {
-        onSetLang()
+        // onSetLang()
         const fetchEvent = async () => {
             const selectedEvent = await eventService.getById(eventId)
             setCurrEvent(selectedEvent)
         }
         
-        setUpdateEvent(i18nService.getTrans('update_event'))
-        setNewEvent(i18nService.getTrans('new_event'))
-        
-        
+       
         const types = eventService.getEventTypes()
         setEventTypes(types)
         
@@ -48,20 +46,20 @@ const EventEdit = () => {
         }
     }, [eventId])
 
-    const onSetLang = (ev) => {
-        let lang
-        if(ev) {
-            lang = ev.target.value
-        } else {
-            lang = 'he'
-        }
+    // const onSetLang = (ev) => {
+    //     let lang
+    //     if(ev) {
+    //         lang = ev.target.value
+    //     } else {
+    //         lang = 'he'
+    //     }
         
-        i18nService.setLang(lang)
-        // If lang is hebrew add RTL class to document.body
-        if (lang === 'he') document.body.classList.add('rtl')
-        else document.body.classList.remove('rtl')
-        i18nService.doTrans()
-    }
+    //     i18nService.setLang(lang)
+    //     // If lang is hebrew add RTL class to document.body
+    //     if (lang === 'he') document.body.classList.add('rtl')
+    //     else document.body.classList.remove('rtl')
+    //     i18nService.doTrans()
+    // }
     
     const handleChange = (event) => {
         let value = event.target.value
@@ -102,64 +100,65 @@ console.log('', currEventInfo.date)
     return (
         <section className="event-container">
             <div className="event-title">
-                <h1 >{eventId ? updateEvent : newEvent}</h1>
+                <h1 >{eventId ? t('updateEvent') : t('newEvent')}</h1>
             </div>
             <form onSubmit={handleSubmit} >
                 <div className="event-inputs">
                     
-                    <label className="event-label"><span data-trans="eventDate">&#160;Event date</span>
+                    <label className="event-label"><span>&#160;{t('eventDate')}</span>
                     <input className="event-input" type="date" name="date" value={currEvent.date}  onChange={(ev) => handleChange(ev)} required /></label>
 
 
-                    <label className="event-label"><span  data-trans="eventTime">Event hour</span>
+                    <label className="event-label"><span>{t('eventTime')}</span>
                     <input className="event-input" type="time" name="time" value={currEvent.time} onChange={(ev) => handleChange(ev)} required /></label>
 
                     
-                    <label className="event-label"><span data-trans="eventName">Event name </span>
+                    <label className="event-label"><span>{t('eventName')} </span>
                     <input className="event-input" type="text" name="eventName" value={currEvent.eventName} onChange={(ev) => handleChange(ev)} required /></label>
 
-                    {currEvent._id && <label className="event-label" data-trans="eventStatus">Event status</label>}
+                    {currEvent._id && <label className="event-label">{t('eventStatus')}</label>}
                     {currEvent._id && <select onChange={(ev) => handleChange(ev)} className="event-input" value={currEvent.eventStatus} name="eventStatus" required>
-                        <option value="new" data-trans="new">New</option>
-                        <option value="close" data-trans="close">Close</option>
+                        <option value="new">{t('new')}</option>
+                        <option value="close">{t('close')}</option>
                     </select>}
 
-                    <label className="event-label" data-trans="eventType">Event type</label>
+                    <label className="event-label">{t('eventType')}</label>
                     <select onChange={handleChange} className="event-input" value={currEvent.eventType} name="eventType" required>
                         {eventTypes.map(type =>
-                            <option value={type === 'Select' ? '' : type} data-trans={type} key={type} >{type}</option>
+                            <option value={type === 'Select' ? '' : type} data-trans={type} key={type} >{t(`${type}`)}</option>
                         )}
                     </select>                                                                                       
 
-                    <label className="event-label"><span data-trans="placeName">Place name</span>
+                    <label className="event-label"><span>{t('placeName')}</span>
                     <input className="event-input" type="text" name="placeName" value={currEvent.placeName} onChange={(ev) => handleChange(ev)} /></label>
 
-                    <label className="event-label"><span data-trans="eventCity">Event city</span>
+                    <label className="event-label"><span>{t('eventCity')}</span>
                     <input className="event-input" type="text" name="eventCity" value={currEvent.eventCity} onChange={(ev) => handleChange(ev)} /></label>                                                                 
 
-                    <label className="event-label" data-trans="eventArea">Event area</label>
+                    <label className="event-label">{t('eventArea')}</label>
                     <select onChange={(ev) => handleChange(ev)} className="event-input" value={currEvent.eventArea} name="eventArea" required>
-                        <option value="south" data-trans="south">South</option>
-                        <option value="haifa" data-trans="haifa">Haifa</option>
-                        <option value="jerusalem" data-trans="jerusalem">Jerusalem</option>
-                        <option value="center-and-humiliation" data-trans="center_humiliation">Center && Humiliation</option>
-                        <option value="north" data-trans="north">North</option>
-                        <option value="sharon" data-trans="sharon">Sharon</option>
+                        <option value="">{t('Select')}</option>
+                        <option value="south">{t('south')}</option>
+                        <option value="haifa">{t('haifa')}</option>
+                        <option value="jerusalem">{t('jerusalem')}</option>
+                        <option value="center-and-humiliation">{t('center_humiliation')}</option>
+                        <option value="north">{t('north')}</option>
+                        <option value="sharon">{t('sharon')}</option>
                     </select>
 
 
-                    <label className="event-label"><span data-trans="eventPricePerCard">Price per ticket</span>
+                    <label className="event-label"><span>{t('eventPricePerCard')}</span>
                     <input className="event-input" type="number" step=".01" name="eventPricePerCard" value={currEvent.eventPricePerCard} onChange={(ev) => handleChange(ev)} required /></label>
 
 
-                    <label className="event-label"><span data-trans="ticketCount">Ticket quantity</span>
+                    <label className="event-label"><span>{t('ticketCount')}</span>
                     <input className="event-input" type="number" name="ticketCount" min={0} max={10} value={currEvent.ticketCount} onChange={(ev) => handleChange(ev)} required /></label>
 
-                    <label className="event-label"><span data-trans="userRemark">Remarks / Extra details</span>
+                    <label className="event-label"><span>{t('userRemark')}</span>
                     <textarea className="event-input" type="number" name="userRemark" rows={5} cols={10} value={currEvent.userRemark} onChange={(ev) => handleChange(ev)} /></label>
 
 
-                    <button className="event-btn" data-trans="save">Save</button>
+                    <button className="event-btn">{t('save')}</button>
                 </div>
             </form>
         </section>

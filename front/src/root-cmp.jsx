@@ -1,4 +1,5 @@
-import React from 'react'
+// import React from 'react'
+import { Suspense } from 'react';
 import { Routes, Route } from 'react-router'
 import routes from './routes'
 import AppFooter from './cmps/app_footer'
@@ -8,16 +9,18 @@ const RootCmp = () => {
 
     {
         return (
-            <div className="main-layout">
-                <AppHeader />
-                <main>
-                    <Routes>
-                        {routes.map(route => <Route key={route.path} exact={true} element={route.component} path={route.path} />)}
-                        {/* <Route path="user/:id" element={<UserDetails />} /> */}
-                    </Routes>
-                </main>
-                <AppFooter />
-            </div>
+            <Suspense fallback={null}>
+                <div className="main-layout">
+                    <AppHeader />
+                    <main>
+                        <Routes>
+                            {routes.map(route => <Route key={route.path} exact={true} element={route.component} path={route.path} />)}
+                            {/* <Route path="user/:id" element={<UserDetails />} /> */}
+                        </Routes>
+                    </main>
+                    <AppFooter />
+                </div>
+            </Suspense>
         )
     }
 }

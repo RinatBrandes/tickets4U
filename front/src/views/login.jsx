@@ -4,12 +4,14 @@ import { useDispatch } from 'react-redux'
 import { login, getLoggedinUser } from '../store/action/user.actions'
 import { showErrorMsg } from '../services/event-bus.service.js'
 import { useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
+
 
 const Login = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const [credentials, setCredentials] = useState({ username: '', password: '' })
-
+    const { t } = useTranslation()
     const handleChange = (event) => {
         const { value } = event.target
         const { name } = event.target
@@ -37,17 +39,17 @@ const Login = () => {
     return (
         <section className="login-container">
             <div className="login-title">
-                <h1 data-trans="login">Login</h1>
+                <h1>{t('login')}</h1>
             </div>
             <form onSubmit={handleSubmit} >
                 <div className="login-input">
-                    <label className="login-label"><span data-trans="userName">User name</span>
+                    <label className="login-label"><span>{t('userName')}</span>
                         <input className="login-input" type="text" name="username" value={credentials.username} onChange={handleChange} required /></label>
 
-                    <label className="login-label"><span data-trans="password">Password</span>
+                    <label className="login-label"><span>{t('password')}</span>
                     <input className="login-input" type="password" name="password" value={credentials.password} onChange={handleChange} required /></label>
 
-                    <button className="login-btn" data-trans="login">Login</button>
+                    <button className="login-btn">{t('login')}</button>
                 </div>
             </form>
         </section>
