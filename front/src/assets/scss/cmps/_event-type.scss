@@ -8,13 +8,18 @@
 .types-card {
     display: flex;
     gap: 10px;
+    width: 80px;
     .type-details {
+        background-color: $gray;
         margin: unset;
-        // border: 1px solid gray;
         border-radius: 5px;
         padding: 5px;
-        background-color: $blue;
         color: $white;
-        box-shadow: 0 2px 5px rgb(175 175 175);
-    }
+        box-shadow: 0 2px 5px rgb(175 175 175);       
+        width: 50%;
+        // height: 100px;
+        border-radius: 50%;
+        // filter: invert(99%) sepia(2%) saturate(4%) hue-rotate(136deg) brightness(104%) contrast(100%);
+        }
+    
 }

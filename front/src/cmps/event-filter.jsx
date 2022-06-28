@@ -19,11 +19,21 @@ export const EventFilter = ({ filterBy, handleChange, refreshEvent, clearSearch 
     return (
         <section className="filter-container">
             <div className="filter-contant">
-                <div className="filter-event-name">
-                    <label className="filter-label" ><span >{t('eventName')}</span>&#160;
-                        <input className="search-filter" name="eventName" type="search"  value={filterBy.eventName} onChange={handleChange} /></label>
+                <div className="filter-event-name">                    
+                        <input className="search-filter" placeholder={t('eventName')} name="eventName" type="search"  value={filterBy.eventName} onChange={handleChange} />
+                        <input className="search-filter" placeholder={t('eventCity')} name="eventCity" type="search"  value={filterBy.eventCity} onChange={handleChange} />
+                        <label><span  className="event-label">{t('eventArea')}</span>&#160;
+                        <select onChange={handleChange} className="search-filter" value={filterBy.eventArea} name="eventArea">
+                            <option value="">{t('Select')}</option>
+                            <option value="south">{t('south')}</option>
+                            <option value="haifa">{t('haifa')}</option>
+                            <option value="jerusalem">{t('jerusalem')}</option>
+                            <option value="center-and-humiliation">{t('center_humiliation')}</option>
+                            <option value="north">{t('north')}</option>
+                            <option value="sharon">{t('sharon')}</option>
+                        </select></label>
+                       <input className="search-filter" placeholder={t('eventTicketQty')} name="eventTicketQty" type="number"  value={filterBy.eventTicketQty} onChange={handleChange} />
                 </div>
-
 
                 <label><span  className="event-label" >{t('eventType')}</span>&#160;
                 <select onChange={handleChange} className="event-input" value={filterBy.eventType} name="eventType" >
@@ -34,26 +44,7 @@ export const EventFilter = ({ filterBy, handleChange, refreshEvent, clearSearch 
                 </select></label>
 
 
-                <div className="filter-event-city">
-                    <label className="filter-label" ><span>{t('eventCity')}</span>&#160;
-                        <input className="search-filter" name="eventCity" type="search"  value={filterBy.eventCity} onChange={handleChange} /></label>
-                </div>
 
-                <label><span  className="event-label">{t('eventArea')}</span>&#160;
-                <select onChange={handleChange} className="event-input" value={filterBy.eventArea} name="eventArea">
-                    <option value="">{t('Select')}</option>
-                    <option value="south">{t('south')}</option>
-                    <option value="haifa">{t('haifa')}</option>
-                    <option value="jerusalem">{t('jerusalem')}</option>
-                    <option value="center-and-humiliation">{t('center_humiliation')}</option>
-                    <option value="north">{t('north')}</option>
-                    <option value="sharon">{t('sharon')}</option>
-                </select></label>
-
-                <div className="filter-event-ticketQty">
-                    <label><span  className="filter-label">{t('eventTicketQty')}</span>&#160;
-                        <input className="search-filter" name="eventTicketQty" type="number"  value={filterBy.eventTicketQty} onChange={handleChange} /></label>
-                </div>
 
                 <div className="filter-event-price">
                     <label><span  className="filter-label">{t('eventPricePerCard')}</span>&#160;
