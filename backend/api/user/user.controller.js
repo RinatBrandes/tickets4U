@@ -2,6 +2,8 @@ const userService = require('./user.service')
 const socketService = require('../../services/socket.service')
 const logger = require('../../services/logger.service')
 
+
+
 async function getUser(req, res) {
 
     try {
@@ -13,6 +15,18 @@ async function getUser(req, res) {
         res.status(500).send({ err: 'Failed to get user' })
     }
 }
+
+async function requestResetPassword(req, res) {
+console.log('req.params', req.params)
+    try {
+        // await userService.requestPassword(req.params)        
+        // res.send(user)
+    } catch (err) {
+        logger.error('Failed to send mail to the user', err)
+        res.status(500).send({ err: 'Failed to send mail to the user' })
+    }
+}
+
 
 async function getUsers(req, res) {
 
@@ -53,5 +67,6 @@ module.exports = {
     getUser,
     getUsers,
     deleteUser,
-    updateUser
+    updateUser,
+    requestResetPassword
 }

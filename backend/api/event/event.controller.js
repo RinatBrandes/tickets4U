@@ -20,6 +20,8 @@ async function getEvent(req, res) {
 
 async function getEvents(req, res) {
 
+console.log('req.query', req.query)
+console.log('-----------------------------' )
     try {
 
         const filterBy = {
@@ -37,8 +39,8 @@ async function getEvents(req, res) {
             sortBy: req.query?.sortBy || ''
         }        
         //set the date to timestamp
-        if(filterBy.fromDate !== '') filterBy.fromDate= utilService.toTimestamp(filterBy.fromDate)
-        if(filterBy.toDate !== '') filterBy.toDate=utilService.toTimestamp(filterBy.toDate)
+        // if(filterBy.fromDate !== '') filterBy.fromDate= utilService.toTimestamp(filterBy.fromDate)
+        // if(filterBy.toDate !== '') filterBy.toDate=utilService.toTimestamp(filterBy.toDate)
 
         const events = await eventService.query(filterBy)
         res.send(events)

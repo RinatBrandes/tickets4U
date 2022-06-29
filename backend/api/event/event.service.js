@@ -17,7 +17,7 @@ module.exports = {
 
 async function query(filterBy = {}) {
     const criteria = _buildCriteria(filterBy)
-    console.log('criteria', criteria)
+    // console.log('criteria', criteria)
     try {
         
             const collection = await dbService.getCollection('event')        
@@ -26,7 +26,7 @@ async function query(filterBy = {}) {
             events.map(event => {    
              return event.date = utilService.toDate(event.date)
             })
-            console.log('events',events )
+            // console.log('events',events )
         return events
     } catch (err) {
         logger.error('cannot find events', err)
@@ -127,7 +127,7 @@ async function add(currEvent) {
 
 function _buildCriteria(filterBy) {
     const criteria = {}
-  
+  console.log('filterBy', filterBy)
     if (filterBy.fromDate && filterBy.allDate === 'false') {
         //if we ask the event of user to show in his page we want to bring all        
             criteria.date = { $gte: filterBy.fromDate ,  $lte:filterBy.fromDate}
@@ -138,11 +138,13 @@ function _buildCriteria(filterBy) {
         if(filterBy.allDate === 'false') {
             
             const today = Date.now()
+            // console.log('today', today)
             //from some resean the today date is longer
-            criteria.date = {$gte: (Math.trunc(today/1000)) }       
-            
-        }
-        
+            criteria.date = {$gte: (Math.trunc(today/1000)) }     
+            // console.log('today parse', Math.trunc(today/1000))
+            // const hour = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            // criteria.time = {$gte: hour}
+        }        
     }
 
     if (filterBy.eventStatus) {
@@ -154,7 +156,8 @@ function _buildCriteria(filterBy) {
     }
     
     if (filterBy.eventType) {
-        criteria.eventType = { $regex: filterBy.eventType, $options: 'i' }
+        if(filterBy.eventType !== '' && filterBy.eventType !== 'Select') 
+            criteria.eventType = { $regex: filterBy.eventType, $options: 'i' }
     }
     
     if (filterBy.eventCity) {
