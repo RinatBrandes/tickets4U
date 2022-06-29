@@ -16,6 +16,18 @@ export function login(credentials) {
     }
 }
 
+// export function handelForgottenPassword(userInfo) {
+//     console.log('userInfo', userInfo)
+//     return async () => {
+//         try {
+
+//             await userService.resetPassword(userInfo)
+           
+//         } catch (err) {
+//             console.log('Cannot handel change password', err)
+//         }
+//     }
+// }
 
 export function signup(signupUser) {
 

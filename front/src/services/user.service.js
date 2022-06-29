@@ -10,7 +10,9 @@ export const userService = {
     getLoggedinUser,
     logout,
     signup,
-    getById
+    getById,
+    sendResetEmail,
+    resetPassword
 
 
 }
@@ -30,6 +32,36 @@ async function login(userCred) {
     }
 }
 
+async function sendResetEmail(userInfo) {
+    console.log('userInfo', userInfo)
+    
+    try {
+        await httpService.post(`user/resetPassword:${userInfo.email}`)
+
+         //ToDo:send mail
+    } catch (err) {
+        console.dir(err)
+        showErrorMsg(err)
+        throw err
+    }
+
+}
+
+
+async function  resetPassword(userInfo) {
+    console.log('userInfo', userInfo)
+    
+    try {
+        await httpService.post(`user/sendResetEmail:${userInfo.email}`)
+      
+      
+    } catch (err) {
+        console.dir(err)
+        showErrorMsg(err)
+        throw err
+    }
+
+}
 
 async function getById(userId) {
 

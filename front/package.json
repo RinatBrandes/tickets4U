@@ -16,6 +16,7 @@
     "node-sass": "^7.0.1",
     "path": "^0.12.7",
     "react": "^18.1.0",
+    "react-calendar": "^3.7.0",
     "react-dom": "^18.1.0",
     "react-i18next": "^11.17.3",
     "react-redux": "^7.2.5",

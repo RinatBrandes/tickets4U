@@ -6,12 +6,18 @@
     font-family: adineue-light;
     color: $gray-light;
     
-
+    .login-wrapper {
+        background-color: $gray;
+        border-radius: 5px;
+        padding: 20px;
+        opacity: 0.8;
+    }
     .login-title {
         display: flex;
         justify-content: center;
         margin: 1.5em 0;
-        color: $gray;
+        // color: $gray;
+        color: $white;
         font-size: 2em;    
 
     }
@@ -24,10 +30,12 @@
         gap: 2em;                
         width: 20em;
         font-size: 1em;
+        border-radius: 5px;
         // font-weight: 800;
         .login-label {
             text-align: right;
-            color: $gray-light;
+            // color: $gray-light;
+            color: $white;
         }
         .login-input {
             text-align: left;
@@ -37,10 +45,17 @@
             text-align: center;
             background-color: $gray-light;
             color:$white;
-            border-radius: 1px solid $gray-light;
+            border-radius: 5px;
+            border: unset;
             font-size: 1em;
             padding: 0.5em 1em;
 
+        }
+        .forgot-pass-txt {
+            color: $white;
+        }
+        .forgot-pass {
+            color: $red;
         }
     }
 }

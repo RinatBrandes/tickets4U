@@ -21,6 +21,7 @@ const TicketApp = () => {
     const dispatch = useDispatch()
     const { events } = useSelector((storeState) => storeState.eventModule)
     const [filterBy, setfilterBy] = useState(initialFilter)
+    const [value, setValue] = useState(new Date());
     
     // setfilterBy = utilService.debounce(setfilterBy,2500)
 
@@ -31,7 +32,7 @@ const TicketApp = () => {
             allDate: false
         }
         dispatch(loadEvents(filterBy))
-        onSetLang()
+        // onSetLang()
 
         return () => {
             socketService.off('eventSaved', refreshEvent)
@@ -48,23 +49,49 @@ const TicketApp = () => {
     }
 
     
-    const onSetLang = (ev) => {
-        let lang
-        if(ev) {
-            lang = ev.target.value
-        } else {
-            lang = 'he'
-        }
+    // const onSetLang = (ev) => {
+    //     let lang
+    //     if(ev) {
+    //         lang = ev.target.value
+    //     } else {
+    //         lang = 'he'
+    //     }
         
-        i18nService.setLang(lang)
-        // If lang is hebrew add RTL class to document.body
-        // if (lang === 'he') document.body.classList.add('rtl')
-        // else document.body.classList.remove('rtl')
-        i18nService.doTrans()
+    //     i18nService.setLang(lang)
+    //     // If lang is hebrew add RTL class to document.body
+    //     // if (lang === 'he') document.body.classList.add('rtl')
+    //     // else document.body.classList.remove('rtl')
+    //     i18nService.doTrans()
+    // }
+
+    
+    const onChange = (ev) => {        
+        
+        console.log('ev', ev[0])
+        console.log('ev', ev[1])
+        setValue(ev[0])
+        //date to timestamp
+        let fromDate = Math.round(ev[0].getTime() / 1000)
+        console.log('fromDate', fromDate)
+        filterBy.fromDate = +fromDate
+        setfilterBy({ ...filterBy, 'fromDate': fromDate })
+        console.log('filterBy', filterBy)
+        
+
+        let toDate = Math.round(ev[1].getTime() / 1000)
+        console.log('toDate', toDate)
+        filterBy.toDate = +toDate
+        setfilterBy({ ...filterBy, toDate: toDate })
+        console.log('filterBy', filterBy)
+        // filterBy.fromDate = date
+        
+        //timestamp to date
+        //date = Date(date * 1000);
+        //console.log('date', date)
     }
 
     const  handleChange = (event) => {
-        
+        console.log('event.target',event.target )
         let value = event.target.value
         const name = event.target.name
         if (name === 'fromDate' || name === 'toDate') {
@@ -115,7 +142,7 @@ const TicketApp = () => {
     return (
         <section className="ticket-app">
             <EventType showEventByType={showEventByType}/>
-            <EventFilter filterBy={filterBy} handleChange={handleChange} refreshEvent={refreshEvent} clearSearch={clearSearch} />
+            <EventFilter filterBy={filterBy} handleChange={handleChange} refreshEvent={refreshEvent} clearSearch={clearSearch} onChange={onChange} setValue={setValue} value={value}/>
             <EventList events={events} />
         </section>
     )

@@ -9,7 +9,7 @@
     "email"     : "Email",
     "approvedMobile": "Approved sending message",
     "approvedEmail" : "Aproved sending email",
-    "logout"    : "Logout",
+    "logout"    : "Logout ",
     "langHe"    : "Hebrew",
     "langEn"    : "English",
     "addEvent"  : "Add event",
@@ -57,7 +57,7 @@
     "updateEvent": "Update event",
     "search"    : "Search",
     "clearSearch": "Clear search",
-    "Select"    : "Select",
+    "Select"    : "Area",
     "fromDate"  : "From date",
     "toDate"    : "To date",
     "eventTicketQty": "Quantity",
@@ -71,5 +71,13 @@
     "All"       : "All",
     "dateToCantBeSmaller" : "To date cant be smaller",
     "contactSeller" : "Contact Seller",
-    "events"    : "Events"
+    "events"    : "Events",
+    "forgotPass" : "Forgot password ?",
+    "resetIt"   : "Reset it",
+    "forgot-pass-title" : "Reset password",
+    "inserMail" : "Insert youe Email address",
+    "send" : "Send",
+    "inserPass" : "Insert password",
+    "inserPassConfirm" : "Confirm password",
+    "reset-pass-title" : "Reset password"
 }

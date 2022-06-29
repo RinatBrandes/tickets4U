@@ -9,7 +9,7 @@
     "email"     : "מייל",
     "approvedMobile" : "אישור שליחת הודעה",
     "approvedEmail"  : "אישור שליחת מייל",
-    "logout"    : "התנתק",
+    "logout"    : " התנתק",
     "langHe"    : "עברית",
     "langEn"    : "אנגלית",
     "addEvent"  : "הוסף ארוע",
@@ -57,7 +57,7 @@
     "updateEvent": "עדכון ארוע",   
     "search"    : "חפש",
     "clearSearch": "נקה",
-    "Select"    : "בחר",
+    "Select"    : "אזור",
     "fromDate"  : "מתאריך",
     "toDate"    : "עד תאריך",
     "eventTicketQty": "כמות",
@@ -71,5 +71,15 @@
     "All"       : "הכל",
     "dateToCantBeSmaller" : "תאריך סיום לא יכול להיות גדול מתאריך התחלה" ,
     "contactSeller" : "צור קשר עם המוכר",
-    "events"    : "ארועים"
+    "events"    : "ארועים",
+    "forgotPass" : "שכחת סיסמה ?",
+    "resetIt"   : "אפס אותה",
+    "forgot-pass-title" : "איפוס סיסמה",
+    "inserMail"  : "הכנס בבקשה כתובת דואר אלקטרוני",
+    "send" : "שלח",
+    "inserPass" : "הכנס סיסמה",
+    "inserPassConfirm" : "אישור סיסמה",
+    "reset-pass-title" : "איפוס סיסמה"
+
+
 }

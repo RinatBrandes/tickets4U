@@ -71,7 +71,10 @@ const EventEdit = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-      
+      console.log('data.get(date)', data.get('date'))
+      console.log('utilService.toTimestamp(data.get(date))',utilService.toTimestamp(data.get('date')) )
+      console.log('new date', new Date())
+      console.log('date now', Date.now())
         const currEventInfo = {
             date: utilService.toTimestamp(data.get('date')),
             time: data.get('time'),

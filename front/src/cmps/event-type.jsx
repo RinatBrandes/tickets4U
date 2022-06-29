@@ -9,6 +9,7 @@ import Music from '../assets/img/Music.svg'
 import Seniors from '../assets/img/Seniors.svg'
 import Sport from '../assets/img/Sport.svg'
 import Theater from '../assets/img/Theater.svg'
+import Other from '../assets/img/Other.svg'
 
 const Icons = {
     'Music'    : Music,
@@ -25,7 +26,7 @@ const Icons = {
     // 'Festival' : Festival,
     'FoodTours': FoodTours,
     // 'Workshop' : Workshop,
-    // 'Other'    : Other
+    'Other'    : Other
 }
 
 
@@ -44,17 +45,20 @@ export const EventType = ({showEventByType}) => {
     return (
         <section className="event-types-container">
                               
-            <div className="types-contant">
-                <div  className="types-card clean-list" name="eventType" >
+            {/* <div className="types-contant"> */}
+                <div  className="types-card" name="eventType" >
                     {eventTypes.map(type => 
-                       {return  (type !== 'בחר' && type !== 'Select') && <img  src={Icons[type]} onClick={(ev) => showEventByType(ev,type)} className="type-details" value={type === 'Select' ? '' : type}  key={type} />}
+                       {return  (type !== 'בחר' && type !== 'Select') && 
+                       <div className="types-wrapper">
+                       <img  src={Icons[type]} onClick={(ev) => showEventByType(ev,type)} className="type-details" value={type === 'Select' ? '' : type}  key={type} /></div>
+                    }
                     //    {return  (type !== 'בחר' && type !== 'Select') && <p onClick={(ev) => showEventByType(ev,type)} className="type-details" value={type === 'Select' ? '' : type} data-trans={type} key={type}>{t(`${type}`)}</p>}
                         // {(type !== 'Select' || type !== 'Other') && <li value={type === 'Select' ? '' : type} data-trans={type} key={type}>{type}</li>}
                     )}
                 </div>
 
 
-            </div>
+            {/* </div> */}
         </section>
     )
 }

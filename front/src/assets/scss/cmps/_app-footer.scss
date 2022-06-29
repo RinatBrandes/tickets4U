@@ -1,6 +1,9 @@
 .footer-container {
     display: flex;
+    color: $red;
     background-color: $gray;
-    color: $blue;
+    // color: $blue;
+    font-size: 22px;
+    font-family: inter-extralight;
     font-weight: 800;
 }

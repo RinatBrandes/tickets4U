@@ -11,6 +11,7 @@ import Music from '../assets/img/Music.svg'
 import Seniors from '../assets/img/Seniors.svg'
 import Sport from '../assets/img/Sport.svg'
 import Theater from '../assets/img/Theater.svg'
+import Other from '../assets/img/Other.svg'
 
 const Icons = {
     'Music'    : Music,
@@ -21,13 +22,14 @@ const Icons = {
     'Seniors'  : Seniors,
     'Fashion'  : Fashion,  
     'FoodTours': FoodTours,  
+    'Other'    : Other
 }
 export const EventPreview = ({ event }) => {
     const navigate = useNavigate()
     const { t } = useTranslation()
     const [dayWeek, setDayWeek] = useState(null)
     useEffect(() => {
-console.log('event.date', event.date)
+// console.log('event.date', event.date)
         // setDayWeek(event.date.getDay())
     }, [])
 

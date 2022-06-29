@@ -4,6 +4,8 @@ import Signup from './views/signup.jsx'
 import EventEdit from './views/event-edit.jsx'
 import EventDetails from './views/event-details.jsx'
 import UserEvent from './views/user-event.jsx'
+import ForgottenPassword from './views/forgotten-password.jsx'
+import ResetPassword from './views/reset-password.jsx'
 
 const routes = [
     {
@@ -13,6 +15,14 @@ const routes = [
     {
         path: '/login',
         component: <Login />,
+    },
+    {
+        path: '/forgotpass',
+        component: <ForgottenPassword />,
+    },
+    {
+        path: '/resetpass:token',
+        component: <ResetPassword />,
     },
     {
         path: '/signup',
