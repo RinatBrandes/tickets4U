@@ -127,13 +127,14 @@ async function add(currEvent) {
 
 
 function _buildCriteria(filterBy) {
+    console.log('filterBy', filterBy)
     const criteria = {}
 //   console.log('filterBy', filterBy)
     if (filterBy.fromDate && filterBy.allDate === 'false') {
         //if we ask the event of user to show in his page we want to bring all        
-            criteria.date = { $gte: filterBy.fromDate ,  $lte:filterBy.fromDate}
+            criteria.date = { $gte: +filterBy.fromDate ,  $lte:+filterBy.fromDate}
             if(filterBy.toDate)
-            criteria.date = { $gte: filterBy.fromDate ,  $lte:filterBy.toDate }        
+            criteria.date = { $gte: +filterBy.fromDate ,  $lte:+filterBy.toDate }        
     } 
     else {
         if(filterBy.allDate === 'false') {
