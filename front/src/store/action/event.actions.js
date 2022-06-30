@@ -56,9 +56,9 @@ export function getById(eventId) {
         try {
             const currEvent = await eventService.getById(eventId)
             const user = await userService.getById(currEvent.userId)
-            console.log('user',user )
+            // console.log('user',user )
             currEvent.user = user
-            console.log('currEvent',currEvent )
+            // console.log('currEvent',currEvent )
             dispatch({
                 type: 'SET_EVENT_ID',
                 currEvent

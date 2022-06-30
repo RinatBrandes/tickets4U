@@ -63,33 +63,35 @@ export const EventPreview = ({ event }) => {
     return (
 
         <li className="event-preview-container  note-modal">
-            <div className="event-preview-info" onClick={onGoToDetails}>
+            {/* <div className="event-preview-info" onClick={onGoToDetails}> */}
                 {/* <div className="event-type-name"> */}
                 {/* </div> */}
-                <div className="event-preview-card">
+                <div className="event-preview-card"  onClick={onGoToDetails}>
                     <div className="preview-first">
 
+                        <div className="event-type-container">
+                            <img src={Icons[event.eventType]} className="event-type-img"></img>
+                        </div>
                         <p className="preview-txt">{event.eventName.substr(0, 15)}... </p><br></br>
+                        <p className="event-preview-span">{event.eventCity}</p><br></br>
+                        <p className="event-preview-span">{pricePerCard}</p> <br></br>
+
+                    </div>
+                    <div className="preview-second">
+                        {/* day in week */}
+
                         <div className="preview-show-time">
                             <p className="preview-dayWeek">{event.date}</p>
                             <p className="preview-time">{event.time}</p>
                         </div>
-                        {/* day in week */}
-                        <div className="event-type-container">
-                            <img src={Icons[event.eventType]} className="event-type-img"></img>
-                        </div>
                         {/* <p>{event.eventType}</p> */}
-                    </div>
-                    <div className="preview-second">
-                        <p className="event-preview-span">{event.eventCity}</p><br></br>
-                        <p className="event-preview-span">{event.date}</p><br></br>
                     </div>
                     {/* <p className="event-preview-span">{event.date} &#160;</p> <p className="event-preview-txt" data-trans="eventDate">תאריך הארוע: </p><br></br> */}
                     <div className="preview-third">
-                        <p className="event-preview-span">{pricePerCard}</p> <br></br>
+                        <p className="event-preview-date">{event.date}</p><br></br>
                     </div>
                 </div>
-            </div>
+            {/* </div> */}
         </li >
 
     )

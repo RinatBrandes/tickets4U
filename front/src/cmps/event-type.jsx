@@ -50,7 +50,7 @@ export const EventType = ({showEventByType}) => {
                     {eventTypes.map(type => 
                        {return  (type !== 'בחר' && type !== 'Select') && 
                        <div className="types-wrapper">
-                       <img  src={Icons[type]} onClick={(ev) => showEventByType(ev,type)} className="type-details" value={type === 'Select' ? '' : type}  key={type} /></div>
+                       <img  src={Icons[type]} onClick={(ev) => showEventByType(ev,type)} className="type-details"  value={type === 'Select' ? '' : type}  key={type} /></div>
                     }
                     //    {return  (type !== 'בחר' && type !== 'Select') && <p onClick={(ev) => showEventByType(ev,type)} className="type-details" value={type === 'Select' ? '' : type} data-trans={type} key={type}>{t(`${type}`)}</p>}
                         // {(type !== 'Select' || type !== 'Other') && <li value={type === 'Select' ? '' : type} data-trans={type} key={type}>{type}</li>}

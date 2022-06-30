@@ -4,10 +4,10 @@ import { useTranslation } from 'react-i18next'
 import Calendar from 'react-calendar'
 import calendar from '../assets/img/calendar.svg'
 
-export const EventFilter = ({ filterBy, handleChange, refreshEvent, clearSearch , value, setValue , onChange}) => {
+export const EventFilter = ({ filterBy, handleChange, refreshEvent, clearSearch , value, setValue , onChange, setIsOpen, isOpen, openCalendar, onFocusChange}) => {
     const { t } = useTranslation()
     // const [value, setValue] = useState(new Date());
-    const [isOpen, setIsOpen] = useState(false)
+    // const [isOpen, setIsOpen] = useState(false)
     // const [lang,setLang] = useState('he')
 
     const [eventTypes, setEventTypes] = useState([''])
@@ -19,9 +19,6 @@ export const EventFilter = ({ filterBy, handleChange, refreshEvent, clearSearch 
         setEventTypes(types)
     }, [])
 
-    const openCalendar = () => {
-        setIsOpen(true)
-    }
 
 
     return (
@@ -47,7 +44,7 @@ export const EventFilter = ({ filterBy, handleChange, refreshEvent, clearSearch 
                 </div>
 
                 <div className="filter-event-date">
-                    {isOpen && <Calendar onChange={onChange} name="fromDate" value={value} calendarType="Hebrew" className="react-calendar"  selectRange={true}/> }
+                    {isOpen && <Calendar onChange={onChange} name="fromDate" value={value} calendarType="Hebrew" className="react-calendar"  selectRange={true} onFocusChange={onFocusChange}/> }
                     {/* {value.length > 0 ? (<p className='text-center'><span className='bold'>Start:</span>{' '}
                     {value[0].toDateString()}&nbsp;|&nbsp;<span className='bold'>End:</span> {value[1].toDateString()}</p>) : (
                     <p className='text-center'><span className='bold'>Default selected date:</span>{' '}{value.toDateString()}</p>)}                     */}
