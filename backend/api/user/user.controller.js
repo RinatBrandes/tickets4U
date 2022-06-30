@@ -17,7 +17,7 @@ async function getUser(req, res) {
 }
 
 async function requestResetPassword(req, res) {
-console.log('req.params', req.params)
+// console.log('req.params', req.params)
     try {
         // await userService.requestPassword(req.params)        
         // res.send(user)

@@ -110,10 +110,11 @@ async function add(signupUser) {
 
 
 async function addLog(collectionName, logType, details, userData,eventData={}){
+  
     const logDetails = {
         subject: collectionName,
         userId: ObjectId(userData._id),
-        eventId: eventData._id ? eventData._id: null,
+        eventId: eventData.eventId ? eventData.eventId: null,
         type: logType,
         details: details,
         createdAt: Date.now()

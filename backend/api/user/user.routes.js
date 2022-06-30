@@ -6,7 +6,7 @@ const router = express.Router()
 // middleware that is specific to this router
 // router.use(requireAuth)
 
-console.log('user routes' )
+
 router.get('/', getUsers)
 router.post('/sendResetEmail:email', requestResetPassword)
 router.get('/:id', getUser)

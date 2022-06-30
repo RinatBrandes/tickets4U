@@ -76,6 +76,7 @@ async function updateEvent(req, res) {
 async function addEvent(req, res) {
     try {
         const event = req.body
+        console.log('event', event)
         const savedEvent = await eventService.add(event)
         checkUser(event.userId)
         res.send(savedEvent)

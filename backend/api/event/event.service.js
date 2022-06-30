@@ -93,13 +93,14 @@ async function remove(eventId) {
 async function update(event) {
     try {
        
-
+        const currEvent = event
         const id = event._id
         delete event._id
+        event.eventId = id
         const user = {_id: event.userId}
         const collection = await dbService.getCollection('event')
-        await collection.updateOne({'_id':ObjectId(id)},{$set:event})
-        userService.addLog('Event', 'Info', 'Update event',user, event)
+        await collection.updateOne({'_id':ObjectId(id)},{$set:event})   
+        userService.addLog('Event', 'Info', 'Update event',user, currEvent)
         return event
     } catch (err) {
 
@@ -127,7 +128,7 @@ async function add(currEvent) {
 
 function _buildCriteria(filterBy) {
     const criteria = {}
-  console.log('filterBy', filterBy)
+//   console.log('filterBy', filterBy)
     if (filterBy.fromDate && filterBy.allDate === 'false') {
         //if we ask the event of user to show in his page we want to bring all        
             criteria.date = { $gte: filterBy.fromDate ,  $lte:filterBy.fromDate}
