@@ -59,6 +59,7 @@ export function getById(eventId) {
             const user = await userService.getById(currEvent.userId)
             // console.log('user',user )
             currEvent.user = user
+            currEvent.date =  new Date(currEvent.date * 1000)
             // console.log('currEvent',currEvent )
             dispatch({
                 type: 'SET_EVENT_ID',

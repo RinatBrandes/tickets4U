@@ -28,10 +28,10 @@ const Icons = {
 export const EventPreview = ({ event }) => {
     const navigate = useNavigate()
     const { t } = useTranslation()
-    const [dayWeek, setDayWeek] = useState(null)
+    
     useEffect(() => {
 // console.log('event.date', event.date)
-        // setDayWeek(event.date.getDay())
+    
     }, [])
 
 

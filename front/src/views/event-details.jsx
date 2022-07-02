@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import { getById } from '../store/action/event.actions';
 // import { i18nService } from '../services/i18n-service';
 import { useTranslation } from 'react-i18next'
+import format from 'date-fns/format'
 
 const EventDetails = () => {
     const { loggedInUser } = useSelector((storeState) => storeState.userModule)
@@ -37,6 +38,7 @@ const EventDetails = () => {
 
 
     if (!currEvent) return <h1>Loading</h1>
+    console.log('currEvent',currEvent )
     return (
         <section className="event-container">
             <div className="event-title" >
@@ -46,7 +48,7 @@ const EventDetails = () => {
                 <div className="event-inputs">
                     <fieldset className="event-details-fieldset">
                         <legend data-trans="when">When</legend>
-                        <label className="event-label">&#160; <span>{currEvent.date}</span>{t('eventDate')}</label>
+                        <label className="event-label">{t('eventDate')} &#160;<span>{t(`${format(currEvent.date,"yyyy-MM-dd")}`)}</span></label>
                         {/* <label className="event-label"></label> */}
 
                         <label className="event-label">{t('eventTime')} &#160;{currEvent.time}</label>

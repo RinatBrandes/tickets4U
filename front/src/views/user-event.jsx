@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'
 // import { i18nService } from "../services/i18n-service";
 import {utilService} from '../services/util.service'
 import { useTranslation } from 'react-i18next'
+import format from 'date-fns/format'
 
 const UserEvent = () => {
     const { loggedInUser } = useSelector((storeState) => storeState.userModule)
@@ -36,7 +37,7 @@ const UserEvent = () => {
 
     if (!events) return <h1>Loading</h1>
     today = Math.trunc(Date.now()/1000)   
-
+console.log('', events)
     return (
         <section className="user-events-container">
             <div className="user-events-contant">
@@ -53,7 +54,7 @@ const UserEvent = () => {
                     <tbody>
                         {events.map((event, idx) => <tr key={idx}>
                             <td>{event.eventName}</td>
-                            <td>{event.date}</td>
+                            <td>{t(`${format(event.date,"yyyy-MM-dd")}`)}</td>
                 {/* {today > event.date && event.eventStatus === 'new' ? <p className="date-passed-msg" data-trans="date_passed_msg">The events that marked in red are events that their date passed - please close it!</p>: ''} */}
                             <td>{event.eventStatus === "new" ? t("new") : t("close")}</td>
                             {/* <td data-trans={ (today > utilService.toTimestamp(event.date)) ?  (event.eventStatus === "new" ? "needToClose" : "close"):(event.eventStatus=== "new" ? "new" : "close")}  className={today > utilService.toTimestamp(event.date)? "datePassed": "datefuture"} title={today > utilService.toTimestamp(event.date) && event.eventStatus === "new" ?'The event has passed please close it!':''}>{event.status}</td> */}
