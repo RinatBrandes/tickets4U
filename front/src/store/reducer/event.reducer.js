@@ -10,6 +10,7 @@ const initialState = {
         eventArea: '',
         eventTicketQty: '',
         eventPricePerCard: '',
+        ticketPlace: '',
         userId: '',
         allDate: false
     },

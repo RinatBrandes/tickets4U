@@ -98,5 +98,7 @@
     "September" : "September",
     "October"   : "October",
     "November"  : "November",
-    "December"  : "December"
+    "December"  : "December",
+    "ticketPlace" : "Ticket place",
+    "ticketPlaceExp" : "Enter the sites number id there are..."
 }

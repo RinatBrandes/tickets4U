@@ -57,9 +57,9 @@ export const EventPreview = ({ event }) => {
                         <div className="event-type-container">
                             <img src={Icons[event.eventType]} className="event-type-img"></img>
                         </div>
-                        <p className="preview-txt">{event.eventName.substr(0, 15)}... </p><br></br>
-                        <p className="event-preview-span">{event.eventCity}</p><br></br>
-                        <p className="event-preview-span">{pricePerCard}</p> <br></br>
+                        <p className="preview-txt">{event.eventName.substr(0, 12)}... </p>
+                        <p className="event-preview-span">{event.eventCity}</p>
+                        <p className="event-preview-span">{pricePerCard}</p>
 
                     </div>
                     <div className="preview-second">

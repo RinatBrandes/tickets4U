@@ -98,7 +98,9 @@
     "September" : "ספטמבר",
     "October"   : "אוקטובר",
     "November"  : "נובמבר",
-    "December"  : "דצמבר"
+    "December"  : "דצמבר",
+    "ticketPlace" : "מיקום הכרטיסים",
+    "ticketPlaceExp" : "הכנס מיקום הכסאות אם קיים.."
 
 
 }

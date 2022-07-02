@@ -72,6 +72,8 @@ const EventDetails = () => {
 
                         <label className="event-label">{t('ticketCount')} &#160;{currEvent.ticketCount}</label>
 
+                        <label className="event-label">{t('ticketPlace')} &#160;{currEvent.ticketPlace}</label>
+
                         <label className="event-label">{t('userRemark')} &#160;{currEvent.userRemark}</label>
                     </fieldset>
                     {currEvent.user &&<fieldset className="event-details-fieldset" >

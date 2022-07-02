@@ -49,8 +49,8 @@ export const EventType = ({showEventByType}) => {
                 <div  className="types-card" name="eventType" >
                     {eventTypes.map(type => 
                        {return  (type !== 'בחר' && type !== 'Select') && 
-                       <div className="types-wrapper">
-                       <img  src={Icons[type]} onClick={(ev) => showEventByType(ev,type)} className="type-details"  value={type === 'Select' ? '' : type}  key={type} /></div>
+                       <div className="types-wrapper"  key={type}>
+                       <img  src={Icons[type]} onClick={(ev) => showEventByType(ev,type)} className="type-details"  value={type === 'Select' ? '' : type}  /></div>
                     }
                     //    {return  (type !== 'בחר' && type !== 'Select') && <p onClick={(ev) => showEventByType(ev,type)} className="type-details" value={type === 'Select' ? '' : type} data-trans={type} key={type}>{t(`${type}`)}</p>}
                         // {(type !== 'Select' || type !== 'Other') && <li value={type === 'Select' ? '' : type} data-trans={type} key={type}>{type}</li>}

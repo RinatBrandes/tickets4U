@@ -144,6 +144,9 @@ console.log('', currEventInfo.date)
                     <label className="event-label"><span>{t('ticketCount')}</span>
                     <input className="event-input" type="number" name="ticketCount" min={0} max={10} value={currEvent.ticketCount} onChange={(ev) => handleChange(ev)} required /></label>
 
+                    <label className="event-label"><span>{t('ticketPlace')}</span>
+                    <input className="event-input" type="test" name="ticketPlace"  value={currEvent.ticketPlace} onChange={(ev) => handleChange(ev)} placeholder={t('ticketPlaceExp')} /></label>
+                    
                     <label className="event-label"><span>{t('userRemark')}</span>
                     <textarea className="event-input" type="number" name="userRemark" rows={5} cols={10} value={currEvent.userRemark} onChange={(ev) => handleChange(ev)} /></label>
 
