@@ -23,9 +23,9 @@ async function query(filterBy = {}) {
             const collection = await dbService.getCollection('event')        
             filterBy.sortBy = 'date' 
             var events = await collection.find(criteria).sort(filterBy.sortBy, 1).toArray()   
-            events.map(event => {    
-             return event.date = utilService.toDate(event.date)
-            })
+            // events.map(event => {    
+            //  return event.date = utilService.toDate(event.date)
+            // })
             // console.log('events',events )
         return events
     } catch (err) {
@@ -54,7 +54,7 @@ async function getById(eventId) {
     try {
         const collection = await dbService.getCollection('event')
         const event = await collection.findOne({ _id: ObjectId(eventId) })
-        event.date = utilService.toDate(event.date)
+        // event.date = utilService.toDate(event.date)
         delete event.password
 
         return event

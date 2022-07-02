@@ -33,6 +33,7 @@ async function getEvents(req, res) {
             eventArea: req.query?.eventArea || '',
             eventPricePerCard: req.query?.eventPricePerCard || '',
             eventTicketQty: req.query?.eventTicketQty || '',
+            ticketPlace: req.query?.ticketPlace || '',
             userId: req.query?.userId || '',
             allDate: req.query?.allDate || '',
             sortBy: req.query?.sortBy || ''
