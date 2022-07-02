@@ -31,7 +31,7 @@ const TicketApp = () => {
             allDate: false
         }
         dispatch(loadEvents(filterBy))
-
+        
 
         return () => {
             socketService.off('eventSaved', refreshEvent)
@@ -46,17 +46,13 @@ const TicketApp = () => {
 
 
     const refreshEvent = (filterBy) => {
-        console.log('filterBy', filterBy)
 
         dispatch(loadEvents(filterBy))
     }
 
     //using lodash
     const debounceHandelChange = useCallback(utilService.debounce(refreshEvent, 1000), [])
-    console.log('debounceHandelChange', debounceHandelChange)
-
-
-
+    
 
     const onChange = (ev) => {
 
@@ -74,9 +70,7 @@ const TicketApp = () => {
         setfilterBy({ ...filterBy, toDate: toDate })
         onFocusChange()
 
-        //timestamp to date
-        //date = Date(date * 1000);
-        //console.log('date', date)
+      
     }
 
     const handleChange = (event) => {
@@ -93,7 +87,6 @@ const TicketApp = () => {
         }
 
         setfilterBy({ ...filterBy, [name]: value })
-        // console.log('filterBy', filterBy)
     }
 
 

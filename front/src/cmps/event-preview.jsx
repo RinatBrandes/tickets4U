@@ -12,6 +12,7 @@ import Seniors from '../assets/img/Seniors.svg'
 import Sport from '../assets/img/Sport.svg'
 import Theater from '../assets/img/Theater.svg'
 import Other from '../assets/img/Other.svg'
+import format from 'date-fns/format'
 
 const Icons = {
     'Music'    : Music,
@@ -36,27 +37,11 @@ export const EventPreview = ({ event }) => {
 
     const onGoToDetails = (ev) => {
         ev.stopPropagation()
-        console.log('event._id', event._id)
+
         navigate(`/event/${event._id}`)
     }
 
    
-    // const onSetLang = (ev) => {
-    //     let lang
-    //     if(ev) {
-    //         lang = ev.target.value
-    //     } else {
-    //         lang = 'he'
-    //     }
-        
-    //     i18nService.setLang(lang)
-    //     If lang is hebrew add RTL class to document.body
-    //     if (lang === 'he') document.body.classList.add('rtl')
-    //     else document.body.classList.remove('rtl')
-    //     i18nService.doTrans()
-    // }
- 
-
     const pricePerCard = event.eventPricePerCard.toLocaleString('he-US', { style: 'currency', currency: 'ILS' })
     // const pricePerCard = currEvent.event.eventPricePerCard.toLocaleString('en-US', { style: 'currency', currency: 'USD' })
 
@@ -81,14 +66,15 @@ export const EventPreview = ({ event }) => {
                         {/* day in week */}
 
                         <div className="preview-show-time">
-                            <p className="preview-dayWeek">{event.date}</p>
+                            <p className="preview-dayWeek">{t(`${format(event.date, 'EEEE')}`)}</p>
                             <p className="preview-time">{event.time}</p>
                         </div>
                         {/* <p>{event.eventType}</p> */}
                     </div>
                     {/* <p className="event-preview-span">{event.date} &#160;</p> <p className="event-preview-txt" data-trans="eventDate">תאריך הארוע: </p><br></br> */}
                     <div className="preview-third">
-                        <p className="event-preview-date">{event.date}</p><br></br>
+                        <p className="event-preview-month">{t(`${format(event.date,'dd')}`)}</p>
+                        <p className="event-preview-month">{t(`${format(event.date,'MMMM')}`)}</p>
                     </div>
                 </div>
             {/* </div> */}

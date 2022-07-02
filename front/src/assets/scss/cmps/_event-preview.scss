@@ -1,7 +1,7 @@
 .event-list {
     display: grid;    
-    width: 100%;
-    // grid-template-rows: repeat (auto-fill, minmax (300px, 1fr));   
+    width: 100%;    
+    // grid-template-columns: 2fr 2fr 1fr; 
     grid-template-columns: repeat(3, 1fr); 
     gap: 10px;
 }
@@ -14,6 +14,7 @@
     align-items: center;
     .event-preview-card {
         display: flex;
+        gap:15px
     }   
 }
 
@@ -28,7 +29,7 @@
     border-radius: 40px;
     box-shadow: 0 2px 5px rgb(175, 175, 175);
     // float: left;
-    overflow: hidden;
+    // overflow: hidden;
 
     p {
         margin: unset;
@@ -72,7 +73,8 @@
         margin-bottom: 10px;
     }
     .preview-third {
-      
+        margin-top: 3em;
+        margin-right: 3em;
     }
 }
 // .event-preview-container {
@@ -110,10 +112,7 @@
     color: $gray-light;
     display: inline-block;
 }
-.event-preview-date {
-    margin-top: 70%;
-    
-}
+
 
 .event-type-name {
     display: flex;

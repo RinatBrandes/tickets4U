@@ -79,7 +79,26 @@
     "send" : "שלח",
     "inserPass" : "הכנס סיסמה",
     "inserPassConfirm" : "אישור סיסמה",
-    "reset-pass-title" : "איפוס סיסמה"
+    "reset-pass-title" : "איפוס סיסמה",
+    "Sunday"    : "ראשון",
+    "Monday"    : "שני",
+    "Tuesday"   : "שלישי",
+    "Wednesday" : "רביעי",
+    "Thursday"  : "חמישי",
+    "Friday"    : "שישי",
+    "Saturday"  : "שבת",
+    "January"   : "ינואר",
+    "February"  : "פברואר",
+    "March"     : "מרץ",
+    "April"     : "אפריל",
+    "May"       : "מאי",
+    "June"      : "יוני",
+    "July"      : "יולי",
+    "August"    : "אוגוסט",
+    "September" : "ספטמבר",
+    "October"   : "אוקטובר",
+    "November"  : "נובמבר",
+    "December"  : "דצמבר"
 
 
 }

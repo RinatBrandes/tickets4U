@@ -29,7 +29,8 @@ export function loadEvents(filterBy) {
 // console.log('filterBy',filterBy )
     return async (dispatch) => {
         try {
-            const events = await eventService.query(filterBy)
+            let events = await eventService.query(filterBy)
+            events = events.map(event => ({...event, date: new Date(event.date * 1000)}))
             const action = { type: 'SET_EVENTS', events }
             dispatch(action)
         } catch (err) {

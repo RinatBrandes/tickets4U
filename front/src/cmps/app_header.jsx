@@ -32,21 +32,7 @@ const AppHeader = () => {
         else document.body.dir = 'LTR'
     }
 
-//     const onSetLang = (ev) => {
-//         let lang
-//         if(ev) {
-//             lang = ev.target.value
-//         } else {
-//             lang = 'he'
-//         }
-        
-//         i18nService.setLang(lang)
-//         // If lang is hebrew add RTL class to document.body
-//         if (lang === 'he') document.body.classList.add('rtl')
-//         else document.body.classList.remove('rtl')
-// console.log('lang',lang);
-//         i18nService.doTrans()
-//     }
+
 
 
     const onOpenLoginPage = () => {
