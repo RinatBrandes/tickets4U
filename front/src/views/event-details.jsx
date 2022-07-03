@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { useParams } from 'react-router-dom';
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { getById } from '../store/action/event.actions';
@@ -8,9 +8,11 @@ import { getById } from '../store/action/event.actions';
 import { useTranslation } from 'react-i18next'
 import format from 'date-fns/format'
 
+
 const EventDetails = () => {
     const { loggedInUser } = useSelector((storeState) => storeState.userModule)
     const { currEvent } = useSelector((storeState) => storeState.eventModule)
+    const [langDir, setLangDir] = useState(document.dir)
     // const { user } = useSelector((storeState) => storeState.userModule)
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -48,7 +50,7 @@ const EventDetails = () => {
                 <div className="event-inputs">
                     <fieldset className="event-details-fieldset">
                         <legend data-trans="when">When</legend>
-                        <label className="event-label">{t('eventDate')} &#160;<span>{t(`${format(currEvent.date,"yyyy-MM-dd")}`)}</span></label>
+                        <label className="event-label">{t('eventDate')} &#160;<span>{(langDir === "rtl") ?  t(`${format(currEvent.date,"dd-MM-yyyy")}`) :  t(`${format(currEvent.date,"yyyy-MM-dd")}`) }</span></label>
                         {/* <label className="event-label"></label> */}
 
                         <label className="event-label">{t('eventTime')} &#160;{currEvent.time}</label>

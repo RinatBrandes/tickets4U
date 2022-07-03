@@ -21,7 +21,10 @@
             font-weight: 300;
             font-size: rem(14px);
             border: 1px solid $gray-light;
-            
+          
+        }
+        .right {
+            text-align: right;
         }
         @media screen and (max-width: 740px) {
             th {

@@ -9,7 +9,7 @@ import { eventService } from '../services/event.service'
 // import { i18nService } from '../services/i18n-service'
 import { utilService } from '../services/util.service'
 import { useTranslation } from 'react-i18next'
-
+import format from 'date-fns/format'
 
 const EventEdit = () => {
     const { t } = useTranslation()
@@ -20,8 +20,8 @@ const EventEdit = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const { eventId } = useParams()
-    const [updateEvent, setUpdateEvent] = useState('עדכון ארוע')
-    const [newEvent, setNewEvent] = useState('ארוע חדש')
+    // const [updateEvent, setUpdateEvent] = useState('עדכון ארוע')
+    // const [newEvent, setNewEvent] = useState('ארוע חדש')
     const [isNewEvent, setIsNewEvent] = useState(false)
     const [eventTypes, setEventTypes] = useState([''])
     const [currEvent, setCurrEvent] = useState(initialEvent)
@@ -86,7 +86,7 @@ console.log('', currEventInfo.date)
         if (isNewEvent) socketService.emit('addedEvent', currEventInfo)
         navigate(-1)
     }
-
+console.log('currEvent',currEvent )
     return (
         <section className="event-container">
             <div className="event-title">
@@ -95,9 +95,10 @@ console.log('', currEventInfo.date)
             <form onSubmit={handleSubmit} >
                 <div className="event-inputs">
                     
-                    <label className="event-label"><span>&#160;{t('eventDate')}</span>
+                    <label className="event-label"><span>{t('eventDate')}</span>
                     <input className="event-input" type="date" name="date" value={currEvent.date}  onChange={(ev) => handleChange(ev)} required /></label>
-
+                    {/* <input className="event-input" type="date" name="date" value={t(`${format(currEvent.date,"yyyy-MM-dd")}`)}  onChange={(ev) => handleChange(ev)} required /></label> */}
+                    
 
                     <label className="event-label"><span>{t('eventTime')}</span>
                     <input className="event-input" type="time" name="time" value={currEvent.time} onChange={(ev) => handleChange(ev)} required /></label>

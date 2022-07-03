@@ -21,6 +21,7 @@ const AppHeader = () => {
 
     useEffect(() => {              
 
+       
     }, [])
 
     const handelLangChange = (ev) => {
@@ -28,8 +29,9 @@ const AppHeader = () => {
         console.log('selectedLang', selectedLang)
         i18next.changeLanguage(selectedLang)
         setLang(selectedLang)
-        if(selectedLang === 'he') document.body.dir = 'RTL'
-        else document.body.dir = 'LTR'
+        if(selectedLang === 'he') document.dir = 'rtl'
+        else document.dir = 'ltr'
+        console.log('document.dir', document.dir)
     }
 
 

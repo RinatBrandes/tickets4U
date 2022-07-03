@@ -25,18 +25,13 @@ async function query(filterBy = {}) {
 }
 
 function getEventTypes(){
-    // var sortEvents = eventType.sort((type1, type2) => {
-    //     if(type1 < type2) return -1
-    //     if(type1 > type2) return 1
-    //     return 0
-    // })
-    // return sortEvents
+ 
     return eventType
 }
 
 async function getById(eventId) {
-    // return storageService.get(STORAGE_KEY, gigId)
-    let event = await httpService.get(`event/${eventId}`)
+    let event = await httpService.get(`event/${eventId}`)    
+    event.date =  new Date(event.date * 1000)
     return event 
 }
 
@@ -48,7 +43,6 @@ async function save(currEvent) {
         return currEvent
     } else {
         const newEvent = await httpService.post('event', currEvent)
-        // eventChannel.postMessage(getActionAddEvent(newEvent))
         return newEvent
     }
 
