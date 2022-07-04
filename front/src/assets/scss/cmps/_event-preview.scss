@@ -3,6 +3,7 @@
     width: 100%;    
     // grid-template-columns: 2fr 2fr 1fr; 
     grid-template-columns: repeat(3, 1fr); 
+    // grid-template-columns: 280px repeat(auto-fill, 280px); 
     gap: 10px;
 }
 .event-preview-container {    

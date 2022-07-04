@@ -10,7 +10,7 @@ const RootCmp = () => {
     {
         return (
             <Suspense fallback={null}>
-                <div className="main-layout">
+                <div className="app-container">
                     <AppHeader />
                     <main>
                         <Routes>

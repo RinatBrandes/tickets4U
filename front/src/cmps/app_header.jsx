@@ -62,21 +62,23 @@ const AppHeader = () => {
 
 
     return (
-        // <section className="header-container">
-        // <div className="main-layout">
-          
-            <section className="header-container full">
-             <div className="main-layout"> 
-                <div className="header-logo-container">
+        
+      
+        <section className="header-container">
+            <div className="header-left-side"></div>
+              {/* <section className="header-container full"> */}
+             {/* <div className="main-layout">  */}
+            <div className="header-main">
+                <div className="header-contant-container">
                     <div className="header-options">
-                        <select onChange={handelLangChange} className="lang-option" value={lang}>
-                            <option value="he">{t('langHe')}</option>
-                            <option value="en">{t('langEn')}</option>
-                        </select>
+                        <img className="header-logo" src={logo} alt="logo" onClick={onGoBack}></img>
+
                         <div className="header-nav-bar">
 
-                            {!loggedInUser && <button className="header-btn" onClick={onOpenSignupPage}>{t('signup')}</button>}
-                            {!loggedInUser && <button className="header-btn" onClick={onOpenLoginPage}>{t('login')}</button>}
+                            <div className="login-signup">
+                                {!loggedInUser && <button className="header-btn" onClick={onOpenSignupPage}>{t('signup')}</button>}
+                                {!loggedInUser && <button className="header-btn" onClick={onOpenLoginPage}>{t('login')}</button>}
+                            </div>
 
                             <div className="avatar-container">
                                 {loggedInUser && <img className="avatar-img" src={avatar} onClick={onToggleMenu} alt="Avatar"></img>}
@@ -85,11 +87,16 @@ const AppHeader = () => {
                                 {profileMenu && <ProfileMenu onLogout={onLogout} user={loggedInUser} closeMenu={onToggleMenu} />}
                             </div>
                         </div>
-                    </div>
-                    <img className="header-logo" src={logo} alt="logo" onClick={onGoBack}></img>
+                        
+                        <select onChange={handelLangChange} className="lang-option" value={lang}>
+                            <option value="he">{t('langHe')}</option>
+                            <option value="en">{t('langEn')}</option>
+                        </select>
+                    </div>                    
                 </div>
-
+                
             </div>
+            <div className="header-right-side"></div>
             <UserMsg />
         </section>
     )

@@ -1,65 +1,122 @@
-.main-layout {
+// .main-layout {
+//     display: grid;
+//     grid-template-columns: $layoutPadding 1fr $layoutPadding;
+//     grid-template-rows: 100px 1fr 80px;
+//     min-height: 100vh;
+
+//     > * {
+//         grid-column: 2;
+//     }
+
+//     > *.full {
+//         grid-column: 1 / -1;
+//     }
+
+//     > *:not(.full) {
+//         display: grid;
+//         grid-auto-flow: dense;
+//         //170622 rinat closed it
+//         // grid-template-columns: repeat( 6, 1fr );
+//     }
+
+//     @include for-narrow-layout {
+//         @include layoutGTC($break-narrow);
+//     }
+    
+//     @include for-normal-layout {
+//         @include layoutGTC($break-normal);
+//     }
+    
+//     @include for-wide-layout {
+//         @include layoutGTC($break-wide);
+//     }
+// }
+
+
+// .main-text {
+//     margin-bottom: rem(90px);
+// }
+
+
+
+
+
+#root {
+    height: 100vh;
+}
+
+.app-container {
     display: grid;
-    grid-template-columns: $layoutPadding 1fr $layoutPadding;
-    grid-template-rows: 100px 1fr 80px;
-    min-height: 100vh;
+    grid-template-rows: 100px 1fr 50px;
+    // grid-template-columns: 20% 1fr 20%;   
+    // grid-template-areas: 
+    // "header header header"
+    // "main main main"
+    // "footer footer footer";
+    height: 100vh;
 
-    > * {
-        grid-column: 2;
+    .header-container {
+        background-color: $gray;
+        // height: 100px;        
+        // grid-area: header;
+        grid-row: 1/2;
+        display: grid;       
+        grid-template-columns: $sides 1fr $sides;   
+        
+        .header-left-side {
+            grid-column: 1/2;
+            
+        }
+        .header-main {
+            grid-column: 2/3;
+        }
+        .header-right-side {
+            grid-column: 3/4;
+        }
     }
 
-    > *.full {
-        grid-column: 1 / -1;
+    .main-container {
+        // background-color: bisque;
+        flex-grow: 1;
+        // grid-area: main;
+        grid-row: 2/3;
+        display: grid;       
+        grid-template-columns: $sides 1fr $sides; 
+        .main-left {
+            grid-column: 1/2;
+        }  
+        .main-main {
+            grid-column: 2/3;
+            border-radius: 2px;
+            // border-left: 1px solid gray;
+            // border-right: 1px solid gray;
+        }
+        .main-right {
+            grid-column: 3/4;
+        }
     }
 
-    > *:not(.full) {
-        display: grid;
-        grid-auto-flow: dense;
-        //170622 rinat closed it
-        // grid-template-columns: repeat( 6, 1fr );
-    }
-
-    @include for-narrow-layout {
-        @include layoutGTC($break-narrow);
-    }
-    
-    @include for-normal-layout {
-        @include layoutGTC($break-normal);
-    }
-    
-    @include for-wide-layout {
-        @include layoutGTC($break-wide);
+    .footer-container {
+        background-color: $gray;
+        // height: 100px;
+        // grid-area: footer;
+        grid-row: 3/4;
+        display: grid;       
+        grid-template-columns: $sides 1fr $sides;  
+        
+        .footer-left {
+            grid-column: 1/2;
+        }  
+        .footer-main {
+            grid-column: 2/3;
+        }
+        .footer-right {
+            grid-column: 3/3;
+        }
     }
 }
 
-
-.main-text {
-    margin-bottom: rem(90px);
+.main-layout{
+    margin: auto;
+    max-width: 800px;
 }
-
-// #root {
-    //     height: 100vh;
-    // }
-    
-    // .app-container {
-    //     display: flex;
-    //     flex-direction: column;
-    //     height: 100vh;
-    
-    //     .header-container {       
-    //         height: 200px;
-    //     }
-    
-    //     .main-container {        
-    //         flex-grow: 1;        
-    //     }
-    
-    //     .footer-container {        
-    //         height: 200px;        
-    //     }
-    // }
-    
-    // .main-layout{
-    //     margin: auto;
-    //     max-width: 800px;
-    // }

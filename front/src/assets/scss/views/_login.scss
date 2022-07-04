@@ -7,7 +7,7 @@
     color: $gray-light;
     
     .login-wrapper {
-        background-color: $gray;
+        // background-color: $gray;
         border-radius: 5px;
         padding: 20px;
         opacity: 0.8;
@@ -16,8 +16,8 @@
         display: flex;
         justify-content: center;
         margin: 1.5em 0;
-        // color: $gray;
-        color: $white;
+        color: $gray;
+        // color: $white;
         font-size: 2em;    
 
     }
@@ -34,8 +34,8 @@
         // font-weight: 800;
         .login-label {
             text-align: right;
-            // color: $gray-light;
-            color: $white;
+            color: $gray-light;
+            // color: $white;
         }
         .login-input {
             text-align: left;
