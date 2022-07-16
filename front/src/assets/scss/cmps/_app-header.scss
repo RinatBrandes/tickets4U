@@ -172,7 +172,8 @@
 .lang-option {
   margin-inline-start: auto;
   width: 80px;
-  height: 25px;
+  min-height: 25px;
+  cursor: pointer;
 }
 
 .header-btn {

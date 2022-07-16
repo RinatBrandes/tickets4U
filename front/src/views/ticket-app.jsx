@@ -1,14 +1,14 @@
-import { useCallback, useEffect, useRef } from "react";
 import { useState } from 'react'
-import { loadEvents } from "../store/action/event.actions";
-import { useSelector, useDispatch } from 'react-redux'
-import { EventList } from "../cmps/event-list";
-import { socketService } from "../services/socket.service.js";
-import { EventFilter } from "../cmps/event-filter";
-import { showErrorMsg } from '../services/event-bus.service.js'
-import { utilService } from "../services/util.service";
-import { EventType } from "../cmps/event-type";
 import _ from 'lodash'
+import { useCallback, useEffect, useRef } from "react"
+import { loadEvents } from "../store/action/event.actions"
+import { useSelector, useDispatch } from 'react-redux'
+import { EventList } from "../cmps/event-list"
+import { socketService } from "../services/socket.service.js"
+import { EventFilter } from "../cmps/event-filter"
+import { showErrorMsg } from '../services/event-bus.service.js'
+import { utilService } from "../services/util.service"
+import { EventType } from "../cmps/event-type"
 
 
 
@@ -18,7 +18,7 @@ const TicketApp = () => {
     const dispatch = useDispatch()
     const { events } = useSelector((storeState) => storeState.eventModule)
     const [filterBy, setfilterBy] = useState(initialFilter)
-    const [value, setValue] = useState(new Date());
+    const [value, setValue] = useState(new Date())
     const [isOpen, setIsOpen] = useState(false)
     const test = useRef()
 
@@ -31,7 +31,7 @@ const TicketApp = () => {
             allDate: false
         }
         dispatch(loadEvents(filterBy))
-        
+
 
         return () => {
             socketService.off('eventSaved', refreshEvent)
@@ -52,7 +52,7 @@ const TicketApp = () => {
 
     //using lodash
     const debounceHandelChange = useCallback(utilService.debounce(refreshEvent, 1000), [])
-    
+
 
     const onChange = (ev) => {
 
@@ -70,7 +70,7 @@ const TicketApp = () => {
         setfilterBy({ ...filterBy, toDate: toDate })
         onFocusChange()
 
-      
+
     }
 
     const handleChange = (event) => {
@@ -110,7 +110,7 @@ const TicketApp = () => {
 
     return (
         <section className="main-container">
-             <div className="main-left"></div>
+            <div className="main-left"></div>
             <div className="main-main">
                 <EventType showEventByType={showEventByType} />
                 <EventFilter filterBy={filterBy} handleChange={handleChange} refreshEvent={refreshEvent} clearSearch={clearSearch} onChange={onChange} setValue={setValue} value={value} setIsOpen={setIsOpen} isOpen={isOpen} openCalendar={openCalendar} onFocusChange={onFocusChange} />

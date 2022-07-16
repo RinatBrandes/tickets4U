@@ -1,4 +1,4 @@
-import { userService } from "../../services/user.service";
+import { userService } from "../../services/user.service"
 import { showErrorMsg } from '../../services/event-bus.service.js'
 
 export function login(credentials) {

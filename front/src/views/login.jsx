@@ -24,7 +24,7 @@ const Login = () => {
     const handleSubmit = (event) => {
         try {
             event.preventDefault();
-            const data = new FormData(event.currentTarget);
+            const data = new FormData(event.currentTarget)
             const loginInfo = {
                 userName: data.get('username'),
                 password: data.get('password'),
@@ -42,26 +42,24 @@ const Login = () => {
     return (
         <section className="login-container">
             <div className="login-wrapper">
-            <div className="login-title">
-                <h1>{t('login')}</h1>
-            </div>
-            <form onSubmit={handleSubmit} >
-                <div className="login-input">
-               
-                    <label className="login-label"><span>{t('userName')}</span>
-                    <input className="login-input" type="text" name="username" value={credentials.username} onChange={handleChange} required /></label>
-
-                    <label className="login-label"><span>{t('password')}</span>
-                    <input className="login-input" type="password" name="password" value={credentials.password} onChange={handleChange} autoComplete="off" required /></label>
-
-                    <button className="login-btn">{t('login')}</button>
-                    
-                    <div className='forgot-password'>
-                       <Link  className="forgot-pass" to='/forgotpass'>{t('forgotPass')}</Link>
-                       {/* <p className='forgot-pass-txt'>{t('forgotPass')}<span> <Link  className="forgot-pass" to='/forgotpass'>{t('resetIt')}</Link></span></p> */}
-                    </div>
+                <div className="login-title">
+                    <h1>{t('login')}</h1>
                 </div>
-            </form>
+                <form className="login-form" onSubmit={handleSubmit} >                    
+
+                        <label className="login-label"><span>{t('userName')}</span>
+                            <input className="login-input" type="text" name="username" value={credentials.username} onChange={handleChange} required /></label>
+
+                        <label className="login-label"><span>{t('password')}</span>
+                            <input className="login-input" type="password" name="password" value={credentials.password} onChange={handleChange} autoComplete="off" required /></label>
+
+                        <button className="login-btn">{t('login')}</button>
+
+                        <div className='forgot-password'>
+                            <Link className="forgot-pass" to='/forgotpass'>{t('forgotPass')}</Link>
+                            {/* <p className='forgot-pass-txt'>{t('forgotPass')}<span> <Link  className="forgot-pass" to='/forgotpass'>{t('resetIt')}</Link></span></p> */}
+                        </div>
+                </form>
             </div>
         </section>
     )

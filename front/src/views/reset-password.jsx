@@ -1,8 +1,8 @@
 import * as React from 'react'
-import { useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { userService  } from '../services/user.service'
+import { userService } from '../services/user.service'
 import { showErrorMsg } from '../services/event-bus.service.js'
 import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
@@ -11,7 +11,7 @@ const ResetPassword = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const params = useParams()
-    const [credentials, setCredentials] = useState({token: '',password: '', passwordConfirm: ''})
+    const [credentials, setCredentials] = useState({ token: '', password: '', passwordConfirm: '' })
     const { t } = useTranslation()
 
 
@@ -28,14 +28,14 @@ const ResetPassword = () => {
 
     const handleSubmit = (event) => {
         try {
-            event.preventDefault();
-            const data = new FormData(event.currentTarget);
+            event.preventDefault()
+            const data = new FormData(event.currentTarget)
             const userInfo = {
                 token: params.email,
-                password: data.get('password') ,
-                passwordConfirm: data.get('passwordConfirm')               
+                password: data.get('password'),
+                passwordConfirm: data.get('passwordConfirm')
             }
-console.log('userInfo',userInfo )
+            console.log('userInfo', userInfo)
 
             // userService.resetPassword(userInfo)
             // dispatch(getLoggedinUser())
@@ -57,11 +57,11 @@ console.log('userInfo',userInfo )
                     <label className="reset-pass-label"><span>{t('inserPass')}</span>
                         <input className="reset-pass-input" type="password" name="password" value={credentials.password} onChange={handleChange} placeholder="Passwod" required /></label>
 
-                        <label className="reset-pass-label"><span>{t('inserPassConfirm')}</span>
+                    <label className="reset-pass-label"><span>{t('inserPassConfirm')}</span>
                         <input className="reset-pass-input" type="password" name="passwordConfirm" value={credentials.passwordConfirm} onChange={handleChange} placeholder="Password confirm" required /></label>
 
                     <button className="reset-pass-btn">{t('send')}</button>
-                  
+
                 </div>
             </form>
         </section>

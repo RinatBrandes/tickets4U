@@ -1,13 +1,13 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from "react"
 // import { i18nService } from "../services/i18n-service"
 import { useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { UserMsg } from "./user-msg";
+import { UserMsg } from "./user-msg"
 import { ProfileMenu } from '../cmps/profile-menu.jsx'
 import { logout } from '../store/action/user.actions'
 import avatar from '../assets/img/avatar.jpeg'
 import logo from '../assets/img/logo.svg'
-import i18next from "i18next";
+import i18next from "i18next"
 import { useTranslation } from 'react-i18next'
 
 
@@ -19,9 +19,9 @@ const AppHeader = () => {
     const [lang, setLang] = useState('he')
     const { t } = useTranslation()
 
-    useEffect(() => {              
+    useEffect(() => {
 
-       
+
     }, [])
 
     const handelLangChange = (ev) => {
@@ -29,13 +29,10 @@ const AppHeader = () => {
         console.log('selectedLang', selectedLang)
         i18next.changeLanguage(selectedLang)
         setLang(selectedLang)
-        if(selectedLang === 'he') document.dir = 'rtl'
+        if (selectedLang === 'he') document.dir = 'rtl'
         else document.dir = 'ltr'
         console.log('document.dir', document.dir)
     }
-
-
-
 
     const onOpenLoginPage = () => {
         navigate('/login')
@@ -47,13 +44,13 @@ const AppHeader = () => {
 
     const onLogout = () => {
         dispatch(logout())
-        var flag = !profileMenu;
-        setMenu(flag);
+        var flag = !profileMenu
+        setMenu(flag)
     }
 
     const onToggleMenu = () => {
-        var flag = !profileMenu;
-        setMenu(flag);
+        var flag = !profileMenu
+        setMenu(flag)
     }
 
     const onGoBack = () => {
@@ -62,12 +59,12 @@ const AppHeader = () => {
 
 
     return (
-        
-      
+
+
         <section className="header-container">
             <div className="header-left-side"></div>
-              {/* <section className="header-container full"> */}
-             {/* <div className="main-layout">  */}
+            {/* <section className="header-container full"> */}
+            {/* <div className="main-layout">  */}
             <div className="header-main">
                 <div className="header-contant-container">
                     <div className="header-options">
@@ -87,14 +84,14 @@ const AppHeader = () => {
                                 {profileMenu && <ProfileMenu onLogout={onLogout} user={loggedInUser} closeMenu={onToggleMenu} />}
                             </div>
                         </div>
-                        
+
                         <select onChange={handelLangChange} className="lang-option" value={lang}>
                             <option value="he">{t('langHe')}</option>
                             <option value="en">{t('langEn')}</option>
                         </select>
-                    </div>                    
+                    </div>
                 </div>
-                
+
             </div>
             <div className="header-right-side"></div>
             <UserMsg />

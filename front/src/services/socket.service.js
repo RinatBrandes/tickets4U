@@ -22,7 +22,7 @@ socketService.setup()
 
 
 function createSocketService() {
-  var socket = null;
+  var socket = null
   const socketService = {
     setup() {
       socket = io(baseUrl)
@@ -89,7 +89,7 @@ function createDummySocketService() {
       this.emit('chat addMsg', { from: 'Someone', txt: 'Aha it worked!' })
     },
   }
-  window.listenersMap = listenersMap;
+  window.listenersMap = listenersMap
   return socketService
 }
 

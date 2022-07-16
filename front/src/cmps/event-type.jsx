@@ -12,50 +12,50 @@ import Theater from '../assets/img/Theater.svg'
 import Other from '../assets/img/Other.svg'
 
 const Icons = {
-    'Music'    : Music,
-    'Sport'    : Sport,
-    'Theater'  : Theater,
+    'Music': Music,
+    'Sport': Sport,
+    'Theater': Theater,
     // 'Standup'  : Standup,
     // 'Lecture'  : Lecture,
-    'Cinema'   : Cinema,
-    'Children' : Children,
-    'Seniors'  : Seniors,
+    'Cinema': Cinema,
+    'Children': Children,
+    'Seniors': Seniors,
     // 'Circus'   : Circus,
-    'Fashion'  : Fashion,
+    'Fashion': Fashion,
     // 'Gym'      : Gym,
     // 'Festival' : Festival,
     'FoodTours': FoodTours,
     // 'Workshop' : Workshop,
-    'Other'    : Other
+    'Other': Other
 }
 
 
 
-export const EventType = ({showEventByType}) => {
+export const EventType = ({ showEventByType }) => {
     const [eventTypes, setEventTypes] = useState([''])
     const { t } = useTranslation()
-    
+
     useEffect(() => {
         const types = eventService.getEventTypes()
         setEventTypes(types)
     }, [])
 
-   
+
 
     return (
         <section className="event-types-container">
-                              
+
             {/* <div className="types-contant"> */}
-                <div  className="types-card" name="eventType" >
-                    {eventTypes.map(type => 
-                       {return  (type !== 'בחר' && type !== 'Select') && 
-                       <div className="types-wrapper"  key={type}>
-                       <img  src={Icons[type]} onClick={(ev) => showEventByType(ev,type)} className="type-details"  value={type === 'Select' ? '' : type}  /></div>
-                    }
+            <div className="types-card" name="eventType" >
+                {eventTypes.map(type => {
+                    return (type !== 'בחר' && type !== 'Select') &&
+                        <div className="types-wrapper" key={type}>
+                            <img src={Icons[type]} onClick={(ev) => showEventByType(ev, type)} className="type-details" value={type === 'Select' ? '' : type} /></div>
+                }
                     //    {return  (type !== 'בחר' && type !== 'Select') && <p onClick={(ev) => showEventByType(ev,type)} className="type-details" value={type === 'Select' ? '' : type} data-trans={type} key={type}>{t(`${type}`)}</p>}
-                        // {(type !== 'Select' || type !== 'Other') && <li value={type === 'Select' ? '' : type} data-trans={type} key={type}>{type}</li>}
-                    )}
-                </div>
+                    // {(type !== 'Select' || type !== 'Other') && <li value={type === 'Select' ? '' : type} data-trans={type} key={type}>{type}</li>}
+                )}
+            </div>
 
 
             {/* </div> */}

@@ -1,10 +1,10 @@
 import * as React from 'react'
-import { useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { getById } from '../store/action/event.actions';
-// import { i18nService } from '../services/i18n-service';
+import { getById } from '../store/action/event.actions'
+// import { i18nService } from '../services/i18n-service'
 import { useTranslation } from 'react-i18next'
 import format from 'date-fns/format'
 
@@ -20,15 +20,15 @@ const EventDetails = () => {
     const { t } = useTranslation()
 
     useEffect(() => {
-        
+
         const fetchEvent = async () => {
             dispatch(getById(params.eventId))
         }
         fetchEvent()
-        
+
     }, [])
 
-  
+
 
     const goToEdit = () => {
         navigate(`/event/edit/${currEvent._id}`)
@@ -40,7 +40,6 @@ const EventDetails = () => {
 
 
     if (!currEvent) return <h1>Loading</h1>
-    console.log('currEvent',currEvent )
     return (
         <section className="main-container">
             <div className="main-left"></div>
@@ -52,15 +51,15 @@ const EventDetails = () => {
                     <form  >
                         <div className="event-inputs">
                             <fieldset className="event-details-fieldset">
-                                <legend data-trans="when">When</legend>
-                                <label className="event-label">{t('eventDate')} &#160;<span>{(langDir === "rtl") ?  t(`${format(currEvent.date,"dd-MM-yyyy")}`) :  t(`${format(currEvent.date,"yyyy-MM-dd")}`) }</span></label>
+                                <legend className="event-details-legend">{t('when')}</legend>
+                                <label className="event-label">{t('eventDate')} &#160;<span>{(langDir === "rtl") ? t(`${format(currEvent.date, "dd-MM-yyyy")}`) : t(`${format(currEvent.date, "yyyy-MM-dd")}`)}</span></label>
                                 {/* <label className="event-label"></label> */}
 
                                 <label className="event-label">{t('eventTime')} &#160;{currEvent.time}</label>
                             </fieldset>
 
                             <fieldset className="event-details-fieldset">
-                            <legend data-trans="when">Where</legend>
+                                <legend className="event-details-legend">{t('where')}</legend>
                                 <label className="event-label">{t('eventName')} &#160;<span>{currEvent.eventName}</span></label>
 
                                 <label className="event-label">{t('eventType')} &#160;{currEvent.eventType}</label>
@@ -73,7 +72,7 @@ const EventDetails = () => {
                             </fieldset>
 
                             <fieldset className="event-details-fieldset">
-                            <legend>{t('whoMuch')}</legend>
+                                <legend className="event-details-legend">{t('whoMuch')}</legend>
 
                                 <label className="event-label">{t('eventPricePerCard')} &#160;{currEvent.eventPricePerCard}</label>
 
@@ -83,16 +82,16 @@ const EventDetails = () => {
 
                                 <label className="event-label">{t('userRemark')} &#160;{currEvent.userRemark}</label>
                             </fieldset>
-                            {currEvent.user &&<fieldset className="event-details-fieldset" >
-                                <legend>{t('contactInformation')}</legend>
-                                {currEvent.user.firstName && <label className="event-label">{t('firstName')} &#160;{currEvent.user.firstName}</label>}
-                                {currEvent.user.lastName && <label className="event-label">{t('lastName')} &#160;{currEvent.user.lastName}</label>}
-                                {currEvent.user.mobile && <label className="event-label">{t('mobile')} &#160;{currEvent.user.mobile}</label>}
-                                {currEvent.user.email && <label className="event-label">{t('email')} &#160;{currEvent.user.email}</label>}
-                        
-                                {currEvent.user.email && <div className="contact-user">
-                                    <a className='contact-seller' href={`https://mail.google.com/mail/?view=cm&source=mailto&to=${currEvent.user.email}`} target="_blank">{t('contactSeller')}</a>
-                                </div>}
+                            {currEvent.user && <fieldset className="event-details-fieldset" >
+                                <legend className="event-details-legend">{t('contactInformation')}</legend>
+                                    {currEvent.user.firstName && <label className="event-label">{t('firstName')} &#160;{currEvent.user.firstName}</label>}
+                                    {currEvent.user.lastName && <label className="event-label">{t('lastName')} &#160;{currEvent.user.lastName}</label>}
+                                    {currEvent.user.mobile && <label className="event-label">{t('mobile')} &#160;{currEvent.user.mobile}</label>}
+                                    {currEvent.user.email && <label className="event-label">{t('email')} &#160;{currEvent.user.email}</label>}
+
+                                    {currEvent.user.email && <div className="contact-user">
+                                        <a className='contact-seller' href={`https://mail.google.com/mail/?view=cm&source=mailto&to=${currEvent.user.email}`} target="_blank">{t('contactSeller')}</a>
+                                    </div>}
                             </fieldset>}
 
                             <button className="event-btn" onClick={() => onGoBack()}>{t('return')}</button>

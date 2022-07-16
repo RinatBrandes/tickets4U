@@ -42,7 +42,7 @@
 
 
 #root {
-    height: 100vh;
+    // min-height: 200vh;
 }
 
 .app-container {
@@ -53,7 +53,7 @@
     // "header header header"
     // "main main main"
     // "footer footer footer";
-    height: 100vh;
+    // min-height: 200vh;
 
     .header-container {
         background-color: $gray;
@@ -117,6 +117,6 @@
 }
 
 .main-layout{
-    margin: auto;
-    max-width: 800px;
+    // margin: auto;
+    // max-width: 800px;
 }

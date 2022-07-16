@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { userService  } from '../services/user.service'
+import { userService } from '../services/user.service'
 import { showErrorMsg } from '../services/event-bus.service.js'
 import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
@@ -11,7 +11,7 @@ import { useTranslation } from 'react-i18next'
 const ForgottenPassword = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const [credentials, setCredentials] = useState({ email: ''})
+    const [credentials, setCredentials] = useState({ email: '' })
     const { t } = useTranslation()
 
 
@@ -24,12 +24,12 @@ const ForgottenPassword = () => {
 
     const handleSubmit = (event) => {
         try {
-            event.preventDefault();
-            const data = new FormData(event.currentTarget);
+            event.preventDefault()
+            const data = new FormData(event.currentTarget)
             const userInfo = {
-                email: data.get('email')                
+                email: data.get('email')
             }
-console.log('userInfo',userInfo )
+            console.log('userInfo', userInfo)
             userService.sendResetEmail(userInfo)
             // dispatch(getLoggedinUser())
             navigate(-1)
@@ -51,7 +51,7 @@ console.log('userInfo',userInfo )
                         <input className="forgot-pass-input" type="email" name="email" value={credentials.email} onChange={handleChange} required /></label>
 
                     <button className="forgot-pass-btn">{t('send')}</button>
-                  
+
                 </div>
             </form>
         </section>

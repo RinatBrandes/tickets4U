@@ -14,9 +14,11 @@ import format from 'date-fns/format'
 const EventEdit = () => {
     const { t } = useTranslation()
     const { loggedInUser } = useSelector((storeState) => storeState.userModule)
-    const initialEvent  = {date: '', time: '', eventName: '', eventType: '', placeName: '',eventCity: '', eventArea: '', user_id: loggedInUser._id,
-        eventPricePerCard: 0, ticketCount: '', eventStatus: 'new', createdAt: Date.now(), closeDate: null, userRemark: '', systemRemark: ''}
-    
+    const initialEvent = {
+        date: '', time: '', eventName: '', eventType: '', placeName: '', eventCity: '', eventArea: '', user_id: loggedInUser._id,
+        eventPricePerCard: 0, ticketCount: '', eventStatus: 'new', createdAt: Date.now(), closeDate: null, userRemark: '', systemRemark: ''
+    }
+
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const { eventId } = useParams()
@@ -32,11 +34,11 @@ const EventEdit = () => {
             const selectedEvent = await eventService.getById(eventId)
             setCurrEvent(selectedEvent)
         }
-        
-       
+
+
         const types = eventService.getEventTypes()
         setEventTypes(types)
-        
+
         if (eventId) {
             fetchEvent()
             setIsNewEvent(false)
@@ -46,22 +48,23 @@ const EventEdit = () => {
         }
     }, [eventId])
 
-  
-    
+
+
     const handleChange = (event) => {
         let value = event.target.value
-        const name = event.target.name;
-        if(name === 'eventType' && (value === 'בחר' || value === 'select')) value = ''
+        const name = event.target.name
+        if (name === 'eventType' && (value === 'בחר' || value === 'select')) value = ''
+        if (name === 'date') value =new Date(value)
         setCurrEvent({ ...currEvent, [name]: value })
     }
 
     const handleSubmit = (event) => {
-        event.preventDefault();
-        const data = new FormData(event.currentTarget);
-      console.log('data.get(date)', data.get('date'))
-      console.log('utilService.toTimestamp(data.get(date))',utilService.toTimestamp(data.get('date')) )
-      console.log('new date', new Date())
-      console.log('date now', Date.now())
+        event.preventDefault()
+        const data = new FormData(event.currentTarget)
+        console.log('data.get(date)', data.get('date'))
+        console.log('utilService.toTimestamp(data.get(date))', utilService.toTimestamp(data.get('date')))
+        console.log('new date', new Date())
+        console.log('date now', Date.now())
         const currEventInfo = {
             date: utilService.toTimestamp(data.get('date')),
             time: data.get('time'),
@@ -79,14 +82,15 @@ const EventEdit = () => {
             userRemark: data.get('userRemark'),
             systemRemark: ''
         }
-console.log('', currEventInfo.date)
+        console.log('', currEventInfo.date)
         if (!isNewEvent) currEventInfo._id = eventId
         console.log('currEventInfo', currEventInfo)
         dispatch(addEvent(currEventInfo, isNewEvent))
         if (isNewEvent) socketService.emit('addedEvent', currEventInfo)
         navigate(-1)
     }
-console.log('currEvent',currEvent )
+    if(!currEvent.date) return <h1>"Loading..."</h1>
+    console.log('currEvent', currEvent)
     return (
         <section className="main-container">
             <div className="main-left"></div>
@@ -97,18 +101,18 @@ console.log('currEvent',currEvent )
                     </div>
                     <form onSubmit={handleSubmit} >
                         <div className="event-inputs">
-                            
+
                             <label className="event-label"><span>{t('eventDate')}</span>
-                            <input className="event-input" type="date" name="date" value={currEvent.date}  onChange={(ev) => handleChange(ev)} required /></label>
-                            {/* <input className="event-input" type="date" name="date" value={t(`${format(currEvent.date,"yyyy-MM-dd")}`)}  onChange={(ev) => handleChange(ev)} required /></label> */}
-                            
+                                {/* <input className="event-input" type="date" name="date" value={currEvent.date} onChange={(ev) => handleChange(ev)} required /></label> */}
+                            <input className="event-input" type="date" name="date" value={format(currEvent.date,"yyyy-MM-dd")}  onChange={(ev) => handleChange(ev)} required /></label>
+
 
                             <label className="event-label"><span>{t('eventTime')}</span>
-                            <input className="event-input" type="time" name="time" value={currEvent.time} onChange={(ev) => handleChange(ev)} required /></label>
+                                <input className="event-input" type="time" name="time" value={currEvent.time} onChange={(ev) => handleChange(ev)} required /></label>
 
-                            
+
                             <label className="event-label"><span>{t('eventName')} </span>
-                            <input className="event-input" type="text" name="eventName" value={currEvent.eventName} onChange={(ev) => handleChange(ev)} required /></label>
+                                <input className="event-input" type="text" name="eventName" value={currEvent.eventName} onChange={(ev) => handleChange(ev)} required /></label>
 
                             {currEvent._id && <label className="event-label">{t('eventStatus')}</label>}
                             {currEvent._id && <select onChange={(ev) => handleChange(ev)} className="event-input" value={currEvent.eventStatus} name="eventStatus" required>
@@ -121,13 +125,13 @@ console.log('currEvent',currEvent )
                                 {eventTypes.map(type =>
                                     <option value={type === 'Select' ? '' : type} data-trans={type} key={type} >{t(`${type}`)}</option>
                                 )}
-                            </select>                                                                                       
+                            </select>
 
                             <label className="event-label"><span>{t('placeName')}</span>
-                            <input className="event-input" type="text" name="placeName" value={currEvent.placeName} onChange={(ev) => handleChange(ev)} /></label>
+                                <input className="event-input" type="text" name="placeName" value={currEvent.placeName} onChange={(ev) => handleChange(ev)} /></label>
 
                             <label className="event-label"><span>{t('eventCity')}</span>
-                            <input className="event-input" type="text" name="eventCity" value={currEvent.eventCity} onChange={(ev) => handleChange(ev)} /></label>                                                                 
+                                <input className="event-input" type="text" name="eventCity" value={currEvent.eventCity} onChange={(ev) => handleChange(ev)} /></label>
 
                             <label className="event-label">{t('eventArea')}</label>
                             <select onChange={(ev) => handleChange(ev)} className="event-input" value={currEvent.eventArea} name="eventArea" required>
@@ -142,26 +146,26 @@ console.log('currEvent',currEvent )
 
 
                             <label className="event-label"><span>{t('eventPricePerCard')}</span>
-                            <input className="event-input" type="number" step=".01" name="eventPricePerCard" value={currEvent.eventPricePerCard} onChange={(ev) => handleChange(ev)} required /></label>
+                                <input className="event-input" type="number" step=".01" name="eventPricePerCard" value={currEvent.eventPricePerCard} onChange={(ev) => handleChange(ev)} required /></label>
 
 
                             <label className="event-label"><span>{t('ticketCount')}</span>
-                            <input className="event-input" type="number" name="ticketCount" min={0} max={10} value={currEvent.ticketCount} onChange={(ev) => handleChange(ev)} required /></label>
+                                <input className="event-input" type="number" name="ticketCount" min={0} max={10} value={currEvent.ticketCount} onChange={(ev) => handleChange(ev)} required /></label>
 
                             <label className="event-label"><span>{t('ticketPlace')}</span>
-                            <input className="event-input" type="test" name="ticketPlace"  value={currEvent.ticketPlace} onChange={(ev) => handleChange(ev)} placeholder={t('ticketPlaceExp')} /></label>
-                            
+                                <input className="event-input" type="test" name="ticketPlace" value={currEvent.ticketPlace} onChange={(ev) => handleChange(ev)} placeholder={t('ticketPlaceExp')} /></label>
+
                             <label className="event-label"><span>{t('userRemark')}</span>
-                            <textarea className="event-input" type="number" name="userRemark" rows={5} cols={10} value={currEvent.userRemark} onChange={(ev) => handleChange(ev)} /></label>
+                                <textarea className="event-input" type="number" name="userRemark" rows={5} cols={10} value={currEvent.userRemark} onChange={(ev) => handleChange(ev)} /></label>
 
 
                             <button className="event-btn">{t('save')}</button>
                         </div>
                     </form>
                 </div>
-            </div>    
-        <div className="main-right"></div>
-    </section>    
+            </div>
+            <div className="main-right"></div>
+        </section>
     )
 
 }
