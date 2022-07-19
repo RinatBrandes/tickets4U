@@ -1,10 +1,88 @@
-
-.event-details-fieldset {
-    display: flex;
-    flex-direction: column;
-    border: 1px solid $red;
+.event-details-main {
+    // height: 73vh;
+}
+.event-details-title {
+    font-family: inter-extralight;
+    font-size: 28px;
+    margin-top: 1em;
 }
 
-.event-details-legend {
-    color: $red;
+.event-details-container {
+    width: 100%;
+    font-family: inter-extralight;
+    background: $gray;
+    color: $white;
+    border-radius: 40px;
+    box-shadow: 0 2px 5px rgb(175, 175, 175);
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2em;
+    .event-details-note-modal {
+        display: flex;
+        padding: 5%;
+        flex-direction: column;
+   
+        .event-name {
+            font-size: 24px;
+            // padding-inline-start: 2em;
+        }
+
+        
+        .event-details-content {
+            display: flex;
+            // line-height: 2.0em;
+            gap: 3em;
+            font-size: 20px;
+
+            .event-details-right {
+                display: flex;
+                flex-direction: column;
+                // padding-inline-start: 2em;
+
+                .event-details-place {
+                    display: flex;
+                    margin-top: 1em;
+                }
+                .event-details-ticket {
+                    margin-top: 0.5em;
+                    display: flex;
+                    flex-direction: column;
+                   
+                }
+                .event-details-smaller-txt {
+                    font-size: 16px;                    
+                }
+                .bottom {
+                    margin-bottom: 1em;
+                }
+            }
+
+            .event-details-left {
+                display: flex;
+                flex-direction: column;
+                // padding-inline-start: 2em;
+
+                .contact-seller {
+                    color: $white;
+                }
+            }
+
+        }
+    }
+}
+
+
+.event-details-btn {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 1em;
+    .event-btn {
+        width: 15em;
+        background: #D9D9D9;
+        border-radius: 20px 20px;
+        font-family: inter-extralight;
+        color: #3A4750;
+        border: 0;
+        min-height: 25px;
+    }
 }

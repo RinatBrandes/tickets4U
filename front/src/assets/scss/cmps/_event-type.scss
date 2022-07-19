@@ -1,14 +1,15 @@
 .event-types-container {
     // display: flex;
     display: grid;    
-    grid-template-columns: repeat( auto-fit, minmax(40px, 1fr) );
+    grid-template-columns: repeat( auto-fit, minmax(100px, 1fr) );
     margin: 20px 0;
     justify-content: center;
+    align-items: center;
     cursor: pointer;
 }
 .types-card {
     display: flex;
-    align-items: center;
+    // align-items: center;
     gap: 10px;
     // border-radius: 5px;
     
@@ -16,6 +17,7 @@
 .types-wrapper {
     display: flex;
     justify-content: center;
+    align-items: center;
     width: 60px;
     height: 60px;
     border-radius: 50%;
@@ -23,37 +25,59 @@
 }
 .type-details {
     // margin: unset;
-    padding: 5px;
     // color: $white;
     // box-shadow: 0 2px 5px rgb(175 175 175);       
+    padding: 5px;
     width: 80%;
-    // height: 100px;
+    height: 80%;
     // filter: invert(99%) sepia(2%) saturate(4%) hue-rotate(136deg) brightness(104%) contrast(100%);
     }
 
 
-    @media screen  and (max-width: 1000px) {
-        .types-wrapper {
-            width: 50px;
-            height: 50px;
-        }
-     
-                
-    }
+    // @media screen  and (max-width: 1000px) {
+    //     .event-types-container {         
+            
+    //         // grid-template-columns: repeat( auto-fit, minmax(55px, 1fr) );
+    //         .types-wrapper {
+    //             width: 55px;
+    //             height: 55px;
+    //             .type-details {
+    //             padding: 4px;
+    //             width: 70%;
+    //             height: 70%;
+    //             }
+    //         }
+    //     }
+    // }
 
-    @media screen  and (max-width: 700px) {
-        .types-wrapper {
-            width: 45px;
-            height: 45px;
-        }
-     
-    }
+    // @media screen  and (max-width: 840px) {
+    //     .event-types-container {         
+            
+    //         // grid-template-columns: repeat( auto-fit, minmax(50px, 1fr) );
+    //         .types-wrapper {
+    //             width: 50px;
+    //             height: 50px;
+    //             .type-details {
+    //             width: 75%;
+    //             height: 75%;
+    //             }
+    //         }
+    //     }
+    // }
 
-    @media screen  and (max-width: 600px) {
-        .types-wrapper {
-            width: 40px;
-            height: 40px;
-        }
-      
+    // @media screen  and (max-width: 780px) {
+    //     .event-types-container {         
+            
+    //         // grid-template-columns: repeat( auto-fit, minmax(45px, 1fr) );
+    //         .types-wrapper {
+    //             width: 45px;
+    //             height: 45px;
+    //             .type-details {
+    //             padding: 3px;
+    //             width: 60%;
+    //             height: 60%;
+    //             }
+    //         }
+    //     }
                 
-    }
+    // }

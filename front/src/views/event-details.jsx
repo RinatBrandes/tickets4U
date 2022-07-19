@@ -40,66 +40,67 @@ const EventDetails = () => {
 
 
     if (!currEvent) return <h1>Loading</h1>
+    let price
+    if (langDir === "rtl") price = currEvent.eventPricePerCard.toLocaleString('he-IL', { style: 'currency', currency: 'ILS' })
+    else price = currEvent.eventPricePerCard.toLocaleString('en-US', { style: 'currency', currency: 'USD' })
     return (
         <section className="main-container">
             <div className="main-left"></div>
+
             <div className="main-main">
-                <div className="event-container">
+                <div className="event-details-main">
                     <div className="event-title" >
-                        <h1 data-trans="eventDetails">Event </h1>
+                        <p className="event-details-title">{t('event-details')} </p>
                     </div>
-                    <form  >
-                        <div className="event-inputs">
-                            <fieldset className="event-details-fieldset">
-                                <legend className="event-details-legend">{t('when')}</legend>
-                                <label className="event-label">{t('eventDate')} &#160;<span>{(langDir === "rtl") ? t(`${format(currEvent.date, "dd-MM-yyyy")}`) : t(`${format(currEvent.date, "yyyy-MM-dd")}`)}</span></label>
-                                {/* <label className="event-label"></label> */}
+                    <div className="event-details-container">
+                        <form className="event-details-note-modal">
+                            <div className="event-detailes-name-container">
+                                <label className="event-name">{currEvent.eventName}</label>
+                                <hr ></hr>
+                            </div>
 
-                                <label className="event-label">{t('eventTime')} &#160;{currEvent.time}</label>
-                            </fieldset>
+                            <div className="event-details-content">
+                                <div className="event-details-right">
+                                    {/* <legend className="event-details-legend">{t('where')}</legend> */}
+                                    <div className="event-details-place">
+                                        <label className="event-label">{currEvent.eventArea}&#160;-&#160;</label>
+                                        <label className="event-label">{currEvent.eventCity}&#160;-&#160; </label>
+                                        <label className="event-label">{currEvent.placeName}</label>
+                                    </div>
 
-                            <fieldset className="event-details-fieldset">
-                                <legend className="event-details-legend">{t('where')}</legend>
-                                <label className="event-label">{t('eventName')} &#160;<span>{currEvent.eventName}</span></label>
+                                    <div className="event-details-ticket">
+                                        <label className="event-details-label">{currEvent.ticketCount}  {currEvent.ticketCount === 1 ? t('ticket') : t('tickets')} {t('in')} {price}  {t('each')}</label>
+                                        {currEvent.ticketPlace && <label className="event-details-smaller-txt">{currEvent.ticketPlace}</label>}
+                                    </div>
 
-                                <label className="event-label">{t('eventType')} &#160;{currEvent.eventType}</label>
+                                    <div className="event-details-date">
+                                        <label className="event-label">{t(`${format(currEvent.date, 'EEEE')}`)} {currEvent.time} , {t(`${format(currEvent.date, 'dd')}`)} {t('in')}{langDir === "rtl" ? '' : '  '}{t(`${format(currEvent.date, 'MMMM')}`)}</label>
+                                    </div>
+                                    {currEvent.userRemark && <label className="event-details-smaller-txt bottom">{t('userRemark')} &#160;{currEvent.userRemark}</label>}                                    
+                                </div>
 
-                                <label className="event-label">{t('placeName')} &#160;{currEvent.placeName}</label>
-
-                                <label className="event-label">{t('eventCity')} &#160;{currEvent.eventCity}</label>
-
-                                <label className="event-label">{t('eventArea')} &#160;{currEvent.eventArea}</label>
-                            </fieldset>
-
-                            <fieldset className="event-details-fieldset">
-                                <legend className="event-details-legend">{t('whoMuch')}</legend>
-
-                                <label className="event-label">{t('eventPricePerCard')} &#160;{currEvent.eventPricePerCard}</label>
-
-                                <label className="event-label">{t('ticketCount')} &#160;{currEvent.ticketCount}</label>
-
-                                <label className="event-label">{t('ticketPlace')} &#160;{currEvent.ticketPlace}</label>
-
-                                <label className="event-label">{t('userRemark')} &#160;{currEvent.userRemark}</label>
-                            </fieldset>
-                            {currEvent.user && <fieldset className="event-details-fieldset" >
-                                <legend className="event-details-legend">{t('contactInformation')}</legend>
-                                    {currEvent.user.firstName && <label className="event-label">{t('firstName')} &#160;{currEvent.user.firstName}</label>}
-                                    {currEvent.user.lastName && <label className="event-label">{t('lastName')} &#160;{currEvent.user.lastName}</label>}
-                                    {currEvent.user.mobile && <label className="event-label">{t('mobile')} &#160;{currEvent.user.mobile}</label>}
-                                    {currEvent.user.email && <label className="event-label">{t('email')} &#160;{currEvent.user.email}</label>}
+                                <div className="event-details-left">
+                                    {currEvent.user.firstName && <label className="event-label">{currEvent.user.firstName} {currEvent.user.lastName}</label>}
+                                    {currEvent.user.mobile && <label className="event-label">{currEvent.user.mobile}</label>}
+                                    {currEvent.user.email && <label className="event-label">{currEvent.user.email}</label>}
 
                                     {currEvent.user.email && <div className="contact-user">
-                                        <a className='contact-seller' href={`https://mail.google.com/mail/?view=cm&source=mailto&to=${currEvent.user.email}`} target="_blank">{t('contactSeller')}</a>
+                                        <a className="contact-seller" href={`https://mail.google.com/mail/?view=cm&source=mailto&to=${currEvent.user.email}`} target="_blank">{t('contactSeller')}</a>
                                     </div>}
-                            </fieldset>}
+                                </div>
 
-                            <button className="event-btn" onClick={() => onGoBack()}>{t('return')}</button>
-                            {loggedInUser && <button className="event-btn" onClick={() => goToEdit()}>{t('update')}</button>}
-                        </div>
-                    </form>
+                            </div>
+
+                            <div className="event-details-btn">
+                                <button className="event-btn" onClick={() => onGoBack()}>{t('return')}</button>
+                                {loggedInUser && <button className="event-btn" onClick={() => goToEdit()}>{t('update')}</button>}
+                            </div>
+
+                        </form>
+                    </div>
                 </div>
             </div>
+
             <div className="main-right"></div>
         </section>
     )

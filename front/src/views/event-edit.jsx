@@ -16,7 +16,7 @@ const EventEdit = () => {
     const { loggedInUser } = useSelector((storeState) => storeState.userModule)
     const initialEvent = {
         date: '', time: '', eventName: '', eventType: '', placeName: '', eventCity: '', eventArea: '', user_id: loggedInUser._id,
-        eventPricePerCard: 0, ticketCount: '', eventStatus: 'new', createdAt: Date.now(), closeDate: null, userRemark: '', systemRemark: ''
+        eventPricePerCard: 0, ticketCount: '', eventStatus: 'new', createdAt: Date.now(), closeDate: null, userRemark: '', systemRemark: '', ticketPlace: ''
     }
 
     const dispatch = useDispatch()
@@ -61,10 +61,10 @@ const EventEdit = () => {
     const handleSubmit = (event) => {
         event.preventDefault()
         const data = new FormData(event.currentTarget)
-        console.log('data.get(date)', data.get('date'))
-        console.log('utilService.toTimestamp(data.get(date))', utilService.toTimestamp(data.get('date')))
-        console.log('new date', new Date())
-        console.log('date now', Date.now())
+        // console.log('data.get(date)', data.get('date'))
+        // console.log('utilService.toTimestamp(data.get(date))', utilService.toTimestamp(data.get('date')))
+        // console.log('new date', new Date())
+        // console.log('date now', Date.now())
         const currEventInfo = {
             date: utilService.toTimestamp(data.get('date')),
             time: data.get('time'),
@@ -80,7 +80,8 @@ const EventEdit = () => {
             createdAt: Date.now(),
             closeDate: null,
             userRemark: data.get('userRemark'),
-            systemRemark: ''
+            systemRemark: '',
+            ticketPlace: data.get('ticketPlace')
         }
         console.log('', currEventInfo.date)
         if (!isNewEvent) currEventInfo._id = eventId
@@ -90,7 +91,7 @@ const EventEdit = () => {
         navigate(-1)
     }
     if(!currEvent.date) return <h1>"Loading..."</h1>
-    console.log('currEvent', currEvent)
+    // console.log('currEvent', currEvent)
     return (
         <section className="main-container">
             <div className="main-left"></div>
@@ -136,12 +137,12 @@ const EventEdit = () => {
                             <label className="event-label">{t('eventArea')}</label>
                             <select onChange={(ev) => handleChange(ev)} className="event-input" value={currEvent.eventArea} name="eventArea" required>
                                 <option value="">{t('Select')}</option>
-                                <option value="south">{t('south')}</option>
-                                <option value="haifa">{t('haifa')}</option>
-                                <option value="jerusalem">{t('jerusalem')}</option>
-                                <option value="center-and-humiliation">{t('center_humiliation')}</option>
-                                <option value="north">{t('north')}</option>
-                                <option value="sharon">{t('sharon')}</option>
+                                <option value={t('south')}>{t('south')}</option>
+                                <option value={t('haifa')}>{t('haifa')}</option>
+                                <option value={t('jerusalem')}>{t('jerusalem')}</option>
+                                <option value={t('center_humiliation')}>{t('center_humiliation')}</option>
+                                <option value={t('north')}>{t('north')}</option>
+                                <option value={t('sharon')}>{t('sharon')}</option>
                             </select>
 
 

@@ -57,9 +57,9 @@ export const EventPreview = ({ event }) => {
                     <div className="event-type-container">
                         <img src={Icons[event.eventType]} className="event-type-img"></img>
                     </div>
-                    <p className="preview-txt">{event.eventName.substr(0, 12)}... </p>
+                    <p className="preview-txt">{event.eventName.substr(0, 20)}... </p>
                     <p className="event-preview-span">{event.eventCity}</p>
-                    <p className="event-preview-span">{pricePerCard}</p>
+                    <p className="event-preview-span">{pricePerCard} &#160; {t('perCard')}</p>
 
                 </div>
                 <div className="preview-second">
@@ -73,7 +73,7 @@ export const EventPreview = ({ event }) => {
                 </div>
                 {/* <p className="event-preview-span">{event.date} &#160;</p> <p className="event-preview-txt" data-trans="eventDate">תאריך הארוע: </p><br></br> */}
                 <div className="preview-third">
-                    <p className="event-preview-month">{t(`${format(event.date, 'dd')}`)}</p>
+                    <p className="event-preview-month">{t(`${format(event.date, 'dd')}`)}&#160;</p>
                     <p className="event-preview-month">{t(`${format(event.date, 'MMMM')}`)}</p>
                 </div>
             </div>

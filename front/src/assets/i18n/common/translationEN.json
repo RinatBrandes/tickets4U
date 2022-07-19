@@ -24,7 +24,7 @@
     "eventCity" : "Event city name",
     "eventPricePerCard" : "Price",
     "ticketCount" : "Count",
-    "userRemark": "Remarks / Extra details",
+    "userRemark": "Extra details:",
     "eventArea" : "Event erea",
     "eventTime" : "Event hour",
     "return"    : "Go Back",
@@ -100,5 +100,11 @@
     "November"  : "November",
     "December"  : "December",
     "ticketPlace" : "Ticket place",
-    "ticketPlaceExp" : "Enter the sites number id there are..."
+    "ticketPlaceExp" : "Enter the sites number id there are...",
+    "perCard" : "Per card",
+    "event-details": "Event Details",
+    "tickets" : "tickets",
+    "ticket" : "ticket",
+    "in": "in",
+    "each": "each"
 }

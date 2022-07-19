@@ -7,7 +7,7 @@ import { showErrorMsg } from '../services/event-bus.service.js'
 import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import ForgottenPassword from './forgotten-password'
-
+import logo_page from '../assets/img/logo_page.svg'
 
 const Login = () => {
     const dispatch = useDispatch()
@@ -41,17 +41,19 @@ const Login = () => {
 
     return (
         <section className="login-container">
+                {/* <div className="logo-page-container">
+                    <img className="logo-page" src={logo_page}></img>
+                </div> */}
             <div className="login-wrapper">
+
                 <div className="login-title">
                     <h1>{t('login')}</h1>
                 </div>
                 <form className="login-form" onSubmit={handleSubmit} >                    
 
-                        <label className="login-label"><span>{t('userName')}</span>
-                            <input className="login-input" type="text" name="username" value={credentials.username} onChange={handleChange} required /></label>
-
-                        <label className="login-label"><span>{t('password')}</span>
-                            <input className="login-input" type="password" name="password" value={credentials.password} onChange={handleChange} autoComplete="off" required /></label>
+                    <input className="login-input" type="text" name="username" value={credentials.username} onChange={handleChange} placeholder={t('userName')} required />
+                                        
+                    <input className="login-input" type="password" name="password" value={credentials.password} onChange={handleChange} autoComplete="off" placeholder={t('password')} required />
 
                         <button className="login-btn">{t('login')}</button>
 

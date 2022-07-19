@@ -75,48 +75,39 @@ const Signup = () => {
 
     return (
         <section className="signup-container">
+            {/* <div className="signup-wrapper"> */}
             <div className="signup-title">
                 <h1>{t('signup')}</h1>
             </div>
-            <form onSubmit={handleSubmit} >
-                <div className="signup-input">
-                    <div className="signup-small-container">
-                        <label className="signup-label"><span>{t('firstName')}</span>
-                            <input className="signup-input" type="text" name="firstName" value={user.firstName} onChange={(ev) => handleChange(ev)} required /></label>
-
-
-                        <label className="signup-label"><span>{t('lastName')}</span>
-                            <input className="signup-input" type="text" name="lastName" value={user.filasttName} onChange={(ev) => handleChange(ev)} required /></label>
+            <form className="signup-form" onSubmit={handleSubmit} >
+                {/* <div className="signup-inputs"> */}
+                    <div className="signup-small-container-right">                        
+                            <input className="signup-input" type="text" name="firstName" value={user.firstName} onChange={(ev) => handleChange(ev)} placeholder={t('firstName')} required />                        
+                            <input className="signup-input" type="password" name="password" value={user.password} onChange={(ev) => handleChange(ev)} placeholder={t('password')} required />
+                            <input className="signup-input" type="phone" name="mobile" value={user.mobile} onChange={(ev) => handleChange(ev)} placeholder={t('mobile')}/> 
+                        <div className="approvedEmail-container">
+                            <input className="signup-input signup-checkbox-input" type="checkbox" name="approvedEmail" value={user.approvedEmail} onChange={(ev) => handleChange(ev)}/>
+                            <label className="signup-label">{t('approvedEmail')}</label>
+                        </div>
                     </div>
 
-                    <div className="signup-small-container">
-                        <label className="signup-label"><span>{t('password')}</span>
-                            <input className="signup-input" type="password" name="password" value={user.password} onChange={(ev) => handleChange(ev)} required /></label>
-
-                        <label className="signup-label"><span>{t('userName')}</span>
-                            <input className="signup-input" type="text" name="username" value={user.username} onChange={(ev) => handleChange(ev)} required /></label>
+                    <div className="signup-small-container-left">
+                            <input className="signup-input" type="text" name="lastName" value={user.lastName} onChange={(ev) => handleChange(ev)} placeholder={t('lastName')} required />
+                            <input className="signup-input" type="text" name="username" value={user.username} onChange={(ev) => handleChange(ev)} placeholder={t('userName')} required />
+                            <input className="signup-input" type="email" name="email" value={user.email} onChange={(ev) => handleChange(ev)} placeholder={t('email')}/>
+                        <div className="approvedMobile-container">
+                            <input className="signup-input signup-checkbox-input input-checkbox" type="checkbox" name="approvedMobile" value={user.approvedMobile} onChange={(ev) => handleChange(ev)} />                        
+                            <label className="signup-label">{t('approvedMobile')}</label>
+                        </div>
                     </div>
 
-                    <div className="signup-small-container">
-                        <label className="signup-label"><span>{t('email')}</span>
-                            <input className="signup-input" type="email" name="email" value={user.email} onChange={(ev) => handleChange(ev)} /></label>
-
-                        <label className="signup-label"><span>{t('mobile')}</span>
-                            <input className="signup-input" type="phone" name="mobile" value={user.mobile} onChange={(ev) => handleChange(ev)} /> </label>
+               
+                    <div className="signup-btn-container">
+                        <button className="signup-btn">{t('signup')}</button>
                     </div>
-
-                    <div className="signup-small-container">
-                        <label className="signup-label signup-checkbox-label"><span>{t('approvedMobile')}</span>
-                            <input className="signup-input signup-checkbox-input" type="checkbox" name="approvedMobile" value={user.approvedMobile} onChange={(ev) => handleChange(ev)} /></label>
-
-                        <label className="signup-label signup-checkbox-label"><span>{t('approvedEmail')}</span>
-                            <input className="signup-input signup-checkbox-input" type="checkbox" name="approvedEmail" value={user.approvedEmail} onChange={(ev) => handleChange(ev)} /></label>
-                    </div>
-
-
-                    <button className="signup-btn">{t('signup')}</button>
-                </div>
+                {/* </div> */}
             </form>
+            {/* </div> */}
         </section>
     )
 }

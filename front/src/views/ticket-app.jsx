@@ -113,7 +113,7 @@ const TicketApp = () => {
             <div className="main-left"></div>
             <div className="main-main">
                 <EventType showEventByType={showEventByType} />
-                <EventFilter filterBy={filterBy} handleChange={handleChange} refreshEvent={refreshEvent} clearSearch={clearSearch} onChange={onChange} setValue={setValue} value={value} setIsOpen={setIsOpen} isOpen={isOpen} openCalendar={openCalendar} onFocusChange={onFocusChange} />
+                {/* <EventFilter filterBy={filterBy} handleChange={handleChange} refreshEvent={refreshEvent} clearSearch={clearSearch} onChange={onChange} setValue={setValue} value={value} setIsOpen={setIsOpen} isOpen={isOpen} openCalendar={openCalendar} onFocusChange={onFocusChange} /> */}
                 <EventList events={events} />
             </div>
             <div className="main-right"></div>
