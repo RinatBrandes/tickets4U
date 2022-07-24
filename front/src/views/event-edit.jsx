@@ -14,8 +14,9 @@ import format from 'date-fns/format'
 const EventEdit = () => {
     const { t } = useTranslation()
     const { loggedInUser } = useSelector((storeState) => storeState.userModule)
+    const now = new Date()
     const initialEvent = {
-        date: '', time: '', eventName: '', eventType: '', placeName: '', eventCity: '', eventArea: '', user_id: loggedInUser._id,
+        date: now, time: now.getTime(), eventName: '', eventType: t('Select'), placeName: '', eventCity: '', eventArea: '', user_id: loggedInUser._id,
         eventPricePerCard: 0, ticketCount: '', eventStatus: 'new', createdAt: Date.now(), closeDate: null, userRemark: '', systemRemark: '', ticketPlace: ''
     }
 
@@ -52,10 +53,11 @@ const EventEdit = () => {
 
     const handleChange = (event) => {
         let value = event.target.value
-        const name = event.target.name
+        const name = event.target.name        
         if (name === 'eventType' && (value === 'בחר' || value === 'select')) value = ''
-        if (name === 'date') value =new Date(value)
-        setCurrEvent({ ...currEvent, [name]: value })
+        if (name === 'date') value = new Date(value)       
+        setCurrEvent({ ...currEvent, [name]: value })        
+        
     }
 
     const handleSubmit = (event) => {
@@ -90,78 +92,79 @@ const EventEdit = () => {
         if (isNewEvent) socketService.emit('addedEvent', currEventInfo)
         navigate(-1)
     }
-    if(!currEvent.date) return <h1>"Loading..."</h1>
-    // console.log('currEvent', currEvent)
+
+    if(!currEvent.date && currEvent._id)  return <h1>"Loading..."</h1>
+    
     return (
         <section className="main-container">
             <div className="main-left"></div>
             <div className="main-main">
-                <div className="event-container">
-                    <div className="event-title">
+                    <div className="event-edit-title">
                         <h1 >{eventId ? t('updateEvent') : t('newEvent')}</h1>
                     </div>
-                    <form onSubmit={handleSubmit} >
-                        <div className="event-inputs">
+                <div className="event-edit-container">
+                    <form className="event-edit-form" onSubmit={handleSubmit} >
+                        {/* <div className="event-inputs"> */}
+                            <div className="event-edit-titles">
+                                <label className="event-label"><span>{t('eventDate')}</span></label>
+                                <label className="event-label inline"><span>{t('eventTime')}</span></label>
+                                <label className="event-label"><span>{t('eventName')} </span></label>
 
-                            <label className="event-label"><span>{t('eventDate')}</span>
-                                {/* <input className="event-input" type="date" name="date" value={currEvent.date} onChange={(ev) => handleChange(ev)} required /></label> */}
-                            <input className="event-input" type="date" name="date" value={format(currEvent.date,"yyyy-MM-dd")}  onChange={(ev) => handleChange(ev)} required /></label>
+                                {currEvent._id && <label className="event-label">{t('eventStatus')}</label>}
 
+                                <label className="event-label">{t('eventType')}</label>
 
-                            <label className="event-label"><span>{t('eventTime')}</span>
-                                <input className="event-input" type="time" name="time" value={currEvent.time} onChange={(ev) => handleChange(ev)} required /></label>
+                                <label className="event-label"><span>{t('placeName')}</span></label>
+                                <label className="event-label"><span>{t('eventCity')}</span></label>
+                                <label className="event-label">{t('eventArea')}</label>
+                                <label className="event-label"><span>{t('eventPricePerCard')}</span></label>
+                                <label className="event-label"><span>{t('ticketCount')}</span></label>
 
+                                <label className="event-label"><span>{t('ticketPlace')}</span></label>
+                                <label className="event-label"><span>{t('userRemark')}</span></label>
+                            </div>
 
-                            <label className="event-label"><span>{t('eventName')} </span>
-                                <input className="event-input" type="text" name="eventName" value={currEvent.eventName} onChange={(ev) => handleChange(ev)} required /></label>
+                            <div className="event-edit-content">
+                                <input className="event-edit-input" type="date" name="date" value={format(currEvent.date,"yyyy-MM-dd")}  onChange={(ev) => handleChange(ev)} required />
+                                <input className="event-edit-input" type="time" name="time" value={currEvent.time} onChange={(ev) => handleChange(ev)} required />
+                                <input className="event-edit-input" type="text" name="eventName" value={currEvent.eventName} onChange={(ev) => handleChange(ev)} required />
 
-                            {currEvent._id && <label className="event-label">{t('eventStatus')}</label>}
-                            {currEvent._id && <select onChange={(ev) => handleChange(ev)} className="event-input" value={currEvent.eventStatus} name="eventStatus" required>
-                                <option value="new">{t('new')}</option>
-                                <option value="close">{t('close')}</option>
-                            </select>}
+                                {currEvent._id && <select onChange={(ev) => handleChange(ev)} className="event-edit-select" value={currEvent.eventStatus} name="eventStatus" required>
+                                    <option value="new">{t('new')}</option>
+                                    <option value="close">{t('close')}</option>
+                                </select>}
 
-                            <label className="event-label">{t('eventType')}</label>
-                            <select onChange={handleChange} className="event-input" value={currEvent.eventType} name="eventType" required>
-                                {eventTypes.map(type =>
-                                    <option value={type === 'Select' ? '' : type} data-trans={type} key={type} >{t(`${type}`)}</option>
-                                )}
-                            </select>
+                                <select onChange={(ev) => handleChange(ev)} className="event-edit-select" value={currEvent.eventType} name="eventType" required>
+                                    {eventTypes.map(type =>
+                                        <option value={type === 'Select' ? '' : type}  key={type} >{t(`${type}`)}</option>
+                                    )}
+                                </select>
+                                
+                                <input className="event-edit-input" type="text" name="placeName" value={currEvent.placeName} onChange={(ev) => handleChange(ev)} />
+                                <input className="event-edit-input" type="text" name="eventCity" value={currEvent.eventCity} onChange={(ev) => handleChange(ev)} />
+                                <select onChange={(ev) => handleChange(ev)} className="event-edit-select" value={currEvent.eventArea} name="eventArea" required>
+                                    <option value={t('select')}>{t('Select')}</option>
+                                    <option value={t('south')}>{t('south')}</option>
+                                    <option value={t('haifa')}>{t('haifa')}</option>
+                                    <option value={t('jerusalem')}>{t('jerusalem')}</option>
+                                    <option value={t('center_humiliation')}>{t('center_humiliation')}</option>
+                                    <option value={t('north')}>{t('north')}</option>
+                                    <option value={t('sharon')}>{t('sharon')}</option>
+                                </select>
+                            
+                                <input className="event-edit-input" type="number" step=".01" name="eventPricePerCard" value={currEvent.eventPricePerCard} onChange={(ev) => handleChange(ev)} required />
+                                <input className="event-edit-input" type="number" name="ticketCount" min={0} max={10} value={currEvent.ticketCount} onChange={(ev) => handleChange(ev)} required />
 
-                            <label className="event-label"><span>{t('placeName')}</span>
-                                <input className="event-input" type="text" name="placeName" value={currEvent.placeName} onChange={(ev) => handleChange(ev)} /></label>
+                                <input className="event-edit-input" type="test" name="ticketPlace" value={currEvent.ticketPlace} onChange={(ev) => handleChange(ev)} placeholder={t('ticketPlaceExp')} />
+                                <textarea className="event-edit-txtarea" type="number" name="userRemark" rows={6} cols={10} value={currEvent.userRemark} onChange={(ev) => handleChange(ev)} />
+                            </div>
 
-                            <label className="event-label"><span>{t('eventCity')}</span>
-                                <input className="event-input" type="text" name="eventCity" value={currEvent.eventCity} onChange={(ev) => handleChange(ev)} /></label>
+                            <div className="event-edit-btn-container">
 
-                            <label className="event-label">{t('eventArea')}</label>
-                            <select onChange={(ev) => handleChange(ev)} className="event-input" value={currEvent.eventArea} name="eventArea" required>
-                                <option value="">{t('Select')}</option>
-                                <option value={t('south')}>{t('south')}</option>
-                                <option value={t('haifa')}>{t('haifa')}</option>
-                                <option value={t('jerusalem')}>{t('jerusalem')}</option>
-                                <option value={t('center_humiliation')}>{t('center_humiliation')}</option>
-                                <option value={t('north')}>{t('north')}</option>
-                                <option value={t('sharon')}>{t('sharon')}</option>
-                            </select>
+                                <button className="event-edit-btn">{t('save')}</button>
+                            </div>
 
-
-                            <label className="event-label"><span>{t('eventPricePerCard')}</span>
-                                <input className="event-input" type="number" step=".01" name="eventPricePerCard" value={currEvent.eventPricePerCard} onChange={(ev) => handleChange(ev)} required /></label>
-
-
-                            <label className="event-label"><span>{t('ticketCount')}</span>
-                                <input className="event-input" type="number" name="ticketCount" min={0} max={10} value={currEvent.ticketCount} onChange={(ev) => handleChange(ev)} required /></label>
-
-                            <label className="event-label"><span>{t('ticketPlace')}</span>
-                                <input className="event-input" type="test" name="ticketPlace" value={currEvent.ticketPlace} onChange={(ev) => handleChange(ev)} placeholder={t('ticketPlaceExp')} /></label>
-
-                            <label className="event-label"><span>{t('userRemark')}</span>
-                                <textarea className="event-input" type="number" name="userRemark" rows={5} cols={10} value={currEvent.userRemark} onChange={(ev) => handleChange(ev)} /></label>
-
-
-                            <button className="event-btn">{t('save')}</button>
-                        </div>
+                        {/* </div> */}
                     </form>
                 </div>
             </div>

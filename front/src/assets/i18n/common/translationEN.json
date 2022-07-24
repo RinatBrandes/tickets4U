@@ -24,7 +24,7 @@
     "eventCity" : "Event city name",
     "eventPricePerCard" : "Price",
     "ticketCount" : "Count",
-    "userRemark": "Extra details:",
+    "userRemark": "Extra details",
     "eventArea" : "Event erea",
     "eventTime" : "Event hour",
     "return"    : "Go Back",
