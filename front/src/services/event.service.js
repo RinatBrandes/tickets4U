@@ -1,6 +1,5 @@
 import { httpService } from './http.service'
 
-const eventType_he = ["בחר", "ספורט", "תאטרון", "סטנדאפ", "מוזיקה", "הרצאה", "קולנוע", "ילדים", "גיל הזהב", "קרקס", "אופנה", "מכון כושר", "פסטיבל", "סיורי אוכל", "סדנה", "אחר", "הכל"]
 const eventType = ["Select", "Sport", "Theater", "Music", "Cinema", "Children", "Seniors", "Fashion", "FoodTours", "Other"]
 // const eventType = ["Select","Sport","Theater","Standup","Music","Lecture","Cinema","Children","Seniors","Circus","Fashion","Gym","Festival","FoodTours","Workshop", "Other"]
 export const eventService = {

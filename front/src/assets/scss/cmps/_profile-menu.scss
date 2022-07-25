@@ -1,0 +1,48 @@
+.profile-menu {
+  font-family: inter-extralight;
+  position: absolute;
+  z-index: 9999;
+  background-color: $white;
+  border: 1px solid #dbdbdb;
+  border-radius: 3px;
+  inset-inline-start: 0px;
+  inset-block-start: 50px;
+  min-width: 140px;
+  padding: 5px 15px;
+
+  .menu-item {
+
+    padding: 10px 8px;
+    color: $red;
+    font-size: 1em;
+
+    &.sign {
+      cursor: pointer;
+    }
+
+    &:hover {
+      color: $gray;
+    }
+  }
+
+  .profile-logout-img {
+    width: 20%;
+    filter: invert(26%) sepia(75%) saturate(4578%) hue-rotate(348deg) brightness(84%) contrast(99%);
+  }
+
+  .logout {
+    width: 100%;
+    border-top: 1px solid rgb(187, 184, 184);
+    cursor: pointer;
+    padding: 10px 0;
+
+  }
+
+  .logout-menu {
+    display: flex;
+    gap: 10px;
+  }
+
+
+
+}

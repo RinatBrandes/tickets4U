@@ -45,7 +45,7 @@ export const EventType = ({ showEventByType }) => {
     return (
         <section className="event-types-container">
 
-            {/* <div className="types-contant"> */}
+
             <div className="types-card" name="eventType" >
                 {eventTypes.map(type => {
                     return (type !== 'בחר' && type !== 'Select') &&
@@ -57,8 +57,6 @@ export const EventType = ({ showEventByType }) => {
                 )}
             </div>
 
-
-            {/* </div> */}
         </section>
     )
 }

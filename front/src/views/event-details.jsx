@@ -1,19 +1,17 @@
 import * as React from 'react'
+import format from 'date-fns/format'
 import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { getById } from '../store/action/event.actions'
-// import { i18nService } from '../services/i18n-service'
 import { useTranslation } from 'react-i18next'
-import format from 'date-fns/format'
+import { getById } from '../store/action/event.actions'
 
 
 const EventDetails = () => {
     const { loggedInUser } = useSelector((storeState) => storeState.userModule)
     const { currEvent } = useSelector((storeState) => storeState.eventModule)
     const [langDir, setLangDir] = useState(document.dir)
-    // const { user } = useSelector((storeState) => storeState.userModule)
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const params = useParams()
@@ -61,7 +59,6 @@ const EventDetails = () => {
 
                             <div className="event-details-content">
                                 <div className="event-details-right">
-                                    {/* <legend className="event-details-legend">{t('where')}</legend> */}
                                     <div className="event-details-place">
                                         <label className="event-label">{currEvent.eventArea}&#160;-&#160;</label>
                                         <label className="event-label">{currEvent.eventCity}&#160;-&#160; </label>
@@ -76,7 +73,7 @@ const EventDetails = () => {
                                     <div className="event-details-date">
                                         <label className="event-label">{t(`${format(currEvent.date, 'EEEE')}`)} {currEvent.time} , {t(`${format(currEvent.date, 'dd')}`)} {t('in')}{langDir === "rtl" ? '' : '  '}{t(`${format(currEvent.date, 'MMMM')}`)}</label>
                                     </div>
-                                    {currEvent.userRemark && <label className="event-details-smaller-txt bottom">{t('userRemark')} &#160;{currEvent.userRemark}</label>}                                    
+                                    {currEvent.userRemark && <label className="event-details-smaller-txt bottom">{t('userRemark')}:&#160;{currEvent.userRemark}</label>}
                                 </div>
 
                                 <div className="event-details-left">

@@ -1,1 +1,0 @@
-["Sport", "Theater","Standup","Music","Lecture","Cinema","Children","Seniors","Circus","Fashion","Gym","Festival","Other","Food tours","Workshop"]

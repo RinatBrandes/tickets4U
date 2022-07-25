@@ -22,11 +22,11 @@
 //     @include for-narrow-layout {
 //         @include layoutGTC($break-narrow);
 //     }
-    
+
 //     @include for-normal-layout {
 //         @include layoutGTC($break-normal);
 //     }
-    
+
 //     @include for-wide-layout {
 //         @include layoutGTC($break-wide);
 //     }
@@ -47,64 +47,71 @@
 
 .app-container {
     display: grid;
-    grid-template-rows: 100px 1fr 50px;   
+    grid-template-rows: 100px 1fr 50px;
     // min-height: 200vh;
 
     .header-container {
-        background-color: $gray;    
+        background-color: $gray;
         grid-row: 1/2;
-        display: grid;       
-        grid-template-columns: $sides 1fr $sides;   
-        
+        display: grid;
+        grid-template-columns: $sides 1fr $sides;
+
         .header-left-side {
             grid-column: 1/2;
-            
+
         }
+
         .header-main {
             grid-column: 2/3;
         }
+
         .header-right-side {
             grid-column: 3/4;
         }
     }
 
-    .main-container {     
-        flex-grow: 1;    
+    .main-container {
+        flex-grow: 1;
         grid-row: 2/3;
-        display: grid;       
-        grid-template-columns: $sides 1fr $sides; 
+        display: grid;
+        grid-template-columns: $sides 1fr $sides;
+
         .main-left {
             grid-column: 1/2;
-        }  
+        }
+
         .main-main {
             grid-column: 2/3;
             border-radius: 2px;
-           
+
         }
+
         .main-right {
             grid-column: 3/4;
         }
     }
 
     .footer-container {
-        background-color: $gray;     
+        background-color: $gray;
         grid-row: 3/4;
-        display: grid;       
-        grid-template-columns: $sides 1fr $sides;  
-        
+        display: grid;
+        grid-template-columns: $sides 1fr $sides;
+
         .footer-left {
             grid-column: 1/2;
-        }  
+        }
+
         .footer-main {
             grid-column: 2/3;
         }
+
         .footer-right {
             grid-column: 3/3;
         }
     }
 }
 
-.main-layout{
+.main-layout {
     // margin: auto;
     // max-width: 800px;
 }

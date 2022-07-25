@@ -12,6 +12,8 @@ export function login(credentials) {
             })
         } catch (err) {
             console.log('Cannot login', err)
+            console.log('errorrrrr', err.response.data)
+            showErrorMsg(err.response.data)
         }
     }
 }
@@ -22,7 +24,7 @@ export function login(credentials) {
 //         try {
 
 //             await userService.resetPassword(userInfo)
-           
+
 //         } catch (err) {
 //             console.log('Cannot handel change password', err)
 //         }

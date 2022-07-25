@@ -6,9 +6,7 @@ import calendar from '../assets/img/calendar.svg'
 
 export const EventFilter = ({ filterBy, handleChange, refreshEvent, clearSearch, value, setValue, onChange, setIsOpen, isOpen, openCalendar, onFocusChange }) => {
     const { t } = useTranslation()
-    // const [value, setValue] = useState(new Date())
-    // const [isOpen, setIsOpen] = useState(false)
-    // const [lang,setLang] = useState('he')
+   
 
     const [eventTypes, setEventTypes] = useState([''])
 

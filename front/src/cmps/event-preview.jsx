@@ -1,8 +1,5 @@
 import { useNavigate } from "react-router-dom"
-import { useEffect, useState } from "react"
-// import { i18nService } from "../services/i18n-service"
 import { useTranslation } from 'react-i18next'
-import food_event from '../assets/img/food_event.svg'
 import Children from '../assets/img/Children.svg'
 import Cinema from '../assets/img/Cinema.svg'
 import Fashion from '../assets/img/Fashion.svg'
@@ -29,12 +26,6 @@ export const EventPreview = ({ event }) => {
     const navigate = useNavigate()
     const { t } = useTranslation()
 
-    useEffect(() => {
-        // console.log('event.date', event.date)
-
-    }, [])
-
-
     const onGoToDetails = (ev) => {
         ev.stopPropagation()
 
@@ -42,15 +33,12 @@ export const EventPreview = ({ event }) => {
     }
 
 
-    const pricePerCard = event.eventPricePerCard.toLocaleString('he-US', { style: 'currency', currency: 'ILS' })
-    // const pricePerCard = currEvent.event.eventPricePerCard.toLocaleString('en-US', { style: 'currency', currency: 'USD' })
+    const pricePerCard = event.eventPricePerCard.toLocaleString('he-US', { style: 'currency', currency: 'ILS' })    
 
     return (
 
         <li className="event-preview-container  note-modal">
-            {/* <div className="event-preview-info" onClick={onGoToDetails}> */}
-            {/* <div className="event-type-name"> */}
-            {/* </div> */}
+           
             <div className="event-preview-card" onClick={onGoToDetails}>
                 <div className="preview-first">
 
@@ -62,22 +50,18 @@ export const EventPreview = ({ event }) => {
                     <p className="event-preview-span">{pricePerCard} &#160; {t('perCard')}</p>
 
                 </div>
-                <div className="preview-second">
-                    {/* day in week */}
+                <div className="preview-second">                    
 
                     <div className="preview-show-time">
                         <p className="preview-dayWeek">{t(`${format(event.date, 'EEEE')}`)}</p>
                         <p className="preview-time">{event.time}</p>
-                    </div>
-                    {/* <p>{event.eventType}</p> */}
-                </div>
-                {/* <p className="event-preview-span">{event.date} &#160;</p> <p className="event-preview-txt" data-trans="eventDate">תאריך הארוע: </p><br></br> */}
+                    </div>                    
+                </div>                
                 <div className="preview-third">
                     <p className="event-preview-month">{t(`${format(event.date, 'dd')}`)}&#160;</p>
                     <p className="event-preview-month">{t(`${format(event.date, 'MMMM')}`)}</p>
                 </div>
-            </div>
-            {/* </div> */}
+            </div>            
         </li >
 
     )

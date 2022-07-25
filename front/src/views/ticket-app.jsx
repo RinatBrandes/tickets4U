@@ -22,8 +22,6 @@ const TicketApp = () => {
     const [isOpen, setIsOpen] = useState(false)
     const test = useRef()
 
-    // setfilterBy = utilService.debounce(setfilterBy,2500)
-
     useEffect(() => {
         socketService.emit('chat topic', 'eventUser')
         socketService.on('eventSaved', refreshEvent)
@@ -56,8 +54,6 @@ const TicketApp = () => {
 
     const onChange = (ev) => {
 
-        console.log('ev', ev[0])
-        console.log('ev', ev[1])
         setValue(ev[0])
         //date to timestamp - fromDate
         let fromDate = Math.round(ev[0].getTime() / 1000)
@@ -74,7 +70,6 @@ const TicketApp = () => {
     }
 
     const handleChange = (event) => {
-        console.log('event', event.target)
         let value = event.target.value
         const name = event.target.name
         if (name === 'fromDate' || name === 'toDate') {
@@ -104,7 +99,6 @@ const TicketApp = () => {
     }
 
     const onFocusChange = () => {
-
         setIsOpen(false)
     }
 
@@ -113,7 +107,7 @@ const TicketApp = () => {
             <div className="main-left"></div>
             <div className="main-main">
                 <EventType showEventByType={showEventByType} />
-                {/* <EventFilter filterBy={filterBy} handleChange={handleChange} refreshEvent={refreshEvent} clearSearch={clearSearch} onChange={onChange} setValue={setValue} value={value} setIsOpen={setIsOpen} isOpen={isOpen} openCalendar={openCalendar} onFocusChange={onFocusChange} /> */}
+                <EventFilter filterBy={filterBy} handleChange={handleChange} refreshEvent={refreshEvent} clearSearch={clearSearch} onChange={onChange} setValue={setValue} value={value} setIsOpen={setIsOpen} isOpen={isOpen} openCalendar={openCalendar} onFocusChange={onFocusChange} />
                 <EventList events={events} />
             </div>
             <div className="main-right"></div>

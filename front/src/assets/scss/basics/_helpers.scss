@@ -4,15 +4,18 @@
 
     display: flex;
 
-    > *.full {
+    >*.full {
         flex: 1;
     }
+
     &.column {
         flex-direction: column;
     }
+
     &.justify-center {
         justify-content: center;
     }
+
     &.align-center {
         align-items: center;
     }
@@ -23,9 +26,11 @@
 .square-ratio {
     @include aspect-ratio(1, 1);
 }
+
 .video-ratio {
     @include aspect-ratio(16, 9);
 }
+
 .portrait-ratio {
     @include aspect-ratio(9, 16);
 }
@@ -40,4 +45,3 @@
 .inline-block {
     display: inline-block;
 }
-

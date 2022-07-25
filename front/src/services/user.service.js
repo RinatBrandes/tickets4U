@@ -13,14 +13,11 @@ export const userService = {
     getById,
     sendResetEmail,
     resetPassword
-
-
 }
 
 async function login(userCred) {
     try {
         let user = await httpService.post('auth/login', userCred)
-
         if (user) {
             _handleLogin(user)
             return user
@@ -34,11 +31,11 @@ async function login(userCred) {
 
 async function sendResetEmail(userInfo) {
     console.log('userInfo', userInfo)
-    
+
     try {
         await httpService.post(`user/resetPassword:${userInfo.email}`)
 
-         //ToDo:send mail
+        //ToDo:send mail
     } catch (err) {
         console.dir(err)
         showErrorMsg(err)
@@ -48,13 +45,13 @@ async function sendResetEmail(userInfo) {
 }
 
 
-async function  resetPassword(userInfo) {
+async function resetPassword(userInfo) {
     console.log('userInfo', userInfo)
-    
+
     try {
         await httpService.post(`user/sendResetEmail:${userInfo.email}`)
-      
-      
+
+
     } catch (err) {
         console.dir(err)
         showErrorMsg(err)

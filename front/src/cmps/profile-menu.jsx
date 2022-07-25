@@ -8,9 +8,7 @@ export const ProfileMenu = ({ onLogout, user, closeMenu, onGoToEvents }) => {
     const { t } = useTranslation()
 
     return (
-        // <section className="profile-menu-wrapper">
         <div className="profile-menu">
-            {/* <div className="Menu-subcategory"></div> */}
             <ul className="sub-category clean-list">
                 {user && <li className="menu-item">{t('hello')} <span>{user.userName}</span></li>}
                 <li className="menu-item" onClick={() => closeMenu()}><NavLink to={`/event/edit`} className="menu-item">{t('addEvent')}</NavLink></li>
@@ -20,6 +18,5 @@ export const ProfileMenu = ({ onLogout, user, closeMenu, onGoToEvents }) => {
                 </NavLink></li>
             </ul>
         </div>
-        // </section>
     )
 }

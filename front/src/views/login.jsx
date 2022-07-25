@@ -41,26 +41,24 @@ const Login = () => {
 
     return (
         <section className="login-container">
-                {/* <div className="logo-page-container">
-                    <img className="logo-page" src={logo_page}></img>
-                </div> */}
+
             <div className="login-wrapper">
 
                 <div className="login-title">
                     <h1>{t('login')}</h1>
                 </div>
-                <form className="login-form" onSubmit={handleSubmit} >                    
+                <form className="login-form" onSubmit={handleSubmit} >
 
                     <input className="login-input" type="text" name="username" value={credentials.username} onChange={handleChange} placeholder={t('userName')} required />
-                                        
+
                     <input className="login-input" type="password" name="password" value={credentials.password} onChange={handleChange} autoComplete="off" placeholder={t('password')} required />
 
-                        <button className="login-btn">{t('login')}</button>
+                    <button className="login-btn">{t('login')}</button>
 
-                        <div className='forgot-password'>
-                            <Link className="forgot-pass" to='/forgotpass'>{t('forgotPass')}</Link>
-                            {/* <p className='forgot-pass-txt'>{t('forgotPass')}<span> <Link  className="forgot-pass" to='/forgotpass'>{t('resetIt')}</Link></span></p> */}
-                        </div>
+                    <div className='forgot-password'>
+                        <Link className="forgot-pass" to='/forgotpass'>{t('forgotPass')}</Link>
+                        {/* <p className='forgot-pass-txt'>{t('forgotPass')}<span> <Link  className="forgot-pass" to='/forgotpass'>{t('resetIt')}</Link></span></p> */}
+                    </div>
                 </form>
             </div>
         </section>

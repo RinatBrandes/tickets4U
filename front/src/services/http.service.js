@@ -15,6 +15,7 @@ export const httpService = {
         return ajax(endpoint, 'GET', data)
     },
     post(endpoint, data) {
+        console.log(endpoint, data)
         return ajax(endpoint, 'POST', data)
     },
     put(endpoint, data) {
@@ -39,6 +40,7 @@ async function ajax(endpoint, method = 'GET', data = null) {
     } catch (err) {
         console.log(`Had Issues ${method}ing to the backend, endpoint: ${endpoint}, with data: `, data)
         console.dir(err)
+        console.log('errorrrrr', err.response.data)
 
         if (err.response && err.response.status === 401) {
             sessionStorage.clear()

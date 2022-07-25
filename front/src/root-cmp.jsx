@@ -1,4 +1,3 @@
-// import React from 'react'
 import { Suspense } from 'react';
 import { Routes, Route } from 'react-router'
 import routes from './routes'
