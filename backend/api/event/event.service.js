@@ -26,7 +26,7 @@ async function query(filterBy = {}) {
         let sortType = 1
         if (filterBy.userId.length) sortType = -1
         var events = await collection.find(criteria).sort(filterBy.sortBy, sortType).toArray()
-
+        handelEventStatus(events)
         return events
     } catch (err) {
         logger.error('cannot find events', err)
@@ -35,18 +35,33 @@ async function query(filterBy = {}) {
     }
 }
 
-// async function getTypes() {
 
-//     const criteria = null
-//     try {
-//         const collection = await dbService.getCollection('eventTypes')
-//         var eventTypes = await collection.find(criteria).toArray()
-//         return events
-//     } catch (err) {
-//         logger.error('Cannot find eventTypes', err)
-//         throw err
-//     }
-// }
+
+async function handelEventStatus(events ) {
+
+   
+    try {
+        const now = Date.now() / 1000
+        // console.log('now',now )
+      
+        events = events.map(event => {
+            // console.log('event.date', event.date)
+             return (event.date < now)? event.eventStatus = 'close': 'new'
+            })
+        // events = events.foreach(event => {
+        //     const collection =  dbService.getCollection('event')
+        //      collection.updateOne({ '_id': ObjectId(event._id) }, { $set: event.eventStatus })
+                
+        // })
+      
+       
+        return events
+    } catch (err) {
+        logger.error('cannot find events', err)
+        userService.addLog('Event', 'Error', `Cannot change event status`, err)
+        throw err
+    }
+}
 
 
 async function getById(eventId) {
