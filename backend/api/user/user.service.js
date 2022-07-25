@@ -4,10 +4,12 @@ const logger = require('../../services/logger.service')
 const ObjectId = require('mongodb').ObjectId
 
 
+
 module.exports = {
     query,
     getById,
     getByUsername,
+    getUser,
     remove,
     update,
     add,
@@ -24,13 +26,12 @@ async function query(filterBy = {}) {
         users = users.map(user => {
             delete user.password
             user.createdAt = ObjectId(user._id).getTimestamp()
-            // Returning fake fresh data
-            // user.createdAt = Date.now() - (1000 * 60 * 60 * 24 * 3) // 3 days ago
             return user
         })
         return users
     } catch (err) {
         logger.error('cannot find users', err)
+        userService.addLog('User', 'Error', `Cannot get user`, err)
         throw err
     }
 }
@@ -57,6 +58,35 @@ async function getByUsername(userName) {
         const user = await collection.findOne({ userName })
         return user
     } catch (err) {
+        logger.error(`while finding user ${userName}`, err)
+        throw err
+    }
+}
+
+async function getUser(userName, password) {
+    
+    try {
+        const criteria = {}
+        criteria.$and = [
+            {
+                userName: userName
+            },
+            {
+                password: password
+            }
+        ]
+        console.log('criteria',criteria )
+        const collection = await dbService.getCollection('user')
+        const user = await collection.findOne( criteria )
+        console.log('user',user )
+        if(user === null){
+            addLog('user', 'Error', `Cannot logged in - user or password incorrect - ${userName}`)
+            const err = 'Username or password inncorect'
+            throw err
+        }
+        return user
+    } catch (err) {
+        console.log('err in row 89 user service', err)
         logger.error(`while finding user ${userName}`, err)
         throw err
     }
@@ -102,7 +132,7 @@ async function add(signupUser) {
         
         return signupUser
     } catch (err) {
-        addLog('user', 'error', `cannot insert user -${signupUser} -  ${err}`,  signupUser )
+        addLog('User', 'error', `Cannot insert user -${signupUser} -  ${err}`,  signupUser )
         logger.error('cannot insert user', err)
         throw err
     }
@@ -110,10 +140,15 @@ async function add(signupUser) {
 
 
 async function addLog(collectionName, logType, details, userData,eventData={}){
-  
+    if (userData === undefined) {       
+        var userData = {
+            _id: 0,            
+        }
+    }
+   
     const logDetails = {
         subject: collectionName,
-        userId: ObjectId(userData._id),
+        userId: ObjectId(userData._id) ? ObjectId(userData._id) : 0,
         eventId: eventData.eventId ? eventData.eventId: null,
         type: logType,
         details: details,

@@ -30,6 +30,7 @@ async function query(filterBy = {}) {
         return events
     } catch (err) {
         logger.error('cannot find events', err)
+        userService.addLog('Event', 'Error', `Cannot get events`, err)
         throw err
     }
 }
@@ -58,6 +59,7 @@ async function getById(eventId) {
         return event
     } catch (err) {
         logger.error(`While finding event ${eventId}`, err)
+        userService.addLog('Event', 'Error', `Cannot get event`, err)
         throw err
     }
 }
@@ -125,7 +127,7 @@ async function add(currEvent) {
 
 
 function _buildCriteria(filterBy) {
-    console.log('filterBy', filterBy)
+    // console.log('filterBy', filterBy)
     const criteria = {}
     //   console.log('filterBy', filterBy)
     if (filterBy.fromDate && filterBy.allDate === 'false') {
@@ -181,7 +183,7 @@ function _buildCriteria(filterBy) {
     if (filterBy.userId) {
         criteria.userId = { $regex: filterBy.userId }
     }
-    console.log('criteria', criteria)
+    // console.log('criteria', criteria)
 
     return criteria
 }

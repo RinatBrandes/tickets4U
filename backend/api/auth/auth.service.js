@@ -7,7 +7,8 @@ const cryptr = new Cryptr(process.env.SECRET1 || 'Secret-Wiserr-1234')
 async function login(userName, password) {
     try {
         logger.debug(`auth.service - login with username: ${userName}`)
-        const user = await userService.getByUsername(userName)
+        // const user = await userService.getByUsername(userName)        
+        const user = await userService.getUser(userName,password)
 
         if (!user) return Promise.reject('Invalid username or password')
         // TODO: un-comment for real login
@@ -19,8 +20,9 @@ async function login(userName, password) {
         userService.addLog('user', 'info', `login  - ${user.userName}`, user)
         return user
     } catch (err) {
-        userService.addLog('user', 'error', `cannot login  - ${user.userName} - ${err}`, user)
+        userService.addLog('user', 'error', `auth service - cannot login  - username or password inccorect${user.userName} - ${err}`, user)
         console.log('cannot login')
+        res.status(401).send({ err: 'Username or password inccorect' })
     }
 }
 

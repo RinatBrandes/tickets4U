@@ -4,7 +4,7 @@ const logger = require('../../services/logger.service')
 async function login(req, res) {
     const { userName, password } = req.body
 
-    try {
+    try {        
         const user = await authService.login(userName, password)
         const loginToken = authService.getLoginToken(user)
         logger.info('User login: ', user)
@@ -12,7 +12,7 @@ async function login(req, res) {
         res.json(user)
     } catch (err) {
         logger.error('Failed to Login ' + err)
-        res.status(401).send({ err: 'Failed to Login' })
+        res.status(401).send({ err: 'Username or password inccorect' })
     }
 }
 
