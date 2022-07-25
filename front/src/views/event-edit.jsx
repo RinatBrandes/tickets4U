@@ -52,11 +52,13 @@ const EventEdit = () => {
         if (name === 'eventType' && (value === 'בחר' || value === 'select')) value = ''
         if (name === 'date') value = new Date(value)
         setCurrEvent({ ...currEvent, [name]: value })
+      
     }
 
     const handleSubmit = (event) => {
         event.preventDefault()
         const data = new FormData(event.currentTarget)
+      
         const currEventInfo = {
             date: utilService.toTimestamp(data.get('date')),
             time: data.get('time'),
@@ -68,7 +70,7 @@ const EventEdit = () => {
             userId: loggedInUser._id,
             eventPricePerCard: +data.get('eventPricePerCard'),
             ticketCount: +data.get('ticketCount'),
-            eventStatus: 'new',
+            eventStatus: data.get('eventStatus')? data.get('eventStatus') :'new',
             createdAt: Date.now(),
             closeDate: null,
             userRemark: data.get('userRemark'),

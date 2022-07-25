@@ -46,7 +46,6 @@ function toTimestamp(date){
     if(!date)return
     date += ' 00:00:01'    
     var datum = Date.parse(date)
-    console.log('datum', datum)
     return datum/1000;
  }
 
